@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Gravity mirror">
+<ellipse id="Ellipse" cx="11.6181" cy="3.23627" rx="2.30501" ry="1.45369" transform="rotate(-26.5651 11.6181 3.23627)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_2" cx="20" cy="2.61053" rx="2.39105" ry="1.69543" fill="#1F3A5F"/>
+<ellipse id="Ellipse_3" cx="28.3819" cy="3.23627" rx="2.30501" ry="1.45369" transform="rotate(26.5651 28.3819 3.23627)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_4" cx="3.23627" cy="11.6181" rx="2.30501" ry="1.45369" transform="rotate(-63.4349 3.23627 11.6181)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_5" cx="10.6594" cy="10.6594" rx="2.56866" ry="2.20596" transform="rotate(-45 10.6594 10.6594)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_6" cx="20" cy="10.3262" rx="2.66029" ry="2.47513" fill="#1F3A5F"/>
+<ellipse id="Ellipse_7" cx="29.3406" cy="10.6594" rx="2.56866" ry="2.20596" transform="rotate(45 29.3406 10.6594)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_8" cx="36.7637" cy="11.6181" rx="2.30501" ry="1.45369" transform="rotate(63.4349 36.7637 11.6181)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_9" cx="2.61053" cy="20" rx="2.39105" ry="1.69543" transform="rotate(-90 2.61053 20)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_10" cx="10.3262" cy="20" rx="2.66029" ry="2.47513" transform="rotate(-90 10.3262 20)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_11" cx="29.6738" cy="20" rx="2.66029" ry="2.47513" transform="rotate(90 29.6738 20)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_12" cx="37.3895" cy="20" rx="2.39105" ry="1.69543" transform="rotate(90 37.3895 20)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_13" cx="3.23627" cy="28.3819" rx="2.30501" ry="1.45369" transform="rotate(-116.565 3.23627 28.3819)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_14" cx="10.6594" cy="29.3406" rx="2.56866" ry="2.20596" transform="rotate(-135 10.6594 29.3406)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_15" cx="20" cy="29.6738" rx="2.66029" ry="2.47513" transform="rotate(180 20 29.6738)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_16" cx="29.3406" cy="29.3406" rx="2.56866" ry="2.20596" transform="rotate(135 29.3406 29.3406)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_17" cx="36.7637" cy="28.3819" rx="2.30501" ry="1.45369" transform="rotate(116.565 36.7637 28.3819)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_18" cx="11.6181" cy="36.7637" rx="2.30501" ry="1.45369" transform="rotate(-153.435 11.6181 36.7637)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_19" cx="20" cy="37.3895" rx="2.39105" ry="1.69543" transform="rotate(180 20 37.3895)" fill="#1F3A5F"/>
+<ellipse id="Ellipse_20" cx="28.3819" cy="36.7637" rx="2.30501" ry="1.45369" transform="rotate(153.435 28.3819 36.7637)" fill="#1F3A5F"/>
+<circle id="Ellipse_21" cx="20" cy="20" r="4.65551" transform="rotate(90 20 20)" fill="#F6682E"/>
+</g>
+</svg>

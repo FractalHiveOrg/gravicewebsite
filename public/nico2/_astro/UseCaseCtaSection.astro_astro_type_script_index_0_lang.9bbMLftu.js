@@ -1,0 +1,1 @@
+import{n as e}from"./footerWaveAnimation.DrGxugLY.js";e(),document.addEventListener(`astro:page-load`,()=>{e()});
