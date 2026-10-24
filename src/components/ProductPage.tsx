@@ -52,7 +52,7 @@ export function ProductPage({ product }: Props) {
             <div className="flex flex-wrap gap-4 pt-2">
               {product.slug === "nico" ? (
                 <Button
-                  href="/nico2"
+                  href="https://nico.fractalhive.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="gap-2.5"
