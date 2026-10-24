@@ -26,7 +26,7 @@ export function WhyGravice() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Why Gravice
             </p>
-            <h2 className="font-serif text-[clamp(2rem,4vw,2.75rem)] font-semibold leading-[1.15] tracking-[-0.01em] text-deep-space">
+            <h2 className="font-serif text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.15] tracking-[-0.01em] text-deep-space">
               A partner that brings order, and keeps its word.
             </h2>
           </div>
@@ -47,7 +47,7 @@ export function WhyGravice() {
                   className="size-10 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                   unoptimized
                 />
-                <h3 className="font-serif text-[clamp(1.25rem,2.5vw,1.5rem)] font-semibold leading-[1.15] text-deep-space">
+                <h3 className="font-serif text-[clamp(1.25rem,2.5vw,1.5rem)] font-normal leading-[1.15] text-deep-space">
                   {p.title}
                 </h3>
                 <p className="text-[16px] leading-[1.6] text-slate">{p.body}</p>

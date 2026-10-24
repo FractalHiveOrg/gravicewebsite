@@ -37,6 +37,8 @@ type Props = {
   variant?: Variant;
   size?: Size;
   className?: string;
+  target?: string;
+  rel?: string;
 };
 
 export function Button({
@@ -45,6 +47,8 @@ export function Button({
   variant = "primary",
   size = "lg",
   className = "",
+  target,
+  rel,
 }: Props) {
   const isLink = variant.startsWith("link");
   const hasDisplayOverride =
@@ -55,6 +59,8 @@ export function Button({
   return (
     <Link
       href={href}
+      target={target}
+      rel={rel}
       data-magnetic
       className={[
         "items-center justify-center rounded-full font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",

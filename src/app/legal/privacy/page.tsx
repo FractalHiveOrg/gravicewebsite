@@ -281,7 +281,7 @@ function PolicySection({
 }) {
   return (
     <section className="space-y-4">
-      <h2 className="font-serif text-xl font-semibold text-deep-space md:text-2xl">
+      <h2 className="font-serif text-xl font-normal text-deep-space md:text-2xl">
         {title}
       </h2>
       {blocks.map((block, index) => {
@@ -333,7 +333,7 @@ export default function PrivacyPolicyPage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Legal
             </p>
-            <h1 className="font-serif text-[clamp(2.25rem,4vw,3.25rem)] font-semibold tracking-tight text-deep-space">
+            <h1 className="font-serif text-[clamp(2.25rem,4vw,3.25rem)] font-normal tracking-tight text-deep-space">
               Privacy Policy
             </h1>
             <p className="text-sm font-medium text-slate">
@@ -375,7 +375,7 @@ export default function PrivacyPolicyPage() {
 
           <Reveal>
             <section className="space-y-4">
-              <h2 className="font-serif text-xl font-semibold text-deep-space md:text-2xl">
+              <h2 className="font-serif text-xl font-normal text-deep-space md:text-2xl">
                 12. Contact Us
               </h2>
               <p className="leading-relaxed text-slate">
@@ -419,7 +419,7 @@ export default function PrivacyPolicyPage() {
 
         <Reveal>
           <aside className="rounded-[20px] border border-navy-100 bg-white p-6 md:p-8">
-            <h2 className="mb-3 font-serif text-lg font-semibold text-deep-space">
+            <h2 className="mb-3 font-serif text-lg font-normal text-deep-space">
               Enterprise Privacy Commitment
             </h2>
             <p className="leading-relaxed text-slate">

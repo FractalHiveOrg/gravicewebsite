@@ -43,12 +43,12 @@ export function SiteFooter() {
           <div className="flex max-w-[340px] flex-col gap-5">
             <Logo theme="dark" />
             <p className="text-[14px] leading-[1.6] text-navy-200">
-              Gravice is a fintech company that builds software for banks and
-              growing businesses in India and the Middle East. Its products are
-              ElevateRM, V-Track and NICO.
+              Gravice is a fintech company that builds software for enterprises and
+              growing businesses. Its products are
+              ElevateRM, V-Track, and NICO.
             </p>
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/company/fractalhive/posts/"
               className="text-[14px] font-medium text-paper hover:text-pull-orange"
               target="_blank"
               rel="noreferrer"

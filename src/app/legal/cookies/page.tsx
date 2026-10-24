@@ -160,7 +160,7 @@ function PolicySection({
 }) {
   return (
     <section className="space-y-4">
-      <h2 className="font-serif text-xl font-semibold text-deep-space md:text-2xl">
+      <h2 className="font-serif text-xl font-normal text-deep-space md:text-2xl">
         {title}
       </h2>
       {blocks.map((block, index) => {
@@ -212,7 +212,7 @@ export default function CookieNoticePage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Legal
             </p>
-            <h1 className="font-serif text-[clamp(2.25rem,4vw,3.25rem)] font-semibold tracking-tight text-deep-space">
+            <h1 className="font-serif text-[clamp(2.25rem,4vw,3.25rem)] font-normal tracking-tight text-deep-space">
               Cookie Notice
             </h1>
             <p className="text-sm font-medium text-slate">
@@ -255,7 +255,7 @@ export default function CookieNoticePage() {
 
           <Reveal>
             <section className="space-y-4">
-              <h2 className="font-serif text-xl font-semibold text-deep-space md:text-2xl">
+              <h2 className="font-serif text-xl font-normal text-deep-space md:text-2xl">
                 9. Contact Us
               </h2>
               <p className="leading-relaxed text-slate">

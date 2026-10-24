@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Gravice animation package: use site fonts + sticky header height */
+:root {
+  --gv-serif: var(--font-source-serif), Georgia, serif;
+  --gv-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gv-header-h: 72px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gv-header-h: 84px;
+  }
+}
+
 @theme inline {
   --color-deep-space: #0e1b2c;
   --color-navy: #1f3a5f;
@@ -11,9 +24,9 @@
   --color-navy-100: #dbdfe5;
   --color-navy-200: #b7c0cc;
   --color-purple-300: #ad85ca;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-source-serif), ui-serif, Georgia, "Times New Roman",
-    serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -56,6 +69,10 @@ body {
 
 .font-serif {
   font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 .section-pad {
@@ -87,6 +104,8 @@ html.has-gravity-cursor [contenteditable="true"] {
   position: fixed;
   inset: 0;
   z-index: 10050;
+  /* Snap off when the pointer leaves the page — no laggy trail off-screen */
+  transition: opacity 80ms linear;
 }
 
 .gravity-cursor__mark,
@@ -272,6 +291,16 @@ html.rebrand-lock body {
   overflow: hidden;
 }
 
+/* Hide page chrome + cursors while the notice is up — solid black field only.
+   DotField must not mount during this window (see HomeDotField / rebrandGate). */
+html.rebrand-lock .site-header,
+html.rebrand-lock main,
+html.rebrand-lock .gv-footer,
+html.rebrand-lock .gravity-cursor {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .rebrand-modal {
   position: fixed;
   inset: 0;
@@ -280,6 +309,7 @@ html.rebrand-lock body {
   place-items: center;
   padding: 1.25rem;
   pointer-events: auto;
+  background: #0e1b2c;
 }
 
 .rebrand-modal__scrim {
@@ -289,11 +319,9 @@ html.rebrand-lock body {
   margin: 0;
   padding: 0;
   cursor: pointer;
-  background: rgb(14 27 44 / 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: #0e1b2c;
   opacity: 1;
-  transition: opacity 0.35s var(--ease-out-expo);
+  transition: opacity 0.4s var(--ease-out-expo);
 }
 
 .rebrand-modal.is-entering .rebrand-modal__scrim {
@@ -332,8 +360,8 @@ html.rebrand-lock body {
   transform: translate3d(0, 0, 0) scale(1);
   opacity: 1;
   transition:
-    opacity 0.32s var(--ease-out-expo),
-    transform 0.32s var(--ease-out-expo);
+    opacity 0.4s var(--ease-out-expo),
+    transform 0.4s var(--ease-out-expo);
 }
 
 .rebrand-modal.is-entering .rebrand-modal__panel {
@@ -343,6 +371,10 @@ html.rebrand-lock body {
 .rebrand-modal.is-leaving .rebrand-modal__panel {
   opacity: 0;
   transform: translate3d(0, 10px, 0) scale(0.98);
+}
+
+.rebrand-modal.is-leaving {
+  pointer-events: none;
 }
 
 @keyframes rebrand-panel-in {
@@ -460,8 +492,8 @@ html.rebrand-lock body {
 .rebrand-modal__title {
   font-family: var(--font-serif);
   font-size: clamp(1.25rem, 3vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 400;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   color: #f7f5f0;
 }

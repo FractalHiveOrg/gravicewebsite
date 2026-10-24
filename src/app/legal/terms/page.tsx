@@ -446,7 +446,7 @@ function PolicySection({
 }) {
   return (
     <section className="space-y-4">
-      <h2 className="font-serif text-xl font-semibold text-deep-space md:text-2xl">
+      <h2 className="font-serif text-xl font-normal text-deep-space md:text-2xl">
         {title}
       </h2>
       {blocks.map((block, index) => {
@@ -513,7 +513,7 @@ export default function TermsOfServicePage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Legal
             </p>
-            <h1 className="font-serif text-[clamp(2.25rem,4vw,3.25rem)] font-semibold tracking-tight text-deep-space">
+            <h1 className="font-serif text-[clamp(2.25rem,4vw,3.25rem)] font-normal tracking-tight text-deep-space">
               Terms of Service
             </h1>
             <p className="text-sm font-medium text-slate">
@@ -524,7 +524,7 @@ export default function TermsOfServicePage() {
 
         <Reveal delay={60}>
           <div className="space-y-4 leading-relaxed text-slate">
-            <h2 className="font-serif text-xl font-semibold text-deep-space md:text-2xl">
+            <h2 className="font-serif text-xl font-normal text-deep-space md:text-2xl">
               Agreement to our Legal Terms
             </h2>
             <p>
@@ -593,7 +593,7 @@ export default function TermsOfServicePage() {
         <nav aria-label="Table of contents">
           <Reveal>
             <div className="rounded-[20px] border border-navy-100 bg-white p-6 md:p-8">
-              <h2 className="mb-4 font-serif text-lg font-semibold text-deep-space">
+              <h2 className="mb-4 font-serif text-lg font-normal text-deep-space">
                 Table of contents
               </h2>
               <ol className="columns-1 gap-x-8 space-y-2 text-sm text-slate sm:columns-2">
@@ -642,7 +642,7 @@ export default function TermsOfServicePage() {
 
           <Reveal>
             <section id="24-contact-us" className="space-y-4">
-              <h2 className="font-serif text-xl font-semibold text-deep-space md:text-2xl">
+              <h2 className="font-serif text-xl font-normal text-deep-space md:text-2xl">
                 24. Contact Us
               </h2>
               <p className="leading-relaxed text-slate">

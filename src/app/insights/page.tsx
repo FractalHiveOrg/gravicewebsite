@@ -17,7 +17,7 @@ export default function InsightsPage() {
           <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
             Insights
           </p>
-          <h1 className="font-serif text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.1] tracking-[-0.01em] text-deep-space">
+          <h1 className="font-serif text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.1] tracking-[-0.01em] text-deep-space">
             Ideas on bringing structure to business operations.
           </h1>
           <p className="text-[17px] leading-relaxed text-slate">
@@ -48,7 +48,7 @@ export default function InsightsPage() {
                 <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
                   LinkedIn
                 </p>
-                <h2 className="font-serif text-[20px] font-semibold leading-[1.2] text-deep-space transition-colors group-hover:text-navy">
+                <h2 className="font-serif text-[20px] font-normal leading-[1.2] text-deep-space transition-colors group-hover:text-navy">
                   {a.title}
                 </h2>
                 <p className="text-[14px] leading-relaxed text-slate">

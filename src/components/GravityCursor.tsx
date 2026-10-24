@@ -49,7 +49,7 @@ function surfaceAt(x: number, y: number): Surface {
 
 /**
  * Brand-mark gravity cursor — cream logo on dark sections, navy logo on paper.
- * Fine pointers only; disabled for touch / reduced motion.
+ * Mark tracks the pointer directly; ring trails behind. Fine pointers only.
  */
 export function GravityCursor() {
   const reduced = usePrefersReducedMotion();
@@ -59,7 +59,7 @@ export function GravityCursor() {
   const onDarkRef = useRef<HTMLImageElement>(null);
   const onLightRef = useRef<HTMLImageElement>(null);
   const pos = useRef({ x: -100, y: -100 });
-  const draw = useRef({ x: -100, y: -100 });
+  const trail = useRef({ x: -100, y: -100 });
   const visual = useRef({
     core: 1,
     ring: 1,
@@ -71,6 +71,9 @@ export function GravityCursor() {
   const activeMagnet = useRef<HTMLElement | null>(null);
   const shift = useRef({ x: 0, y: 0 });
   const sampleEvery = useRef(0);
+  /** False once the pointer leaves the document — hide the mark immediately. */
+  const inside = useRef(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
@@ -111,9 +114,40 @@ export function GravityCursor() {
       return { el, x, y, r };
     }
 
+    function hide() {
+      inside.current = false;
+      mode.current = "default";
+      if (activeMagnet.current) {
+        activeMagnet.current.style.removeProperty("transform");
+        activeMagnet.current = null;
+      }
+      shift.current = { x: 0, y: 0 };
+      const root = rootRef.current;
+      if (root) root.style.opacity = "0";
+    }
+
+    function show() {
+      if (!inside.current) {
+        inside.current = true;
+        // Snap trail to pointer so it doesn't fly in from the last leave point
+        trail.current.x = pos.current.x;
+        trail.current.y = pos.current.y;
+      }
+      const root = rootRef.current;
+      if (root) root.style.opacity = "1";
+    }
+
     function onMove(e: PointerEvent) {
-      pos.current.x = e.clientX;
-      pos.current.y = e.clientY;
+      const { clientX: x, clientY: y } = e;
+      // Outside the viewport (window leave often misses this)
+      if (x < 0 || y < 0 || x > window.innerWidth || y > window.innerHeight) {
+        hide();
+        return;
+      }
+
+      pos.current.x = x;
+      pos.current.y = y;
+      show();
 
       const magnet = isMagnet(e.target as Element);
       if (magnet) {
@@ -141,15 +175,11 @@ export function GravityCursor() {
       if (mode.current === "press") mode.current = "magnet";
     }
 
-    function onLeave() {
-      pos.current.x = -100;
-      pos.current.y = -100;
-      mode.current = "default";
-      if (activeMagnet.current) {
-        activeMagnet.current.style.removeProperty("transform");
-        activeMagnet.current = null;
-      }
-      shift.current = { x: 0, y: 0 };
+    function onDocLeave(e: MouseEvent | PointerEvent) {
+      // Only when leaving the document itself (not moving between children)
+      const next = (e as MouseEvent).relatedTarget as Node | null;
+      if (next && document.documentElement.contains(next)) return;
+      hide();
     }
 
     function lerp(a: number, b: number, t: number) {
@@ -166,8 +196,13 @@ export function GravityCursor() {
         return;
       }
 
-      let tx = pos.current.x;
-      let ty = pos.current.y;
+      if (!inside.current) {
+        raf.current = requestAnimationFrame(tick);
+        return;
+      }
+
+      let mx = pos.current.x;
+      let my = pos.current.y;
       let pull = 0;
 
       if (activeMagnet.current && mode.current !== "default") {
@@ -178,22 +213,23 @@ export function GravityCursor() {
         const strength = Math.min(1, Math.max(0, (m.r - dist) / m.r));
         pull = strength * strength;
         const attract = 0.08 + pull * 0.16;
-        tx = pos.current.x + dx * attract;
-        ty = pos.current.y + dy * attract;
+        mx = pos.current.x + dx * attract;
+        my = pos.current.y + dy * attract;
 
         if (shouldShiftElement(activeMagnet.current)) {
           const maxShift = 3;
           const targetX = ((pos.current.x - m.x) / m.r) * maxShift * pull;
           const targetY = ((pos.current.y - m.y) / m.r) * maxShift * pull;
-          shift.current.x = lerp(shift.current.x, targetX, 0.08);
-          shift.current.y = lerp(shift.current.y, targetY, 0.08);
+          shift.current.x = lerp(shift.current.x, targetX, 0.18);
+          shift.current.y = lerp(shift.current.y, targetY, 0.18);
           activeMagnet.current.style.transform = `translate3d(${shift.current.x.toFixed(2)}px, ${shift.current.y.toFixed(2)}px, 0)`;
         }
       }
 
-      const ease = 0.12;
-      draw.current.x = lerp(draw.current.x, tx, ease);
-      draw.current.y = lerp(draw.current.y, ty, ease);
+      // Mark follows pointer immediately — no ease lag
+      // Ring trails for motion feel
+      trail.current.x = lerp(trail.current.x, mx, 0.22);
+      trail.current.y = lerp(trail.current.y, my, 0.22);
 
       let targetCore = 1;
       let targetRing = 1;
@@ -209,11 +245,10 @@ export function GravityCursor() {
         targetOpacity = 0.5;
       }
 
-      // Sample background every few frames — elementsFromPoint is relatively heavy
       sampleEvery.current += 1;
       let targetDarkMix = visual.current.darkMix;
       if (
-        sampleEvery.current % 3 === 0 &&
+        sampleEvery.current % 8 === 0 &&
         pos.current.x >= 0 &&
         pos.current.y >= 0
       ) {
@@ -221,18 +256,16 @@ export function GravityCursor() {
           surfaceAt(pos.current.x, pos.current.y) === "dark" ? 1 : 0;
       }
 
-      const morph = 0.1;
+      const morph = 0.16;
       visual.current.core = lerp(visual.current.core, targetCore, morph);
       visual.current.ring = lerp(visual.current.ring, targetRing, morph);
       visual.current.opacity = lerp(visual.current.opacity, targetOpacity, morph);
-      visual.current.darkMix = lerp(visual.current.darkMix, targetDarkMix, 0.18);
+      visual.current.darkMix = lerp(visual.current.darkMix, targetDarkMix, 0.22);
 
-      const x = draw.current.x;
-      const y = draw.current.y;
       const { core: coreScale, ring: ringScale, opacity, darkMix } = visual.current;
 
-      mark.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${coreScale.toFixed(4)})`;
-      ring.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${ringScale.toFixed(4)})`;
+      mark.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%) scale(${coreScale.toFixed(4)})`;
+      ring.style.transform = `translate3d(${trail.current.x}px, ${trail.current.y}px, 0) translate(-50%, -50%) scale(${ringScale.toFixed(4)})`;
       ring.style.opacity = opacity.toFixed(3);
       ring.dataset.surface = darkMix > 0.5 ? "dark" : "light";
 
@@ -242,10 +275,19 @@ export function GravityCursor() {
       raf.current = requestAnimationFrame(tick);
     }
 
+    function onVisibility() {
+      if (document.hidden) hide();
+    }
+
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", onDown);
     window.addEventListener("pointerup", onUp);
-    window.addEventListener("pointerleave", onLeave);
+    document.documentElement.addEventListener("mouseleave", onDocLeave);
+    document.documentElement.addEventListener("pointerleave", onDocLeave);
+    window.addEventListener("blur", hide);
+    document.addEventListener("visibilitychange", onVisibility);
+    // Start hidden until the first in-viewport move
+    hide();
     raf.current = requestAnimationFrame(tick);
 
     return () => {
@@ -254,7 +296,10 @@ export function GravityCursor() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);
-      window.removeEventListener("pointerleave", onLeave);
+      document.documentElement.removeEventListener("mouseleave", onDocLeave);
+      document.documentElement.removeEventListener("pointerleave", onDocLeave);
+      window.removeEventListener("blur", hide);
+      document.removeEventListener("visibilitychange", onVisibility);
       if (activeMagnet.current) {
         activeMagnet.current.style.removeProperty("transform");
       }
@@ -264,7 +309,13 @@ export function GravityCursor() {
   if (!enabled) return null;
 
   return (
-    <div className="gravity-cursor" aria-hidden data-no-cursor>
+    <div
+      ref={rootRef}
+      className="gravity-cursor"
+      aria-hidden
+      data-no-cursor
+      style={{ opacity: 0 }}
+    >
       <div ref={ringRef} className="gravity-cursor__ring" data-surface="dark" />
       <div ref={markRef} className="gravity-cursor__mark">
         {/* Cream orbit — readable on deep-space / navy */}

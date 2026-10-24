@@ -59,15 +59,11 @@ export default function AboutPage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange">
               About Gravice
             </p>
-            <h1 className="font-serif text-[clamp(2.5rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-paper">
-              Structure, at the centre.
+            <h1 className="font-serif text-[clamp(2.5rem,5vw,3.75rem)] font-normal leading-[1.08] tracking-[-0.02em] text-paper">
+              Intelligence, at the centre.
             </h1>
             <p className="text-[18px] leading-[1.6] text-navy-200">
-              Gravice began with a clear idea: bring order to slow, manual,
-              high-stakes work. Founded by technologists, AI researchers, and
-              domain experts, we build platforms that understand real operating
-              complexity — and help banks and growing businesses move with more
-              control.
+              One intelligent platform sits at the centre of Gravice Solutions. It reads, checks and organises the slow, manual work, so banks and growing businesses move faster with less risk.
             </p>
             <p className="text-[18px] leading-[1.6] text-navy-200">
               Today we sit above the systems institutions already run — LOS,
@@ -90,7 +86,7 @@ export default function AboutPage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Mission &amp; vision
             </p>
-            <h2 className="mt-4 font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-semibold text-deep-space">
+            <h2 className="mt-4 font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
               The principles that shape what we build.
             </h2>
           </Reveal>
@@ -158,7 +154,7 @@ export default function AboutPage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Core values
             </p>
-            <h2 className="mt-4 font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-semibold text-deep-space">
+            <h2 className="mt-4 font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
               What drives how we work.
             </h2>
           </Reveal>
@@ -168,7 +164,7 @@ export default function AboutPage() {
               <Reveal key={value.title} delay={i * 60}>
                 <article className="motion-card h-full rounded-[20px] border border-navy-100 bg-paper p-7 sm:p-8">
                   <div className="mb-4 h-1 w-10 rounded-full bg-pull-orange" />
-                  <h3 className="font-serif text-xl font-semibold text-deep-space">
+                  <h3 className="font-serif text-xl font-normal text-deep-space">
                     {value.title}
                   </h3>
                   <p className="mt-3 text-[15px] leading-[1.6] text-slate">
@@ -187,7 +183,7 @@ export default function AboutPage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Our culture
             </p>
-            <h2 className="mt-4 font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-semibold text-deep-space">
+            <h2 className="mt-4 font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
               How we show up for the work — and each other.
             </h2>
           </Reveal>
@@ -196,7 +192,7 @@ export default function AboutPage() {
             {culture.map((item, i) => (
               <Reveal key={item.title} delay={i * 70}>
                 <article className="rounded-[20px] border border-navy-100 bg-white p-8">
-                  <h3 className="font-serif text-xl font-semibold text-deep-space">
+                  <h3 className="font-serif text-xl font-normal text-deep-space">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-[16px] leading-[1.6] text-slate">
@@ -211,7 +207,7 @@ export default function AboutPage() {
 
       <section className="section-pad bg-deep-space">
         <Reveal className="mx-auto flex max-w-[720px] flex-col items-center gap-6 text-center">
-          <h2 className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.15] text-paper">
+          <h2 className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-normal leading-[1.15] text-paper">
             Ready to bring more structure to your operations?
           </h2>
           <p className="text-[17px] leading-[1.6] text-navy-200">

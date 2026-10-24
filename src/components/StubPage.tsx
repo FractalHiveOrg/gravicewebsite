@@ -20,7 +20,7 @@ export function StubPage({
         <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange">
           Coming soon
         </p>
-        <h1 className="font-serif text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-[1.1] text-paper">
+        <h1 className="font-serif text-[clamp(2.5rem,5vw,3.5rem)] font-normal leading-[1.1] text-paper">
           {title}
         </h1>
         <p className="text-[18px] leading-[1.6] text-navy-200">{description}</p>

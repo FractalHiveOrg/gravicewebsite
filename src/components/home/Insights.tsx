@@ -5,14 +5,14 @@ import { insights } from "@/lib/insights";
 
 export function Insights() {
   return (
-    <section className="section-pad bg-paper">
+    <section className="section-pad bg-paper" data-gv="news" id="news">
       <div className="mx-auto max-w-[1200px]">
         <Reveal className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="flex max-w-[40rem] flex-col gap-4">
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Insights
             </p>
-            <h2 className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.01em] text-deep-space">
+            <h2 className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-normal leading-[1.15] tracking-[-0.01em] text-deep-space">
               Ideas on bringing structure to business operations.
             </h2>
           </div>
@@ -43,7 +43,7 @@ export function Insights() {
                   <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
                     LinkedIn
                   </p>
-                  <h3 className="font-serif text-[clamp(1.05rem,2.2vw,1.25rem)] font-semibold leading-[1.25] text-balance text-deep-space transition-colors group-hover:text-navy">
+                  <h3 className="font-serif text-[clamp(1.05rem,2.2vw,1.25rem)] font-normal leading-[1.25] text-balance text-deep-space transition-colors group-hover:text-navy">
                     {a.title}
                   </h3>
                   <p className="text-[14px] leading-relaxed text-pretty text-slate">

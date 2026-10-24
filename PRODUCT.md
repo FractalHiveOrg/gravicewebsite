@@ -16,7 +16,7 @@ Primary: decision-makers and operators at banks, NBFCs, and growing institutiona
 
 ## Product Purpose
 
-Gravice builds fintech software that brings order to slow, manual, high-stakes work so banks and growing businesses can move faster with less risk. Success is trusted evaluation and demo bookings from institutional buyers.
+Gravice builds fintech software that brings order to slow, manual, high-stakes work so enterprises and growing businesses can move faster with less risk. Success is trusted evaluation and demo bookings from institutional buyers.
 
 ## Positioning
 

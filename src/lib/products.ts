@@ -22,6 +22,12 @@ export type Product = {
     today: string[];
     withProduct: string[];
   };
+  /** Microsoft Marketplace / partner block (e.g. V-Track). */
+  microsoftPartnership?: {
+    headline: string;
+    summary: string;
+    marketplaceUrl: string;
+  };
 };
 
 export const products: Record<ProductSlug, Product> = {
@@ -181,6 +187,13 @@ export const products: Record<ProductSlug, Product> = {
         capability: "Complete history of the valuation cycle",
       },
     ],
+    microsoftPartnership: {
+      headline: "Built with Microsoft. Available on Microsoft Marketplace.",
+      summary:
+        "Gravice is an official Microsoft partner, part of the Microsoft AI Cloud Partner Program and the ISV Success program. V-Track is listed on Microsoft Marketplace, so your teams can find, procure, and deploy through a channel you already trust.",
+      marketplaceUrl:
+        "https://marketplace.microsoft.com/en-us/product/fractalhive01.v-track",
+    },
   },
   nico: {
     slug: "nico",
