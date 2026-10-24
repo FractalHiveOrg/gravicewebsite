@@ -264,7 +264,7 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     const SC = sg ? { x: sg.x + sg.w / 2, y: sg.y + sg.h / 2, R: Math.min(sg.w, sg.h) * 0.36 } : { ...HC };
 
     // ---- one continuous story value s: -1 hero globe, 0..N-1 step orbs, N gone
-    // Narrow screens: stage pinned in the top half, step copy lives in the bottom half and fades
+    // Narrow screens: stage pinned in the top ~20%, step copy lives below and fades
     // out where it would slide under the stage.
     const stacked = hasStory && W <= 900;
     let mid = H * 0.55;
