@@ -1,0 +1,194 @@
+---
+import PricingCard, {
+  type Props as PricingCardProps,
+} from "./PricingCard.astro";
+import { siteLinks } from "../config/links";
+
+const headingPhrases = ["Simple plans", "that scale with you."];
+
+const pricingPlans: PricingCardProps[] = [
+  {
+    title: "Free",
+    description: "Try Nico on your own invoices.",
+    price: "₹0",
+    features: [
+      { boldPrefix: "10", text: "Pages", type: "check" },
+      { text: "Export to Tally ERP", type: "check" },
+      { text: "1 user", type: "check" },
+      { text: "Dedicated Email Assistance", type: "check" },
+      { text: "PDF and image files", type: "check" },
+      { text: "Invoices and receipts only", type: "warning" },
+      { text: "Connectors", type: "cross" },
+      { text: "Custom workflows", type: "cross" },
+      { text: "Custom business rules", type: "cross" },
+      { text: "Validation checks", type: "cross" },
+    ],
+    cta: {
+      label: "Start free",
+      href: siteLinks.navbar.getStarted,
+    },
+  },
+  {
+    title: "Standard",
+    description: "For a single user\nwith steady volume.",
+    price: "₹999",
+    originalPrice: "₹1,299",
+    period: "/ month",
+    features: [
+      { boldPrefix: "1,000", text: "Pages / month", type: "check" },
+      { text: "WhatsApp connector", type: "check" },
+      { text: "Export to Tally ERP", type: "check" },
+      { text: "1 user", type: "check" },
+      { text: "Dedicated Email Assistance", type: "check" },
+      { text: "PDF and image files", type: "check" },
+      { text: "Invoices and receipts only", type: "warning" },
+      { text: "Custom workflows", type: "cross" },
+      { text: "Custom business rules", type: "cross" },
+      { text: "Validation checks", type: "cross" },
+    ],
+    cta: {
+      label: "Get Started",
+      href: siteLinks.pricing.starter,
+    },
+    betaBadge:"Launch Offer"
+  },
+  {
+    title: "Business",
+    badge: "Most Popular",
+    highlighted: true,
+    description: "For finance teams\nrunning several workflows.",
+    price: "₹4,999",
+    originalPrice: "₹6,999",
+    period: "/ month",
+    features: [
+      { boldPrefix: "5,000", text: "Pages / month", type: "check" },
+      { text: "WhatsApp and One Drive Connectors", type: "check" },
+      {
+        text: "Export to Tally ERP and Zoho Books",
+        type: "check",
+      },
+      { text: "Up to 5 users", type: "check" },
+      { 
+        text: "Premium Phone Support ",
+        type: "check",
+        tooltip: "9AM to 5PM",
+      },
+      { text: "PDF and image files", type: "check" },
+      { 
+        boldPrefix:"Expanded",
+        text: "Document Support ",
+        type: "check",
+        tooltip: "Invoices, receipts and GRNs",
+      },
+      { text: "Standard workflows", type: "warning" },
+      { text: "Standard business rules", type: "warning" },
+      {
+        text: "GSTIN and CIN validations",
+        type: "warning",
+      },
+    ],
+    cta: {
+      label: "Get Started",
+      href: siteLinks.pricing.pro,
+    },
+    betaBadge:"Launch Offer"
+  },
+  {
+    title: "Enterprise",
+    description: "For high volume,\ncustom rules and any ERP.",
+    price: "Custom Pricing",
+    isCustomPrice: true,
+    features: [
+      { text: "Enterprise volume", type: "check" },
+      { boldPrefix: "Custom", text: "connectors", type: "check" },
+      { text: "Export to any ERP", type: "check" },
+      { text: "Team Workspace", type: "check" },
+      { text: "24/7 Priority Support", type: "check" },
+      { text: "Any document type or format", type: "check" },
+      { text: "Custom workflows and rules", type: "check" },
+      { text: "Custom validation checks", type: "check" },
+      { text: "Dedicated Account Manager", type: "check" },
+      { text: "Audit and security controls", type: "check" },
+    ],
+    cta: {
+      label: "Contact Sales",
+      href: siteLinks.pricing.enterprise,
+    },
+  },
+];
+---
+
+<section
+  id="pricing-section"
+  class="pricing-section w-full sm:pt-6 pb-24 sm:pb-28 md:pb-32 px-4 sm:px-6 lg:px-8 relative z-20"
+>
+  <div class="w-full max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-4xl mb-5 sm:mb-6">
+      <p class="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase mb-3 sm:mb-4">
+        PRICING
+      </p>
+
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-normal text-slate-900 tracking-tight leading-[1.15] font-hero-serif mb-5 sm:mb-6"
+      >
+        {
+          headingPhrases.map((phrase, phraseIndex) => (
+            <>
+              {phrase.split(" ").map((word) => (
+                <span class="inline-block overflow-hidden pb-1 -mb-1 mr-2 sm:mr-2.5 align-top">
+                  <span
+                    class="pricing-word inline-block"
+                    style="opacity: 0; transform: translateY(130%);"
+                  >
+                    {word}
+                  </span>
+                </span>
+              ))}
+              {phraseIndex < headingPhrases.length - 1 && (
+                <br class="hidden sm:inline" />
+              )}
+            </>
+          ))
+        }
+      </h2>
+
+      <p
+        class="text-sm sm:text-base text-slate-500 max-w-2xl leading-relaxed text-balance"
+      >
+        Start free with 10 pages. <br class="hidden sm:inline" />
+        Upgrade as your volume grows.
+      </p>
+    </div>
+
+    <!-- 4 Pricing Cards Grid -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6 items-stretch mb-8 sm:mb-10"
+    >
+      {pricingPlans.map((plan) => <PricingCard {...plan} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .font-hero-serif {
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: -0.02em;
+  }
+
+  .has-tooltip:hover .tooltip-box,
+  .has-tooltip:focus-within .tooltip-box {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+
+  .info-icon-trigger {
+    background: transparent !important;
+    padding: 2px !important;
+    border: none !important;
+    box-shadow: none !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+  }
+</style>

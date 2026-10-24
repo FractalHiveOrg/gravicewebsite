@@ -1,0 +1,272 @@
+---
+import { siteLinks } from "../config/links";
+
+interface Props {
+  showCta?: boolean;
+  animate?: boolean;
+}
+
+const { showCta = true, animate = true } = Astro.props;
+
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  solutions: [
+    { label: "Financial Services", href: "/#use-cases-section" },
+    { label: "Manufacturing", href: "/#use-cases-section" },
+    { label: "Logistics", href: "/#use-cases-section" },
+    { label: "Insurance", href: "/#use-cases-section" },
+    { label: "Finance & Accounting", href: "/#use-cases-section" },
+  ],
+  useCases: [
+    { label: "Accounts Payable", href: "/accounts-payable" },
+    { label: "Lending Operations", href: "/lending-operations" },
+    { label: "Order Processing", href: "/order-processing" },
+    { label: "Customer Onboarding", href: "/customer-onboarding" },
+    { label: "Enterprise Operations", href: "/enterprise-operations" },
+  ],
+  company: [
+    { label: "About", href: "https://fractalhive.com/about" },
+    { label: "Contact", href: "https://fractalhive.com/contact" },
+  ],
+};
+---
+
+<footer id="footer-section" class="w-full flex flex-col">
+  {showCta && (
+    <section
+      class="footer-cta-section relative w-full overflow-hidden text-center py-24 sm:py-32 md:py-36 px-4 sm:px-6 lg:px-8 bg-[#05274A]"
+      style="background: linear-gradient(246.28deg, #05274A 0%, #174771 24.91%, #3F608A 49.83%, #747A91 99.65%);"
+    >
+      <!-- Background Wave Animation -->
+      <div class="footer-wave-wrapper" aria-hidden="true">
+        <canvas
+          id="footer-wave-canvas"
+          class="stripe-wave-canvas"
+          data-clear-color="#05274A"
+          data-ref-width="1425"
+          data-ref-height="783"
+        ></canvas>
+      </div>
+
+      <div
+        class="footer-cta-card max-w-4xl mx-auto flex flex-col items-center justify-center relative z-10"
+        style={animate ? "opacity: 0; transform: translateY(30px);" : "opacity: 1; transform: translateY(0);"}
+      >
+        <!-- Kicker Label -->
+      
+
+        <!-- Serif Heading -->
+        <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-normal text-white tracking-tight leading-[1.12] mb-5 sm:mb-6 font-footer-serif">
+          {["What", "will", "you", "automate", "first?"].map((word) => (
+            <span class="inline-block overflow-hidden pb-1.5 -mb-1.5 mr-2 sm:mr-3 align-top">
+              <span
+                class="footer-word inline-block"
+                style={animate ? "opacity: 0; transform: translateY(130%);" : "opacity: 1; transform: translateY(0);"}
+              >
+                {word}
+              </span>
+            </span>
+          ))}
+        </h2>
+
+        <!-- Subtitle -->
+        <p class="text-sm sm:text-base md:text-lg text-slate-200/90 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 font-normal text-balance">
+          Try it on your own documents, <br class="hidden sm:inline" />
+          or book a walkthrough with us.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div
+          class="footer-cta-btns flex flex-wrap items-center justify-center gap-3.5 sm:gap-4"
+          style={animate ? "opacity: 0; transform: translateY(20px);" : "opacity: 1; transform: translateY(0);"}
+        >
+          <a
+            href={siteLinks.footer.startFree}
+            class="px-7 py-3 rounded-full bg-white text-[#0B1C30] font-semibold text-sm sm:text-[15px] hover:bg-slate-100 transition-colors shadow-sm cursor-pointer"
+          >
+            Get started
+          </a>
+          <a
+            href={siteLinks.footer.bookDemo}
+            class="glass-footer-btn px-7 py-3 rounded-full  text-white font-semibold text-sm sm:text-[15px] cursor-pointer"
+          >
+            Book a Demo
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Clean White Footer Link Section -->
+  <section class="w-full bg-white text-slate-900 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 md:pt-20 pb-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 text-left">
+        <!-- Brand Column (Left) -->
+        <div class="md:col-span-4 lg:col-span-4 flex flex-col items-start">
+         
+          <div class="flex items-center gap-0.5 group">
+      
+        <img
+          src="/icons/solid gradient.svg"
+          class="logo-icon logo-icon-light"
+          alt="Nico Logo"
+          width="16"
+          height="21"
+        />
+        <p class="nav-brand font-bold text-2xl text-primary">ICO</p>
+      </div>
+         
+          <p class="text-sm text-slate-500 leading-relaxed max-w-sm mb-5">
+            Automates the paperwork <br class="hidden sm:inline" />
+            behind finance and operations.
+          </p>
+          <a
+            href={siteLinks.hero.getStarted}
+            class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors group cursor-pointer"
+          >
+            <span>Get Started</span>
+            <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Links Columns (Right 8 cols) -->
+        <div class="md:col-span-8 lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <!-- USE CASES -->
+          <div>
+            <h4 class="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-slate-400 mb-4 sm:mb-5">
+              USE CASES
+            </h4>
+            <ul class="space-y-3">
+              {footerLinks.useCases.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-xs sm:text-[13px] text-slate-600 hover:text-slate-900 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- COMPANY -->
+          <div>
+            <h4 class="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-slate-400 mb-4 sm:mb-5">
+              COMPANY
+            </h4>
+            <ul class="space-y-3">
+              {footerLinks.company.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-xs sm:text-[13px] text-slate-600 hover:text-slate-900 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Legal Row -->
+      <div class="w-full border-t border-slate-100 mt-16 md:mt-20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p>&copy; {currentYear} Nico</p>
+        <div class="flex items-center gap-6">
+          <a href={siteLinks.legal.privacy} class="hover:text-slate-700 transition-colors">
+            Privacy
+          </a>
+          <a href={siteLinks.legal.terms} class="hover:text-slate-700 transition-colors">
+            Terms
+          </a>
+      
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>
+
+<style>
+  .font-footer-serif {
+    font-family: "Newsreader", "Times New Roman", Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+
+  .footer-cta-section {
+    background: linear-gradient(246.28deg, #05274A 0%, #174771 24.91%, #3F608A 49.83%, #747A91 99.65%);
+  }
+
+  .footer-wave-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    overflow: hidden;
+    /* Promote to GPU compositor layer — prevents scroll repaints from bleeding */
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  .footer-wave-wrapper canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+
+  .footer-wave-wrapper canvas.wave-loaded {
+    opacity: 1;
+  }
+
+  .footer-word {
+    transform: translateY(130%);
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .footer-cta-card {
+    will-change: transform, opacity;
+  }
+
+  .footer-cta-btns {
+    will-change: transform, opacity;
+  }
+
+
+  .glass-footer-btn{
+       background-color: rgba(110, 110, 110, 0.45);
+    -webkit-backdrop-filter: blur(20px) saturate(190%) contrast(105%);
+    backdrop-filter: blur(20px) saturate(190%) contrast(105%);
+  }
+
+    .nav-brand {
+    font-family: "SF Pro Rounded", system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-style: "Semibold";
+    leading-trim: NONE;
+    line-height: heading 1/line-height;
+    letter-spacing: heading 1/letter-spacing;
+  }
+  /* ─── Mobile: disable WebGL canvas to prevent scroll flickering ─────────── */
+  @media (max-width: 1023px) {
+    .footer-cta-section {
+      /* Isolate to its own paint layer */
+      contain: layout paint;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+
+    /* Kill the WebGL canvas on mobile — pure CSS gradient is used instead */
+    .footer-wave-wrapper .stripe-wave-canvas {
+      display: none !important;
+    }
+  }
+</style>

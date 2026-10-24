@@ -1,0 +1,178 @@
+---
+// DestinationConnectors.astro - Right destination connectors & target icons (Zoho Books, Tally)
+import { Image } from "astro:assets";
+import zohoBooksLogo from "../../assets/logos/b577d85712959787cc93e89ad0a92e79ea7a5f53.png";
+import tallyLogo from "../../assets/logos/637f6362bfed2b930b7bfd78eb16e5059180a8b7.png";
+---
+
+<div class="flex items-center shrink-0 z-10">
+  <!-- ========== RIGHT DIVERGING DASHED CONNECTORS ========== -->
+  <div
+    id="right-connectors"
+    class="w-16 sm:w-24 md:w-28 lg:w-36 h-[480px] relative shrink-0"
+  >
+    <!-- Base Dashed Connecting Tracks -->
+    <svg
+      class="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+      viewBox="0 0 100 480"
+      preserveAspectRatio="none"
+      fill="none"
+    >
+      <!-- Top curved line (to Zoho Books) -->
+      <path
+        d="M 0 240 C 45 240, 55 110, 100 110"
+        stroke="#64748B"
+        stroke-width="1.5"
+        stroke-dasharray="3 3"
+      />
+      <!-- Bottom curved line (to Tally) -->
+      <path
+        d="M 0 240 C 45 240, 55 370, 100 370"
+        stroke="#64748B"
+        stroke-width="1.5"
+        stroke-dasharray="3 3"
+      />
+    </svg>
+
+    <!-- Animated Live Sticks with Head, Body, Tail -->
+    <!-- Track 1: Top Curve (to Zoho Books) -->
+    <div
+      id="right-stick-1"
+      class="absolute inset-0 pointer-events-none"
+      style="opacity: 0;"
+    >
+      <svg
+        class="w-full h-full overflow-visible"
+        viewBox="0 0 100 480"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          class="wf-fork-tail"
+          d="M 0 240 C 45 240, 55 110, 100 110"
+          pathLength="200"
+          stroke="#1E3A5F"
+          stroke-linecap="round"
+          stroke-dasharray="28 200"
+          stroke-dashoffset="28"
+        />
+        <path
+          class="wf-fork-body"
+          d="M 0 240 C 45 240, 55 110, 100 110"
+          pathLength="200"
+          stroke="#1E3A5F"
+          stroke-linecap="round"
+          stroke-dasharray="16 200"
+          stroke-dashoffset="16"
+        />
+        <path
+          class="wf-fork-head"
+          d="M 0 240 C 45 240, 55 110, 100 110"
+          pathLength="200"
+          stroke="#1E3A5F"
+          stroke-linecap="round"
+          stroke-dasharray="8 200"
+          stroke-dashoffset="8"
+        />
+      </svg>
+    </div>
+
+    <!-- Track 2: Bottom Curve (to Tally) -->
+    <div
+      id="right-stick-2"
+      class="absolute inset-0 pointer-events-none"
+      style="opacity: 0;"
+    >
+      <svg
+        class="w-full h-full overflow-visible"
+        viewBox="0 0 100 480"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          class="wf-fork-tail"
+          d="M 0 240 C 45 240, 55 370, 100 370"
+          pathLength="200"
+          stroke="#1E3A5F"
+          stroke-linecap="round"
+          stroke-dasharray="28 200"
+          stroke-dashoffset="28"
+        />
+        <path
+          class="wf-fork-body"
+          d="M 0 240 C 45 240, 55 370, 100 370"
+          pathLength="200"
+          stroke="#1E3A5F"
+          stroke-linecap="round"
+          stroke-dasharray="16 200"
+          stroke-dashoffset="16"
+        />
+        <path
+          class="wf-fork-head"
+          d="M 0 240 C 45 240, 55 370, 100 370"
+          pathLength="200"
+          stroke="#1E3A5F"
+          stroke-linecap="round"
+          stroke-dasharray="8 200"
+          stroke-dashoffset="8"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========== 2 DESTINATION CARDS (Zoho Books, Tally) ========== -->
+  <div id="right-icon-col" class="relative h-[480px] w-20 sm:w-24 md:w-26 shrink-0 z-10">
+    <!-- Card 1: Zoho Books (Top - aligns with y=110) -->
+    <div class="absolute top-[110px] -translate-y-1/2 left-0 right-0 flex items-center justify-center">
+      <div
+        id="right-icon-1"
+        class="w-20 h-20 sm:w-24 sm:h-24 md:w-26 md:h-26 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex items-center justify-center p-3.5 sm:p-4 hover:scale-105 hover:shadow-[0_12px_36px_rgba(0,0,0,0.09)] transition-all duration-300"
+      >
+        <Image
+          src={zohoBooksLogo}
+          alt="Zoho Books"
+          width={110}
+          height={110}
+          class="w-10 h-10 sm:w-12 sm:h-12 md:w-13 md:h-13 object-contain select-none pointer-events-none"
+          loading="eager"
+        />
+      </div>
+    </div>
+
+    <!-- Card 2: Tally (Bottom - aligns with y=370) -->
+    <div class="absolute top-[370px] -translate-y-1/2 left-0 right-0 flex items-center justify-center">
+      <div
+        id="right-icon-2"
+        class="w-20 h-20 sm:w-24 sm:h-24 md:w-26 md:h-26 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex items-center justify-center p-3.5 sm:p-4 hover:scale-105 hover:shadow-[0_12px_36px_rgba(0,0,0,0.09)] transition-all duration-300"
+      >
+        <Image
+          src={tallyLogo}
+          alt="Tally"
+          width={120}
+          height={60}
+          class="w-12 sm:w-15 md:w-16 h-auto object-contain select-none pointer-events-none"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Fork Fading Gradient Live Sticks matching WorkflowSection.astro */
+  .wf-fork-head {
+    stroke-width: 2.5;
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgba(30, 58, 95, 0.45));
+  }
+
+  .wf-fork-body {
+    stroke-width: 2.1;
+    opacity: 0.45;
+  }
+
+  .wf-fork-tail {
+    stroke-width: 1.7;
+    opacity: 0.18;
+  }
+</style>

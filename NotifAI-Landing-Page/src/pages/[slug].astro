@@ -1,0 +1,17 @@
+---
+import UseCaseTemplate from "../components/UseCaseTemplate.astro";
+import { useCasesData } from "../data/useCasesData";
+
+export function getStaticPaths() {
+  return Object.keys(useCasesData)
+    .filter((slug) => slug !== "accounts-payable")
+    .map((slug) => ({
+      params: { slug },
+      props: { useCase: useCasesData[slug] },
+    }));
+}
+
+const { useCase } = Astro.props;
+---
+
+<UseCaseTemplate useCase={useCase} />

@@ -1,0 +1,10 @@
+export { default as IntegrationsHeader } from "./IntegrationsHeader.astro";
+export { default as SourceConnectors } from "./SourceConnectors.astro";
+export { default as DestinationConnectors } from "./DestinationConnectors.astro";
+export { default as DocumentScanner } from "./DocumentScanner.astro";
+export { default as InvoiceDoc } from "./docs/InvoiceDoc.astro";
+export { default as ReceiptDoc } from "./docs/ReceiptDoc.astro";
+export { default as ShippingDoc } from "./docs/ShippingDoc.astro";
+export { default as InvoiceOutput } from "./outputs/InvoiceOutput.astro";
+export { default as ReceiptOutput } from "./outputs/ReceiptOutput.astro";
+export { default as ShippingOutput } from "./outputs/ShippingOutput.astro";

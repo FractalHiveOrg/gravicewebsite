@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SFRounded-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SFRounded-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SFRounded-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-primary: #1E3A5F;
+  --font-sf-rounded: "SF Pro Rounded", sans-serif;
+}
+.section-bg {
+  background-color: #F6F3F1;
+}
+
+.primary-btn {
+  background-color: #1E3A5F;
+  color: white;
+}
+
+.primary-bg-color{
+  background-color: #1E3A5F;
+
+}
+
+button:not(.faq-question-btn):not(.nav-btn):not(.info-btn):not(.pricing-tooltip-btn):not(.why-accordion-header):not(.why-tab-btn) {
+  background-color: #1E3A5F;
+  color: white;
+  font-weight: 600;
+  padding: 14px 28px 14px 28px;
+  cursor: pointer;
+}
+
+.tactile-dot-bg {
+  background-image: url('/Removed two line.svg');
+  background-position: top center;
+  background-repeat: repeat;
+  background-size: 1380px 684px;
+}
+
+.section-dot-bg,
+.section-bg-dot {
+  background-image: url('/Removed two line.svg');
+  background-position: top center;
+  background-repeat: repeat;
+  background-size: 1380px 684px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 2px 2px 2px -1px rgba(255, 255, 255, 0.8),
+    inset -1px -1px 2px -1px rgba(255, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 20px 10px rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+.gradient-bg,
+.hero-gradient-bg {
+  background: linear-gradient(180deg, #05274A 0%, #174771 25.56%, #3F608A 51.12%, #747A91 102.24%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+}
+
+.font-hero-serif {
+  font-family: "Times New Roman", Times, serif;
+  letter-spacing: -0.02em;
+}

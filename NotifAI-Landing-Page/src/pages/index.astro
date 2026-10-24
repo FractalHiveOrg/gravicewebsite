@@ -1,0 +1,28 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+const softwareAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Nico",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Nico automates finance and operations workflows: it reads incoming documents, applies your rules, routes approvals and posts results to your ERP.",
+  "featureList": [
+    "Document Classification",
+    "Data Extraction",
+    "Workflow Automation",
+    "Enterprise Integration",
+    "AI-Powered Processing",
+  ],
+};
+---
+
+<Layout
+  title="Nico — Make your business autonomous"
+  description="Nico reads invoices, orders and requests, applies your rules, routes approvals to the right person and posts the result to your ERP. Start free."
+  schema={softwareAppSchema}
+>
+  <Welcome />
+</Layout>

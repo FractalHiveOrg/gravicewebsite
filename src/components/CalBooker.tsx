@@ -25,6 +25,7 @@ export function CalBooker({
         layout: "month_view",
         cssVarsPerTheme: {
           light: { "cal-brand": "#F6682E" },
+          dark: { "cal-brand": "#F6682E" },
         },
       });
     })();

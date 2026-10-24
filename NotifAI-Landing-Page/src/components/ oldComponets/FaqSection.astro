@@ -1,0 +1,127 @@
+---
+const faqs = [
+  {
+    question: "Is the Standard tier a time-limited free trial?",
+    answer: "No, the Standard tier is free forever. You get full access to manual document uploads, exports, and a generous monthly credit pool without time limits."
+  },
+  {
+    question: "Can documents be modified or audited after saving?",
+    answer: "Yes, all processed documents maintain an immutable audit trail. You can review field extraction history, verification logs, and manually adjust fields with full versioning."
+  },
+  {
+    question: "Which accounting tools and ERPs do you support?",
+    answer: "We offer native two-way integrations with Tally, Zoho Books, SAP, QuickBooks, Microsoft Dynamics, and Salesforce, as well as a flexible REST API."
+  },
+  {
+    question: "How does credit-based consumption work?",
+    answer: "Each processed document page consumes credits according to its complexity (classification, extraction, and validation). Unused credits rollover depending on your plan."
+  },
+  {
+    question: "What happens if a document fails validation rules?",
+    answer: "Flagged documents are immediately routed to a human-in-the-loop exception queue, highlighting the exact discrepancies or missing fields for quick one-click resolution."
+  },
+  // {
+  //   question: "Is enterprise document data secure and private?",
+  //   answer: "Yes. All data is encrypted in transit and at rest with AES-256, hosted in SOC2 Type II and ISO 27001 certified environments, with zero data retention for model training."
+  // }
+];
+---
+
+<section
+  id="faq-section"
+  class="faq-section w-full md:min-h-screen bg-white flex flex-col lg:flex-row justify-start lg:justify-center items-center py-12 lg:py-24 px-6 sm:px-10 lg:px-16 section-bg-dot rounded-b-4xl"
+>
+  <div class="w-full lg:w-2/5 flex lg:justify-end items-center mb-10 lg:mb-0 lg:pr-12">
+    <div class="w-full max-w-lg lg:pl-10">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-slate-900 tracking-tight">
+        Frequently<br class="hidden sm:inline" /> asked<br class="hidden sm:inline" /> questions
+      </h2>
+    </div>
+  </div>
+
+  <div class="w-full lg:w-3/5 flex justify-center lg:justify-start items-center">
+    <div
+      id="faq-accordion"
+      class="w-full max-w-2xl h-auto lg:h-140 flex flex-col gap-2.5 sm:gap-3 select-none"
+    >
+      {faqs.map((faq, index) => (
+        <div
+          class="faq-item relative section-bg rounded-2xl sm:rounded-3xl shadow-xs border border-black/5 overflow-hidden cursor-pointer is-inactive transition-colors duration-200"
+          data-index={index}
+          role="region"
+          aria-expanded="false"
+          tabindex="0"
+          style="flex-grow: 1; flex-basis: 0%; min-height: 64px;"
+        >
+          <div class="faq-inner flex flex-col justify-center h-full w-full px-6 py-3.5 sm:py-4">
+            <!-- Question Header -->
+            <div class="faq-header flex items-center justify-between w-full">
+              <span class="faq-question text-sm sm:text-[15px] font-semibold text-slate-900 pr-4 transition-colors">
+                {faq.question}
+              </span>
+              <div class="faq-icon-wrap w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">
+                <span class="faq-icon text-sm leading-none font-medium will-change-transform">
+                  +
+                </span>
+              </div>
+            </div>
+
+            <!-- Answer Content with dedicated inner wrapper for smooth height animation -->
+            <div
+              class="faq-answer overflow-hidden will-change-[height,opacity]"
+              style="height: 0px; opacity: 0;"
+            >
+              <div class="faq-answer-inner pt-2.5 pb-1">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item {
+    position: relative;
+    outline: none;
+    will-change: flex-grow;
+    flex-basis: 0%;
+    min-height: 52px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  }
+
+  @media (max-width: 1023px) {
+    .faq-item {
+      flex-basis: auto !important;
+      height: auto !important;
+      min-height: 60px;
+    }
+  }
+
+  .faq-item:focus-visible {
+    box-shadow: 0 0 0 2px #1E3A5F;
+  }
+
+  .faq-item.is-active {
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.08);
+  }
+
+  .faq-item.is-inactive:hover {
+    background-color: #fafaf9;
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .faq-inner {
+    height: 100%;
+    width: 100%;
+  }
+
+  .faq-icon {
+    will-change: transform;
+  }
+</style>

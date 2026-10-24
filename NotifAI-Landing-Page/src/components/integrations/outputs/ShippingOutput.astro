@@ -1,0 +1,97 @@
+---
+// ShippingOutput.astro - AI Extracted Shipping Note Data & Validation Layer
+---
+
+<!-- OUTPUT: Shipping Note Extracted Fields -->
+<div
+  id="int-output-layer-shipping"
+  class="int-output-layer absolute inset-0 w-full h-full overflow-y-auto z-20 opacity-0 bg-white p-4 sm:p-5 text-left"
+  data-doc="shipping"
+>
+  <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+    <p class="text-sm sm:text-base font-bold text-slate-900">Extracted Shipping details</p>
+    <!-- <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full">Delivery Dispatched</span> -->
+  </div>
+  <div class="space-y-2">
+    <div class="grid grid-cols-2 gap-2" data-field-row>
+      <div>
+        <label class="block text-[10px] font-medium text-slate-500 mb-0.5">Shipment number</label>
+        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 font-semibold font-mono">SHP-2026-1847</div>
+      </div>
+      <div>
+        <label class="block text-[10px] font-medium text-slate-500 mb-0.5">Dispatch Date</label>
+        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 font-semibold">9 September 2026</div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2" data-field-row>
+      <div>
+        <label class="block text-[10px] font-medium text-slate-500 mb-0.5">Carrier</label>
+        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 font-semibold truncate">Sample Freight Lines</div>
+      </div>
+      <div>
+        <label class="block text-[10px] font-medium text-slate-500 mb-0.5">Waybill Tracking</label>
+        <div class="w-full bg-white border border-emerald-500 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 font-semibold font-mono">LR-2026-05521</div>
+      </div>
+    </div>
+    <!-- Validation 1 -->
+    <div id="shp-val-1" class="val-block">
+      <div class="val-processing bg-amber-50 border border-amber-200/80 rounded-lg px-2.5 py-1.5 flex items-center gap-2">
+        <div class="w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center shrink-0">
+          <svg class="w-2.5 h-2.5 text-white animate-spin" viewBox="0 0 24 24" fill="none">
+            <circle class="opacity-25" cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.8" />
+            <path class="opacity-100" fill="currentColor" d="M12 3a9 9 0 0 1 9 9h-2.8a6.2 6.2 0 0 0-6.2-6.2V3z" />
+          </svg>
+        </div>
+        <span class="text-[11px] text-amber-800 font-medium">Checking carrier dispatch confirmation...</span>
+      </div>
+      <div class="val-verified hidden bg-[#EFFFF3] border border-[#DCFCE7]/80 rounded-lg px-2.5 py-1.5 flex items-center gap-2">
+        <div class="w-3.5 h-3.5 rounded-full bg-emerald-600 flex items-center justify-center shrink-0">
+          <svg class="w-2 h-2 text-white" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.5 8.5l3 3 6-6" />
+          </svg>
+        </div>
+        <span class="text-[11px] text-emerald-800 font-medium">Waybill verified with carrier dispatch systems!</span>
+      </div>
+    </div>
+    <div class="bg-[#F8F9FA] rounded-lg p-2.5 flex justify-between items-center text-xs" data-field-row>
+      <div>
+        <span class="text-slate-400 block text-[10px]">Matched Order</span>
+        <span class="font-mono font-bold text-slate-800">INV-2026-1847</span>
+      </div>
+      <div class="text-right">
+        <span class="text-slate-400 block text-[10px]">Physical Audit</span>
+        <span class="inline-block bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded text-[10px]">3 BUNDLES</span>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2" data-field-row>
+      <div>
+        <label class="block text-[10px] text-slate-400">Total Quantity</label>
+        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg p-1.5 text-[11px] font-mono font-semibold text-slate-800">24 Units</div>
+      </div>
+      <div>
+        <label class="block text-[10px] text-slate-400">Inventory Status</label>
+        <div class="w-full bg-white border border-emerald-500 rounded-lg p-1.5 text-[11px] font-mono font-bold text-slate-900">Dispatched</div>
+      </div>
+    </div>
+    <!-- Validation 2 -->
+    <div id="shp-val-2" class="val-block">
+      <div class="val-processing bg-amber-50 border border-amber-200/80 rounded-lg px-2.5 py-1.5 flex items-center gap-2">
+        <div class="w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center shrink-0">
+          <svg class="w-2.5 h-2.5 text-white animate-spin" viewBox="0 0 24 24" fill="none">
+            <circle class="opacity-25" cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.8" />
+            <path class="opacity-100" fill="currentColor" d="M12 3a9 9 0 0 1 9 9h-2.8a6.2 6.2 0 0 0-6.2-6.2V3z" />
+          </svg>
+        </div>
+        <span class="text-[11px] text-amber-800 font-medium">Syncing warehouse stock & inventory deductions...</span>
+      </div>
+      <div class="val-verified hidden bg-[#EFFFF3] border border-[#DCFCE7]/80 rounded-lg px-2.5 py-1.5 flex items-center gap-2">
+        <div class="w-3.5 h-3.5 rounded-full bg-emerald-600 flex items-center justify-center shrink-0">
+          <svg class="w-2 h-2 text-white" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.5 8.5l3 3 6-6" />
+          </svg>
+        </div>
+        <span class="text-[11px] text-emerald-800 font-medium">Inventory updated and synced across warehouse systems!</span>
+      </div>
+    </div>
+  </div>
+</div>

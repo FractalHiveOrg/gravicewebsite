@@ -82,6 +82,14 @@ function walkAndRewrite(dir) {
   }
 }
 
+if (!fs.existsSync(nicoRoot) || !fs.existsSync(path.join(nicoRoot, "package.json"))) {
+  console.error(
+    `Missing ${path.relative(root, nicoRoot)} — the Astro source must be in the repo for build:nico2.\n` +
+      "If it was a nested git repo, remove its .git folder and commit the files into this project.",
+  );
+  process.exit(1);
+}
+
 fs.mkdirSync(path.dirname(outDir), { recursive: true });
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.writeFileSync(configPath, configSource);

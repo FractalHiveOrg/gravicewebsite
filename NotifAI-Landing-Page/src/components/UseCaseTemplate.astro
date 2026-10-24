@@ -1,0 +1,128 @@
+---
+// UseCaseTemplate.astro - Master template for use case pages (Hero + Capabilities + Configurable Workflows + Footer)
+import Layout from "../layouts/Layout.astro";
+import FooterSection from "./FooterSection.astro";
+import CapabilitiesSection from "./CapabilitiesSection.astro";
+import ConfigurableWorkflowsSection from "./ConfigurableWorkflowsSection.astro";
+import UseCaseCtaSection from "./UseCaseCtaSection.astro";
+import PhraseLines from "./PhraseLines.astro";
+import { useCasesData, type UseCaseData } from "../data/useCasesData";
+import { siteLinks } from "../config/links";
+
+interface Props {
+  slug?: string;
+  useCase?: UseCaseData;
+}
+
+const { slug, useCase: passedUseCase } = Astro.props;
+const useCase =
+  passedUseCase ||
+  (slug && useCasesData[slug] ? useCasesData[slug] : useCasesData["accounts-payable"]);
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: useCase.meta.title,
+  description: useCase.meta.description,
+  url: useCase.meta.url,
+  publisher: {
+    "@type": "Organization",
+    name: "Nico",
+  },
+};
+---
+
+<Layout
+  title={useCase.meta.title}
+  description={useCase.meta.description}
+  schema={pageSchema}
+>
+  <div class="w-full min-h-screen bg-[#F6F3F1] text-slate-800">
+    <!-- Top Padding for Fixed Navbar -->
+    <div class="pt-24 sm:pt-28 md:pt-32">
+      
+      <!-- ── HERO SECTION ────────────────────────── -->
+      <section class="w-full px-4 sm:px-6 lg:px-8 pb-14 sm:pb-18 md:pb-20">
+        <div class="max-w-7xl mx-auto">
+          <!-- Eyebrow -->
+          <p class="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase mb-4 sm:mb-5">
+            {useCase.hero.eyebrow}
+          </p>
+
+          <!-- 2-Column Responsive Layout -->
+          <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12 items-start">
+            
+            <!-- Left Column: Serif Heading + Action Buttons -->
+            <div class="xl:col-span-7 flex flex-col justify-between">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[46px] 2xl:text-[52px] font-normal text-slate-900 tracking-tight leading-[1.14] font-hero-serif mb-7 sm:mb-9 text-balance">
+                {useCase.hero.titleLead}
+                <span class="underline underline-offset-[7px] sm:underline-offset-[9px] decoration-[1.5px] sm:decoration-2 decoration-slate-900">
+                  {useCase.hero.underlinedText}
+                </span>
+                <PhraseLines text={useCase.hero.titleTail} />
+              </h1>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-wrap items-center gap-3.5 sm:gap-4">
+                <a
+                  href={useCase.hero.primaryCta.href}
+                  style="background: linear-gradient(246.28deg, #05274A 0%, #174771 24.91%, #3F608A 49.83%, #747A91 99.65%);"
+                  class="inline-flex items-center justify-center px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white shadow-xs hover:shadow-md transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                >
+                  {useCase.hero.primaryCta.text}
+                </a>
+                <a
+                  href={useCase.hero.secondaryCta.href || siteLinks.footer.bookDemo}
+                  class="inline-flex items-center justify-center px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold bg-white hover:bg-slate-50 text-[#264871] border border-slate-200/90 shadow-2xs transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                >
+                  {useCase.hero.secondaryCta.text}
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Column: Description Text -->
+            <div class="xl:col-span-5 xl:pt-3">
+              <p class="text-base sm:text-lg md:text-[18px] text-slate-600 font-medium leading-relaxed max-w-2xl text-pretty">
+                <PhraseLines text={useCase.hero.description} />
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CAPABILITIES SECTION ────────────────────────── -->
+      <CapabilitiesSection
+        eyebrow={useCase.capabilities.eyebrow}
+        title={useCase.capabilities.title}
+        items={useCase.capabilities.items}
+      />
+
+      <!-- ── CONFIGURABLE WORKFLOWS SECTION ────────────────── -->
+      <ConfigurableWorkflowsSection
+        eyebrow={useCase.workflows.eyebrow}
+        title={useCase.workflows.title}
+        stp={useCase.workflows.stp}
+        exception={useCase.workflows.exception}
+        ruleSettings={useCase.workflows.ruleSettings}
+      />
+
+      <!-- ── READY TO AUTOMATE CTA SECTION ────────────────── -->
+      <UseCaseCtaSection
+        title={useCase.cta?.title}
+        subtitle={useCase.cta?.subtitle}
+        primaryCta={useCase.cta?.primaryCta}
+        secondaryCta={useCase.cta?.secondaryCta}
+      />
+
+    </div>
+  </div>
+
+  <FooterSection showCta={false} animate={false} />
+</Layout>
+
+<style>
+  .font-hero-serif {
+    font-family: "Newsreader", "Times New Roman", Times, serif;
+    letter-spacing: -0.02em;
+  }
+</style>

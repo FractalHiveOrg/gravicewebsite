@@ -1,0 +1,53 @@
+---
+import HeroSection from "./HeroSection.astro";
+import WorkflowSection from "./WorkflowSection.astro";
+import IntegrationsSection from "./IntegrationsSection.astro";
+import WhyNicoSection from "./WhyNicoSection.astro";
+import PricingSection from "./PricingSection.astro";
+import UseCasesSection from "./UseCasesSection.astro";
+import FooterSection from "./FooterSection.astro";
+---
+
+<>
+  <HeroSection />
+  <WorkflowSection />
+  <WhyNicoSection />
+  <IntegrationsSection />
+  <UseCasesSection />
+  <PricingSection />
+  <FooterSection />
+</>
+
+<script>
+  import { initAllAnimations, cleanupAnimations } from "../animations/index";
+
+  let initialized = false;
+
+  function runInit() {
+    cleanupAnimations();
+    initAllAnimations();
+    initialized = true;
+  }
+
+  // Astro ClientRouter fires 'astro:page-load' on both initial load and client navigations
+  document.addEventListener("astro:page-load", () => {
+    runInit();
+  });
+
+  // Fallback if astro:page-load does not fire or was already handled
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    setTimeout(() => {
+      if (!initialized) runInit();
+    }, 50);
+  } else {
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        setTimeout(() => {
+          if (!initialized) runInit();
+        }, 50);
+      },
+      { once: true }
+    );
+  }
+</script>

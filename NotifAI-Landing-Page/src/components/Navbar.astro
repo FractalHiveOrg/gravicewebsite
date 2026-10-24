@@ -1,0 +1,566 @@
+---
+// Navbar component matching the NICO design
+import { siteLinks } from "../config/links";
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHomePage = pathname === "/";
+---
+
+<header
+  id="main-navbar"
+  class={`fixed -top-0.5 left-0 right-0 z-50 w-full ${!isHomePage ? "navbar--theme-light" : ""}`}
+>
+  <div
+    class="relative w-full px-6 sm:px-10 lg:px-14 h-14 sm:h-16 flex items-center justify-between"
+  >
+    <!-- Brand Logo -->
+    <a
+      href="/#hero-section"
+      class="nav-link flex items-center select-none cursor-pointer"
+    >
+      <div class="flex items-center gap-0.5 group">
+        <!-- Logo Icon: solid gradient-white.svg on dark/black backgrounds, solid gradient.svg on light/white backgrounds -->
+        <img
+          src="/icons/solid gradient-white.svg"
+          class="logo-icon logo-icon-dark"
+          alt="Nico Logo"
+          width="16"
+          height="21"
+        />
+        <img
+          src="/icons/solid gradient.svg"
+          class="logo-icon logo-icon-light"
+          alt="Nico Logo"
+          width="16"
+          height="21"
+        />
+        <p class="nav-brand font-bold text-2xl">ICO</p>
+      </div>
+    </a>
+
+    <!-- Center Nav Links -->
+    <!-- <nav
+      class="hidden md:flex items-center gap-7 lg:gap-9 text-[13px] sm:text-sm font-normal text-white/80 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+    
+      <a
+        href="/#why-nico-section"
+        class="nav-link nav-link-item hover:text-white transition-colors py-1"
+        >Solutions</a
+      >
+      <a
+        href="/#use-cases-section"
+        class="nav-link nav-link-item hover:text-white transition-colors py-1"
+        >Use Cases</a
+      >
+      <a
+        href="/#integrations-section"
+        class="nav-link nav-link-item hover:text-white transition-colors py-1"
+        >Integrations</a
+      >
+      <a
+        href="/#pricing-section"
+        class="nav-link nav-link-item hover:text-white transition-colors py-1"
+        >Pricing</a
+      >
+    </nav> -->
+
+    <!-- Right Side Action -->
+    <div class="hidden sm:flex items-center gap-3">
+      <a
+        href={siteLinks.navbar.getStarted}
+        class="nav-btn-primary px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 shadow-xs active:scale-[0.98] select-none text-center cursor-pointer inline-flex items-center justify-center"
+      >
+        Get Started
+      </a>
+      <a
+        href={siteLinks.navbar.bookDemo}
+        class="nav-btn-outline px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium border shadow-xs active:scale-[0.98] select-none text-center cursor-pointer inline-flex items-center justify-center"
+      >
+        Book a Demo
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <div class="flex sm:hidden items-center gap-2">
+      <a
+        href={siteLinks.navbar.getStarted}
+        class="nav-btn-primary px-3.5 py-1.5 rounded-full text-xs font-medium"
+      >
+        Get Started
+      </a>
+      <a
+        href={siteLinks.navbar.bookDemo}
+        class="nav-btn-outline px-3.5 py-1.5 rounded-full text-xs font-medium border"
+      >
+        Book a Demo
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    id="mobile-menu-dropdown"
+    class="hidden sm:hidden px-6 pt-3 pb-6 border-t flex flex-col gap-3 shadow-2xl backdrop-blur-lg"
+  >
+    <a
+      href="/#why-nico-section"
+      class="nav-link mobile-link nav-link-item py-2 text-sm font-medium"
+      >Solutions</a
+    >
+    <a
+      href="/#use-cases-section"
+      class="nav-link mobile-link nav-link-item py-2 text-sm font-medium"
+      >Use Cases</a
+    >
+    <a
+      href="/#integrations-section"
+      class="nav-link mobile-link nav-link-item py-2 text-sm font-medium"
+      >Integrations</a
+    >
+    <a
+      href="/#pricing-section"
+      class="nav-link mobile-link nav-link-item py-2 text-sm font-medium"
+      >Pricing</a
+    >
+    <div class="pt-2">
+      <a
+        href={siteLinks.navbar.getStarted}
+        class="nav-btn-primary w-full text-center block py-2.5 rounded-full text-sm font-medium transition-colors"
+        >Get Started</a
+      >
+    </div>
+  </div>
+</header>
+
+<style>
+  #main-navbar {
+    background-color: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 20px 48px -8px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  /* Default / Dark Theme Elements (White text on dark backgrounds) */
+  .logo-icon-dark {
+    display: block;
+    width: 16px;
+    height: auto;
+  }
+  .logo-icon-light {
+    display: none;
+    width: 16px;
+    height: auto;
+  }
+
+  .nav-brand {
+    color: #ffffff;
+    font-family: "SF Pro Rounded", system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-style: "Semibold";
+    leading-trim: NONE;
+    line-height: heading 1/line-height;
+    letter-spacing: heading 1/letter-spacing;
+  }
+  .nav-brand:hover,
+  .nav-link:hover .nav-brand {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .nav-link-item {
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.3s ease;
+  }
+  .nav-link-item:hover {
+    color: #ffffff;
+  }
+
+  .nav-btn-primary {
+    background-color: #ffffff;
+    color: #1e3a5f;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .nav-btn-primary:hover {
+    background-color: #f1f5f9;
+  }
+
+  .nav-btn-outline {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .nav-btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-mobile-toggle {
+    color: #ffffff;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease;
+  }
+  .nav-mobile-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  #mobile-menu-dropdown {
+    background-color: rgba(30, 58, 95, 0.92);
+    border-color: rgba(255, 255, 255, 0.15);
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  #mobile-menu-dropdown a {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* ── Adaptive Light Theme (Frosted glassmorphism over light/white backgrounds) ── */
+  #main-navbar.navbar--theme-light {
+    background-color: rgba(255, 255, 255, 0.45);
+    -webkit-backdrop-filter: blur(20px) saturate(190%) contrast(105%);
+    backdrop-filter: blur(20px) saturate(190%) contrast(105%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 12px 32px -4px rgba(0, 0, 0, 0.07),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.4);
+  }
+
+  #main-navbar.navbar--theme-light .logo-icon-dark {
+    display: none;
+  }
+  #main-navbar.navbar--theme-light .logo-icon-light {
+    display: block;
+  }
+
+  #main-navbar.navbar--theme-light .nav-brand {
+    color: #1e3a5f;
+  }
+  #main-navbar.navbar--theme-light .nav-brand:hover,
+  #main-navbar.navbar--theme-light .nav-link:hover .nav-brand {
+    color: #172e4b;
+  }
+
+  #main-navbar.navbar--theme-light .nav-link-item {
+    color: #334155;
+  }
+  #main-navbar.navbar--theme-light .nav-link-item:hover {
+    color: #0f172a;
+  }
+
+  #main-navbar.navbar--theme-light .nav-btn-primary {
+    background-color: #1e3a5f;
+    color: #ffffff;
+  }
+  #main-navbar.navbar--theme-light .nav-btn-primary:hover {
+    background-color: #172e4b;
+  }
+
+  #main-navbar.navbar--theme-light .nav-btn-outline {
+    border-color: rgba(15, 23, 42, 0.25);
+    color: #0f172a;
+  }
+  #main-navbar.navbar--theme-light .nav-btn-outline:hover {
+    background-color: rgba(15, 23, 42, 0.05);
+  }
+
+  #main-navbar.navbar--theme-light .nav-mobile-toggle {
+    color: #0f172a;
+  }
+  #main-navbar.navbar--theme-light .nav-mobile-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  #main-navbar.navbar--theme-light #mobile-menu-dropdown {
+    background-color: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    backdrop-filter: blur(20px) saturate(190%);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+  #main-navbar.navbar--theme-light #mobile-menu-dropdown a {
+    color: #0f172a;
+  }
+
+  /* ─── Mobile: cheaper backdrop-filter — avoids GPU repaint on class toggle ── */
+  @media (max-width: 1023px) {
+    #main-navbar {
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    #main-navbar.navbar--theme-light {
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    #main-navbar.navbar--theme-light #mobile-menu-dropdown {
+      /* Solid bg on mobile — no blur needed, cheaper to composite */
+      background-color: rgba(255, 255, 255, 0.97);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    #mobile-menu-dropdown {
+      background-color: rgba(15, 28, 45, 0.97);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+  // ─── IntersectionObserver-based theme: zero per-frame cost ─────────────────
+  // Maps section IDs → dark/light theme. No elementsFromPoint, no getComputedStyle per scroll.
+  type ThemeHint = "dark" | "light";
+  const sectionThemeMap: Record<string, ThemeHint> = {
+    "hero-section": "dark",
+    "footer-section": "dark",
+    "workflow-section": "light",
+    "why-nico-section": "light",
+    "integrations-section": "light",
+    "use-cases-section": "light",
+    "pricing-section": "light",
+  };
+
+  let currentTheme: ThemeHint = "dark"; // default on page load (hero is dark)
+  let themeObserver: IntersectionObserver | null = null;
+  let scrollRafId: number | null = null;
+  let scrollListenerAttached = false;
+  let navbarEl: HTMLElement | null = null;
+
+  function getNavbar(): HTMLElement | null {
+    if (!navbarEl || !document.body.contains(navbarEl)) {
+      navbarEl = document.getElementById("main-navbar");
+    }
+    return navbarEl;
+  }
+
+  function applyTheme(theme: ThemeHint) {
+    const nav = getNavbar();
+    if (!nav) return;
+    if (theme === "light") {
+      nav.classList.add("navbar--theme-light");
+    } else {
+      nav.classList.remove("navbar--theme-light");
+    }
+    currentTheme = theme;
+  }
+
+  function setupThemeObserver() {
+    if (themeObserver) themeObserver.disconnect();
+
+    const nav = getNavbar();
+    // Cache navHeight once — avoids offsetHeight reads per scroll
+    const navHeight = nav?.offsetHeight || 56;
+
+    // rootMargin: section must cross the navbar bottom edge to count as "visible"
+    themeObserver = new IntersectionObserver(
+      (entries) => {
+        // Find the topmost visible section that intersects the navbar strip
+        let topmost: { top: number; theme: ThemeHint } | null = null;
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const id = entry.target.id;
+          const theme = sectionThemeMap[id];
+          if (!theme) continue;
+          const rect = entry.target.getBoundingClientRect();
+          if (!topmost || rect.top < topmost.top) {
+            topmost = { top: rect.top, theme };
+          }
+        }
+        if (topmost) applyTheme(topmost.theme);
+      },
+      {
+        rootMargin: `-${navHeight}px 0px -${Math.max(0, window.innerHeight - navHeight - 2)}px 0px`,
+        threshold: 0,
+      },
+    );
+
+    Object.keys(sectionThemeMap).forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) themeObserver!.observe(el);
+    });
+  }
+
+  function initNavbar() {
+    const navbar = getNavbar();
+    const mobileMenu = document.getElementById("mobile-menu-dropdown");
+    if (!navbar) return;
+
+    navbar.classList.remove("navbar--hidden");
+
+    // ─── Scroll position helper ──────────────────────────────────────────────
+    function getScrollPos(): number {
+      const smoother = ScrollSmoother.get();
+      if (smoother) return Math.max(0, smoother.scrollTop());
+      return Math.max(
+        0,
+        window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          window.scrollY ||
+          0,
+      );
+    }
+
+    // Initialize scrolled state
+    if (getScrollPos() > 60) {
+      navbar.classList.add("navbar--scrolled");
+    } else {
+      navbar.classList.remove("navbar--scrolled");
+    }
+
+    // ─── Set initial theme based on page type ───────────────────────────────
+    const hasHero = !!document.getElementById("hero-section");
+    applyTheme(hasHero ? "dark" : "light");
+
+    // ─── Observe sections for theme switching ───────────────────────────────
+    setupThemeObserver();
+    window.addEventListener("resize", setupThemeObserver, { passive: true });
+
+    // ─── Single rAF-throttled scroll handler (scrolled class only) ──────────
+    // No GSAP ticker, no elementsFromPoint — just toggles one CSS class.
+    function onScroll() {
+      if (scrollRafId !== null) return; // already scheduled
+      scrollRafId = requestAnimationFrame(() => {
+        scrollRafId = null;
+        if (!navbar) return;
+        const y = getScrollPos();
+        if (y > 60) {
+          navbar.classList.add("navbar--scrolled");
+        } else {
+          navbar.classList.remove("navbar--scrolled");
+        }
+      });
+    }
+
+    if (!scrollListenerAttached) {
+      window.addEventListener("scroll", onScroll, { passive: true });
+      scrollListenerAttached = true;
+    }
+
+    // Smooth scroll for nav links
+    const links = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+    links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const rawHref = link.getAttribute("href") || "";
+        const isHomePage =
+          window.location.pathname === "/" || window.location.pathname === "";
+
+        let targetId = "";
+        if (rawHref.startsWith("#")) {
+          targetId = rawHref.substring(1);
+        } else if (rawHref.startsWith("/#") && isHomePage) {
+          targetId = rawHref.substring(2);
+        }
+
+        if (targetId && isHomePage) {
+          let targetEl = document.getElementById(targetId);
+
+          // Route logical names or aliases to existing sections
+          if (!targetEl) {
+            const aliasMap: Record<string, string> = {
+              workflow: "workflow-section",
+              "workflow-section": "workflow-section",
+              solutions: "why-nico-section",
+              "why-nico": "why-nico-section",
+              "why-nico-section": "why-nico-section",
+              "use-cases": "use-cases-section",
+              "use-case": "use-cases-section",
+              usecases: "use-cases-section",
+              "use-cases-section": "use-cases-section",
+              integrations: "integrations-section",
+              integration: "integrations-section",
+              "integration-section": "integrations-section",
+              "integrations-section": "integrations-section",
+              pricing: "pricing-section",
+              "pricing-section": "pricing-section",
+              hero: "hero-section",
+              "hero-section": "hero-section",
+            };
+            const resolvedId = aliasMap[targetId.toLowerCase()];
+            if (resolvedId) {
+              targetEl = document.getElementById(resolvedId);
+            }
+          }
+
+          if (targetEl) {
+            e.preventDefault();
+
+            const navHeight = navbar.offsetHeight || 64;
+            const smoother = ScrollSmoother.get();
+
+            if (smoother) {
+              try {
+                const targetScrollY = Math.max(
+                  0,
+                  smoother.offset(targetEl, "top top") - navHeight,
+                );
+                smoother.scrollTo(targetScrollY, true);
+              } catch {
+                smoother.scrollTo(targetEl, true, "top top");
+              }
+            } else {
+              const targetTop =
+                targetEl.getBoundingClientRect().top +
+                (window.pageYOffset ||
+                  document.documentElement.scrollTop ||
+                  0) -
+                navHeight;
+              window.scrollTo({
+                top: Math.max(0, targetTop),
+                behavior: "smooth",
+              });
+            }
+          }
+        }
+      });
+    });
+
+    // Mobile menu toggle logic
+    const toggleBtn = document.getElementById("mobile-menu-toggle");
+    const iconOpen = document.getElementById("menu-icon-open");
+    const iconClose = document.getElementById("menu-icon-close");
+
+    if (toggleBtn && mobileMenu && iconOpen && iconClose) {
+      toggleBtn.onclick = () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        if (isHidden) {
+          mobileMenu.classList.remove("hidden");
+          iconOpen.classList.add("hidden");
+          iconClose.classList.remove("hidden");
+        } else {
+          mobileMenu.classList.add("hidden");
+          iconOpen.classList.remove("hidden");
+          iconClose.classList.add("hidden");
+        }
+      };
+
+      document.querySelectorAll(".mobile-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          iconOpen.classList.remove("hidden");
+          iconClose.classList.add("hidden");
+        });
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNavbar);
+  } else {
+    initNavbar();
+  }
+  document.addEventListener("astro:page-load", initNavbar);
+</script>

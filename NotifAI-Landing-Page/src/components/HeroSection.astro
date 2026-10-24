@@ -1,0 +1,711 @@
+---
+import { siteLinks } from "../config/links";
+
+// Rotating hero headline + subtitle (loops in order, see heroTextAnimation.ts).
+// Each entry in `subtitleLines` is broken onto its own line from the sm breakpoint up.
+const heroSlides = [
+  {
+    title: "Make your business autonomous.",
+    subtitleLines: [
+      "Nico picks up every invoice, order and request",
+      "and carries it to completion.",
+    ],
+  },
+  {
+    title: "Your clients’ documents, straight into Tally.",
+    subtitleLines: [
+      "Nico reads every file your clients send via WhatsApp or email, validates GSTIN, prepares vouchers, and posts to Tally.",
+    ],
+  },
+  {
+    title: "Your business, Your process.",
+    subtitleLines: [
+      "Configure your processes, your SLAs, your rules.",
+      "Nico does the rest.",
+    ],
+  },
+];
+
+const streamCards = [
+ {
+    title: "Payment Advice",
+    subtitle: "Barclays Commercial | 31 mins ago",
+    logoSrc: "/logos/gmail.svg",
+    logoAlt: "Gmail",
+    logoType: "svg",
+    logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  },
+  {
+    title: "New Attachment",
+    subtitle: "TechCorp Logistics | 18 mins ago",
+    logoSrc: "/logos/whatsapp.svg",
+    logoAlt: "WhatsApp",
+    logoType: "svg",
+    logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  },
+  {
+    title: "Purchase Order Approval",
+    subtitle: "Global Parts Inc. | 22 mins ago",
+    logoSrc: "/logos/tallyprime.png",
+    logoAlt: "SAP",
+    logoType: "badge",
+    logoClass: "w-full h-full object-contain",
+    badgeClass: "bg-white rounded-xl p-2 w-28 sm:w-32 h-12 sm:h-14 flex items-center justify-center shadow-md",
+  },
+  {
+    title: "Content Uploaded",
+    subtitle: "Vendor Agreement.pdf | 26 mins ago",
+    logoSrc: "/logos/onedrive.png",
+    logoAlt: "OneDrive",
+    logoType: "image",
+    logoClass: "w-20 sm:w-24 h-auto object-contain drop-shadow-lg",
+  },
+  
+   {
+    title: "Invoice received via email",
+    subtitle: "AeroBreak Suppliers | 14 mins ago",
+    logoSrc: "/logos/gmail.svg",
+    logoAlt: "Gmail",
+    logoType: "svg",
+    logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  },
+  {
+    title: "Dispatch Confirmation",
+    subtitle: "SwiftFreight International | 37 mins ago",
+    logoSrc: "/logos/whatsapp.svg",
+    logoAlt: "WhatsApp",
+    logoType: "svg",
+    logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  },
+  {
+    title: "ERP Master Record Sync",
+    subtitle: "Enterprise Materials ERP | 43 mins ago",
+    logoSrc: "/logos/tallyprime.png",
+    logoAlt: "SAP",
+    logoType: "badge",
+    logoClass: "w-full h-full object-contain",
+    badgeClass: "bg-white rounded-xl p-2 w-28 sm:w-32 h-12 sm:h-14 flex items-center justify-center shadow-md",
+  },
+  {
+    title: "Bill of Lading Scanned",
+    subtitle: "Pacific Cargo Liner | 49 mins ago",
+    logoSrc: "/logos/onedrive.png",
+    logoAlt: "OneDrive",
+    logoType: "image",
+    logoClass: "w-20 sm:w-24 h-auto object-contain drop-shadow-lg",
+  },
+  {
+    title: "Supplier Quotation",
+    subtitle: "Apex Industrial Supply | 55 mins ago",
+    logoSrc: "/logos/gmail.svg",
+    logoAlt: "Gmail",
+    logoType: "svg",
+    logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  },
+  // {
+  //   title: "Delivery Status Update",
+  //   subtitle: "Northwind Carriers | 1 hr ago",
+  //   logoSrc: "/logos/whatsapp.svg",
+  //   logoAlt: "WhatsApp",
+  //   logoType: "svg",
+  //   logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  // },
+  // {
+  //   title: "Contract Settlement",
+  //   subtitle: "Sterling Corporate Legal | 1 hr ago",
+  //   logoSrc: "/logos/sap.png",
+  //   logoAlt: "SAP",
+  //   logoType: "badge",
+  //   logoClass: "w-full h-full object-contain",
+  //   badgeClass: "bg-white rounded-xl p-2 w-28 sm:w-32 h-12 sm:h-14 flex items-center justify-center shadow-md",
+  // },
+  // {
+  //   title: "Compliance Pack v3",
+  //   subtitle: "Regulatory Audit.pdf | 2 hrs ago",
+  //   logoSrc: "/logos/onedrive.png",
+  //   logoAlt: "OneDrive",
+  //   logoType: "image",
+  //   logoClass: "w-20 sm:w-24 h-auto object-contain drop-shadow-lg",
+  // },
+  // {
+  //   title: "Tax Invoice Ingested",
+  //   subtitle: "Global Logistics Hub | 2.5 hrs ago",
+  //   logoSrc: "/logos/gmail.svg",
+  //   logoAlt: "Gmail",
+  //   logoType: "svg",
+  //   logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  // },
+  // {
+  //   title: "Warehouse Receipt",
+  //   subtitle: "Freightway Depot 4 | 3 hrs ago",
+  //   logoSrc: "/logos/whatsapp.svg",
+  //   logoAlt: "WhatsApp",
+  //   logoType: "svg",
+  //   logoClass: "w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md",
+  // },
+];
+---
+
+<section
+  id="hero-section"
+  class="relative w-full hero-min-h pt-16 sm:pt-24 lg:pt-32 pb-8 sm:pb-12 lg:pb-0 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center lg:justify-start hero-gradient-bg"
+>
+
+
+  <!-- Stripe 3D Wave Background Animation -->
+  <div class="hero-wave-wrapper" aria-hidden="true">
+    <!-- Static Wave Placeholder (instantly visible on page load while WebGL initializes) -->
+    <canvas
+      id="hero-wave-canvas"
+      class="stripe-wave-canvas"
+      data-clear-color="#0b2e54"
+      data-rotation-z="-60"
+      data-ref-width="1425"
+      data-ref-height="783"
+      data-mobile-scale="2"
+    ></canvas>
+  </div>
+
+  <div
+    class="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center"
+  >
+    <!-- Top Eyebrow Tag -->
+    <div class="inline-flex items-center justify-center mb-3 sm:mb-4 overflow-hidden">
+      <span
+        class="hero-eyebrow inline-block text-[11px] sm:text-xs font-bold tracking-[0.22em] uppercase text-slate-300/90 select-none"
+      >
+        <!-- AUTONOMOUS OPERATIONS -->
+      </span>
+    </div>
+
+    <!-- Main Heading (rotating slides stacked in one grid cell so height never jumps) -->
+    <h1
+      class="hero-rotator grid items-end text-3xl sm:text-5xl md:text-6xl lg:text-[66px] font-normal text-white tracking-tight leading-[1.15] sm:leading-[1.12] text-center font-hero-serif max-w-4xl"
+    >
+      {
+        heroSlides.map((slide, slideIndex) => {
+          const words = slide.title.split(" ");
+          return (
+            <span
+              class="hero-title-slide hero-slide-layer block text-balance"
+              data-slide={slideIndex}
+              aria-hidden={slideIndex === 0 ? undefined : "true"}
+            >
+              {words.map((word, wordIndex) => (
+                <>
+                  <span
+                    class:list={[
+                      "inline-block overflow-hidden pb-1 -mb-1 align-top",
+                      { "mr-1": wordIndex < words.length - 1 },
+                    ]}
+                  >
+                    <span class="hero-title-word inline-block">{word}</span>
+                  </span>
+                  {wordIndex < words.length - 1 ? " " : ""}
+                </>
+              ))}
+            </span>
+          );
+        })
+      }
+    </h1>
+
+    <!-- Subtitle (rotates together with the heading) -->
+    <p
+      class="hero-subtitle grid items-start text-sm sm:text-base md:text-[18.5px] text-slate-300/85 max-w-xl sm:max-w-2xl mx-auto text-center leading-relaxed mt-3.5 sm:mt-5 font-normal px-2 text-balance"
+    >
+      {
+        heroSlides.map((slide, slideIndex) => (
+          <span
+            class="hero-subtitle-slide hero-slide-layer block"
+            data-slide={slideIndex}
+            aria-hidden={slideIndex === 0 ? undefined : "true"}
+          >
+            {slide.subtitleLines.map((line, lineIndex) => (
+              <>
+                {lineIndex > 0 && <br class="hidden sm:inline" />}
+                {lineIndex > 0 ? " " : ""}
+                {line}
+              </>
+            ))}
+          </span>
+        ))
+      }
+    </p>
+
+    <!-- CTA Button -->
+    <div
+      class="hero-cta mt-6 sm:mt-8 mb-2 sm:mb-6"
+    >
+      <a href={siteLinks.hero.getStarted} class="inline-block">
+        <button
+          type="button"
+          class="bg-white! text-[#0E2238]! hover:bg-slate-100! font-semibold text-sm sm:text-base px-7 sm:px-9 py-2.5 sm:py-3.5 rounded-full! shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+        >
+          Get started
+        </button>
+      </a>
+    </div>
+
+    <!-- Diagonal Cascading Glassmorphic Event Stream (Desktop only ≥1024px) -->
+    <div
+      id="hero-stream-wrapper"
+      class="hidden lg:block hero-stream-container relative w-full z-20"
+    >
+      <div
+        id="hero-stream-track"
+        class="hero-stream-track select-none"
+      >
+        {
+          streamCards.map((card, index) => (
+            <div
+              id={index === 4 ? "hero-flight-card-slot" : undefined}
+              class="hero-stream-card hero-stream-step relative shrink-0 rounded-lg!   pt-5 px-6 pb-6 sm:pt-6 sm:px-7 sm:pb-7 md:pt-7 md:px-8 md:pb-8 flex flex-col justify-between"
+              style={`
+                z-index: ${streamCards.length - index};
+                --index: ${index};
+              `}
+            >
+              <!-- Card Header: Title & Subtitle -->
+              <div class="flex flex-col pr-2 -mt-4">
+                <span class="text-base sm:text-lg md:text-[20px] font-semibold text-white tracking-tight leading-snug">
+                  {card.title}
+                </span>
+                <span class="text-xs sm:text-[13px] md:text-sm text-slate-300/60 font-normal mt-1 leading-tight">
+                  {card.subtitle}
+                </span>
+              </div>
+
+              <!-- Card Logo (Bottom Right) -->
+              <div class="flex items-end justify-end w-full mt-auto">
+                {card.logoType === "badge" ? (
+                  <div class={card.badgeClass}>
+                    <img
+                      src={card.logoSrc}
+                      alt={card.logoAlt}
+                      class={card.logoClass}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={card.logoSrc}
+                    alt={card.logoAlt}
+                    class={card.logoClass}
+                    loading="eager"
+                    decoding="async"
+                  />
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero-to-Workflow Flight & Morph Card (Desktop ≥1024px) -->
+  <div
+    id="hero-flight-card"
+    class="hidden lg:block absolute top-0 left-0 m-0 z-50 pointer-events-none overflow-visible"
+    style="opacity: 0; visibility: hidden;"
+  >
+    <!-- EVENT badge: perched on top-center of card, fades in as it approaches workflow -->
+    <span
+      id="hero-flight-badge"
+      class="primary-bg-color text-white text-[9px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-t-xl shadow-2xs absolute left-1/2 -translate-x-1/2 bottom-full pointer-events-none"
+      style="opacity: 0;"
+    >
+      EVENT
+    </span>
+
+    <!-- Morphing Card Container -->
+    <div
+      id="hero-flight-card-inner"
+      class="w-full h-full relative rounded-2xl sm:rounded-lg overflow-hidden"
+    >
+      <!-- View 1: Full Hero Stream Card View -->
+      <div
+        id="hero-card-full-view"
+        class="absolute inset-0 w-full h-full pt-5 px-6 pb-6 sm:pt-6 sm:px-7 sm:pb-7 md:pt-7 md:px-8 md:pb-8 flex flex-col justify-between"
+      >
+        <div class="flex flex-col pr-2 -mt-4">
+          <span class="text-base sm:text-lg md:text-[20px] font-semibold text-white tracking-tight leading-snug">
+            Invoice received via email
+          </span>
+          <span class="text-xs sm:text-[13px] md:text-sm text-slate-300/60 font-normal mt-1 leading-tight">
+            Gmail Inbox · AeroBreak Suppliers
+          </span>
+        </div>
+
+        <div class="flex items-end justify-end w-full mt-auto">
+          <img
+            src="/logos/gmail.svg"
+            alt="Gmail"
+            class="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-md"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- View 2: Compact Workflow Step 1 Card View -->
+      <div
+        id="hero-card-compact-view"
+        class="absolute inset-0 w-full h-full px-3.5 py-2.5 flex items-center justify-between text-left"
+        style="opacity: 0;"
+      >
+        <div class="flex items-center gap-3 min-w-0">
+          <div
+            class="w-8 h-8 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-center text-slate-600 shrink-0"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <span class="text-xs font-semibold text-slate-900 leading-tight">
+              Invoice received via email
+            </span>
+            <span class="text-[11px] text-slate-500 leading-tight mt-0.5">
+              Gmail Inbox · Supplier
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ─── Stable viewport height (avoids dvh reflow on mobile chrome show/hide) ── */
+  .hero-min-h {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-min-h {
+      /* Use the JS-captured initial viewport height to prevent reflow on scroll */
+      min-height: var(--hero-vh, 100vh);
+    }
+  }
+
+  .hero-wave-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 0.85;
+    /* Promote to its own compositor layer — prevents scroll repaints from bleeding into hero */
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  .hero-wave-placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    transition: opacity 0.6s ease-out;
+  }
+
+  .hero-wave-wrapper.wave-ready .hero-wave-placeholder {
+    opacity: 0;
+  }
+
+  .hero-wave-wrapper canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-wave-wrapper canvas.wave-loaded,
+  .hero-wave-wrapper.wave-ready canvas {
+    opacity: 1;
+  }
+
+  .hero-bg {
+    background: radial-gradient(
+      120% 85% at 50% 12%,
+      #193b60 0%,
+      #10243c 45%,
+      #0b192a 100%
+    );
+  }
+
+  .hero-radial-glow {
+    background: radial-gradient(
+      circle at 50% 30%,
+      rgba(56, 189, 248, 0.08) 0%,
+      rgba(30, 58, 95, 0) 70%
+    );
+  }
+
+  .font-hero-serif {
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Cascading Glassmorphic Event Stream */
+  .hero-stream-container {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-top: -20px;
+    padding-top: 10px;
+    padding-bottom: 25px;
+  }
+
+  .hero-stream-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-stream-track {
+    display: flex;
+    align-items: flex-end;
+    justify-content: safe center;
+    width: max-content;
+    min-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 480px;
+  }
+
+  /* Stepped Diagonal Positioning */
+  .hero-stream-step {
+    margin-left: -190px;
+    margin-bottom: calc(var(--index) * 18px);
+  }
+
+  .hero-stream-step:first-child {
+    margin-left: 16px;
+  }
+
+  /* Glassmorphism Card Style */
+  .hero-stream-card {
+    opacity: 0;
+    width: 310px;
+    height: 190px;
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.32);
+    box-shadow:
+      0 20px 48px -8px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  @media (min-width: 640px) {
+    .hero-stream-container {
+      margin-top: 0px;
+    }
+    .hero-stream-track {
+      height: 530px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .hero-stream-step {
+      margin-left: -200px;
+      margin-bottom: calc(var(--index) * 30px);
+    }
+    .hero-stream-card {
+      width: 320px;
+      height: 195px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-stream-container {
+      margin-top: -30px;
+    }
+    .hero-stream-track {
+      height: 560px;
+      padding-left: max(32px, calc((100vw - 1440px) / 2));
+      padding-right: max(32px, calc((100vw - 1440px) / 2));
+    }
+    .hero-stream-step {
+      margin-left: -210px;
+      margin-bottom: calc(var(--index) * 45px);
+    }
+    .hero-stream-card {
+      width: 330px;
+      height: 205px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .hero-stream-container {
+      margin-top: -30px;
+    }
+    .hero-stream-track {
+      height: 600px;
+      padding-left: max(40px, calc((100vw - 1600px) / 2));
+      padding-right: max(40px, calc((100vw - 1600px) / 2));
+    }
+    .hero-stream-step {
+      margin-left: -220px;
+      margin-bottom: calc(var(--index) * 40px);
+    }
+    .hero-stream-card {
+      width: 350px;
+      height: 215px;
+      border-radius: 26px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .hero-stream-container {
+      margin-top: -35px;
+    }
+    .hero-stream-track {
+      height: 640px;
+      padding-left: max(48px, calc((100vw - 1800px) / 2));
+      padding-right: max(48px, calc((100vw - 1800px) / 2));
+    }
+    .hero-stream-step {
+      margin-left: -235px;
+      margin-bottom: calc(var(--index) * 43px);
+    }
+    .hero-stream-card {
+      width: 375px;
+      height: 228px;
+      border-radius: 28px;
+    }
+  }
+
+  .hero-stream-card:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 28px 60px -8px rgba(0, 0, 0, 0.45),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-4px);
+    transition:
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      background 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  #hero-flight-card {
+    will-change: transform, width, height;
+  }
+
+  #hero-flight-card-inner {
+    will-change: background-color, border-color, border-radius, box-shadow;
+  }
+
+  /* ─── Hero Text Entrance Animation Initial State ─────────────────────────────
+     Prevents flash of visible content (FOUC) on initial load & page refresh.
+     Elements start hidden and are smoothly revealed by GSAP heroTextAnimation. */
+  .hero-eyebrow,
+  .hero-title-word,
+  .hero-subtitle,
+  .hero-cta {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  /* ─── Rotating headline slides ──────────────────────────────────────────────
+     All slides share one grid cell, so the block is always as tall as the
+     tallest slide and nothing below it shifts when the text changes. */
+  .hero-slide-layer {
+    grid-area: 1 / 1;
+  }
+
+  .hero-slide-layer:not([data-slide="0"]) {
+    visibility: hidden;
+  }
+
+  .hero-subtitle-slide:not([data-slide="0"]) {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-wave-wrapper canvas,
+    .hero-eyebrow,
+    .hero-title-word,
+    .hero-subtitle,
+    .hero-cta,
+    .hero-stream-card {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* ─── Mobile: isolate hero section to prevent scroll-triggered repaints ────── */
+  @media (max-width: 1023px) {
+    #hero-section {
+      contain: layout paint;
+      /* Ensure canvas doesn't trigger jank from scroll-based resize events */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+
+    /* Hide WebGL canvas on mobile — uses static placeholder instead */
+    .stripe-wave-canvas {
+      display: none !important;
+    }
+
+    /* Show placeholder on all screens on mobile (it's hidden sm:block by default) */
+    .hero-wave-placeholder {
+      display: block !important;
+      object-fit: cover;
+    }
+  }
+</style>
+
+<script>
+  // ─── Capture stable viewport height once on load ──────────────────────────
+  // Avoids flickering caused by 100dvh recalculating every time the mobile
+  // browser chrome (address bar) shows or hides during scroll.
+  (function () {
+    if (typeof window === 'undefined') return;
+    function setHeroVh() {
+      document.documentElement.style.setProperty(
+        '--hero-vh',
+        window.innerHeight + 'px'
+      );
+    }
+    // Set once on load — do NOT update on resize/scroll to keep it stable
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setHeroVh, { once: true });
+    } else {
+      setHeroVh();
+    }
+  })();
+</script>
