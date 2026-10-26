@@ -506,7 +506,7 @@ function PolicySection({
 
 export default function TermsOfServicePage() {
   return (
-    <div className="bg-paper">
+    <div className="bg-paper" data-cursor-surface="light">
       <article className="page-x mx-auto max-w-3xl space-y-10 py-12 md:py-16">
         <Reveal>
           <header className="space-y-4">

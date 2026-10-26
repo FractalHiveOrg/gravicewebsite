@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function InsightsPage() {
   return (
-    <section className="bg-paper">
+    <section className="bg-paper" data-cursor-surface="light">
       <div className="page-x mx-auto max-w-[1200px] py-16 sm:py-20 lg:py-28">
         <div className="mb-14 flex max-w-[40rem] flex-col gap-4">
           <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">

@@ -53,7 +53,7 @@ const culture = [
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-deep-space">
+      <section data-cursor-surface="dark" className="bg-deep-space">
         <div className="page-x mx-auto max-w-[1100px] py-14 sm:py-16 lg:py-24">
           <Reveal className="flex max-w-[46rem] flex-col gap-5">
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange">
@@ -80,7 +80,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-paper">
+      <section data-cursor-surface="light" className="section-pad bg-paper">
         <div className="mx-auto max-w-[1100px]">
           <Reveal className="mb-10 max-w-[36rem]">
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
@@ -148,7 +148,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-white">
+      <section data-cursor-surface="light" className="section-pad bg-white">
         <div className="mx-auto max-w-[1100px]">
           <Reveal className="mb-10 max-w-[36rem]">
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
@@ -177,7 +177,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-paper">
+      <section data-cursor-surface="light" className="section-pad bg-paper">
         <div className="mx-auto max-w-[1100px]">
           <Reveal className="mb-10 max-w-[36rem]">
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
@@ -205,7 +205,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-deep-space">
+      <section data-cursor-surface="dark" className="section-pad bg-deep-space">
         <Reveal className="mx-auto flex max-w-[720px] flex-col items-center gap-6 text-center">
           <h2 className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-normal leading-[1.15] text-paper">
             Ready to bring more structure to your operations?

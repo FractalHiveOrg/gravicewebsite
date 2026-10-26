@@ -50,6 +50,7 @@ export function SiteHeader() {
 
   return (
     <header
+      data-cursor-surface="dark"
       className={[
         "site-header sticky top-0 z-50 border-b border-paper/8 bg-deep-space",
         scrolled ? "is-scrolled" : "",
@@ -104,6 +105,7 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-nav"
+          data-cursor-surface="dark"
           className="page-x border-t border-paper/8 bg-deep-space py-4 xl:hidden"
         >
           <nav className="flex flex-col gap-3 text-paper" aria-label="Mobile">

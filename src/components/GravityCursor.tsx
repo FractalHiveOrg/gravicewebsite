@@ -15,28 +15,98 @@ type Surface = "dark" | "light";
 const LUMINANCE_CUTOFF = 0.45;
 
 function parseRgb(color: string): { r: number; g: number; b: number; a: number } | null {
-  const m = color.match(
+  const rgba = color.match(
     /rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)/,
   );
-  if (!m) return null;
-  return {
-    r: Number(m[1]),
-    g: Number(m[2]),
-    b: Number(m[3]),
-    a: m[4] === undefined ? 1 : Number(m[4]),
-  };
+  if (rgba) {
+    return {
+      r: Number(rgba[1]),
+      g: Number(rgba[2]),
+      b: Number(rgba[3]),
+      a: rgba[4] === undefined ? 1 : Number(rgba[4]),
+    };
+  }
+
+  const hex = color.match(/^#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i);
+  if (hex) {
+    let h = hex[1];
+    if (h.length === 3) {
+      h = h
+        .split("")
+        .map((c) => c + c)
+        .join("");
+    }
+    const hasAlpha = h.length === 8;
+    return {
+      r: parseInt(h.slice(0, 2), 16),
+      g: parseInt(h.slice(2, 4), 16),
+      b: parseInt(h.slice(4, 6), 16),
+      a: hasAlpha ? parseInt(h.slice(6, 8), 16) / 255 : 1,
+    };
+  }
+
+  return null;
 }
 
 function luminance(r: number, g: number, b: number) {
   return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
 }
 
-/** Walk the stack under the pointer and pick light vs dark from the first opaque fill. */
+/** Brand utility / gravice section classes that imply cursor tint (own element only). */
+const DARK_OWN = new Set([
+  "bg-deep-space",
+  "gv-hero",
+  "gv-cta",
+  "gv-footer",
+  "gv-family",
+  "gv-mainbar",
+  "gv-platform",
+  "site-header",
+]);
+const LIGHT_OWN = new Set(["bg-paper", "bg-white", "gv-light"]);
+
+function ownSurfaceClass(el: Element): Surface | null {
+  for (const c of el.classList) {
+    if (DARK_OWN.has(c)) return "dark";
+    if (LIGHT_OWN.has(c)) return "light";
+  }
+  return null;
+}
+
+/**
+ * Nearest marked / classed ancestor when the hit stack has no opaque fill
+ * (e.g. .gv-band paint lives on ::before). Prefer the deeper of dark vs light.
+ */
+function surfaceFromAncestors(el: Element): Surface | null {
+  const dark = el.closest(
+    ".bg-deep-space, .gv-hero, .gv-cta, .gv-footer, .gv-family, .gv-mainbar, .gv-platform, .site-header, [data-cursor-surface='dark']",
+  );
+  const light = el.closest(
+    ".bg-paper, .bg-white, .gv-light, [data-cursor-surface='light']",
+  );
+  if (!dark && !light) return null;
+  if (dark && !light) return "dark";
+  if (light && !dark) return "light";
+  // Both match (e.g. dark card in light section, or section inside body.bg-paper)
+  return dark!.contains(light!) ? "light" : "dark";
+}
+
+/** Walk the stack under the pointer and pick light vs dark. */
 function surfaceAt(x: number, y: number): Surface {
   const stack = document.elementsFromPoint(x, y);
+  let top: Element | null = null;
+
   for (const el of stack) {
     if (!(el instanceof Element)) continue;
     if (el.closest?.(".gravity-cursor")) continue;
+    if (!top) top = el;
+
+    const direct = el.getAttribute("data-cursor-surface");
+    if (direct === "dark" || direct === "light") return direct;
+
+    // Own class wins before paint sampling — covers ::before bands & nested cards
+    const own = ownSurfaceClass(el);
+    if (own) return own;
 
     const bg = getComputedStyle(el).backgroundColor;
     const rgb = parseRgb(bg);
@@ -44,12 +114,17 @@ function surfaceAt(x: number, y: number): Surface {
 
     return luminance(rgb.r, rgb.g, rgb.b) < LUMINANCE_CUTOFF ? "dark" : "light";
   }
+
+  if (top) {
+    const fromAncestors = surfaceFromAncestors(top);
+    if (fromAncestors) return fromAncestors;
+  }
   return "light";
 }
 
 /**
- * Brand-mark gravity cursor — cream logo on dark sections, navy logo on paper.
- * Mark tracks the pointer directly; ring trails behind. Fine pointers only.
+ * Brand-mark gravity cursor — same Gravity Mirror mark, surface-tinted:
+ * cream+orange on dark, navy+orange on light/paper. Fine pointers only.
  */
 export function GravityCursor() {
   const reduced = usePrefersReducedMotion();
@@ -318,7 +393,7 @@ export function GravityCursor() {
     >
       <div ref={ringRef} className="gravity-cursor__ring" data-surface="dark" />
       <div ref={markRef} className="gravity-cursor__mark">
-        {/* Cream orbit — readable on deep-space / navy */}
+        {/* White/cream orbit + orange core — for black / deep-space */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={onDarkRef}
@@ -329,12 +404,12 @@ export function GravityCursor() {
           height={22}
           draggable={false}
         />
-        {/* Navy orbit — readable on paper / beige */}
+        {/* Navy/blue orbit + orange core — for white / paper */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={onLightRef}
           className="gravity-cursor__logo gravity-cursor__logo--on-light"
-          src="/brand/symbol-small.svg"
+          src="/brand/symbol-on-light.svg"
           alt=""
           width={22}
           height={22}

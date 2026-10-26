@@ -37,7 +37,7 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-deep-space text-paper">
+    <footer className="bg-deep-space text-paper" data-cursor-surface="dark">
       <div className="page-x mx-auto flex max-w-[1440px] flex-col gap-14 pb-10 pt-[72px]">
         <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
           <div className="flex max-w-[340px] flex-col gap-5">

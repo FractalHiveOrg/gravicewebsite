@@ -19,7 +19,7 @@ const pillars = [
 
 export function WhyGravice() {
   return (
-    <section id="why" className="section-pad bg-white">
+    <section id="why" className="section-pad bg-white" data-cursor-surface="light">
       <div className="mx-auto max-w-[1200px]">
         <Reveal className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="flex max-w-[40rem] flex-col gap-4">

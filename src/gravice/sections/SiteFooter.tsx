@@ -4,7 +4,7 @@ import { PRODUCTS } from "../content";
 /** Footer with the product logo row. */
 export function SiteFooter() {
   return (
-    <footer className="gv-footer">
+    <footer className="gv-footer" data-cursor-surface="dark">
       <div className="gv-wrap gv-flogos">
         <a href="/">
           <GlobeMark size={24} />

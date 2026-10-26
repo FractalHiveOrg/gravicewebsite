@@ -4,7 +4,7 @@ import { PlatformWheel } from "@/components/home/PlatformWheel";
 
 export function Products() {
   return (
-    <section id="products" className="section-pad bg-deep-space">
+    <section id="products" className="section-pad bg-deep-space" data-cursor-surface="dark">
       <div className="mx-auto max-w-[1200px]">
         <Reveal className="mx-auto mb-10 flex max-w-[40rem] flex-col gap-4 text-center md:mb-14">
           <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange">

@@ -4,7 +4,7 @@ import { Reveal } from "@/components/Reveal";
 
 export function ClosingCta() {
   return (
-    <section className="section-pad bg-deep-space">
+    <section className="section-pad bg-deep-space" data-cursor-surface="dark">
       <Reveal className="mx-auto flex max-w-[720px] flex-col items-center gap-7 text-center">
         <GravityMirror size={72} interactive={false} nodeColor="#8B99AC" />
         <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.15] tracking-[-0.01em] text-paper">

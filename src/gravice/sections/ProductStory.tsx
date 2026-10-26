@@ -6,7 +6,12 @@ import { PRODUCTS, STORY } from '../content';
  */
 export function ProductStory() {
   return (
-    <section className="gv-band gv-story gv-light" data-gv="story" id="what">
+    <section
+      className="gv-band gv-story gv-light"
+      data-gv="story"
+      id="what"
+      data-cursor-surface="light"
+    >
       <div className="gv-wrap gv-story-grid">
         <div className="gv-s-left">
           <div className="gv-eyebrow">{STORY.eyebrow}</div>

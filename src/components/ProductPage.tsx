@@ -25,7 +25,7 @@ export function ProductPage({ product }: Props) {
 
   return (
     <>
-      <section className="bg-deep-space">
+      <section data-cursor-surface="dark" className="bg-deep-space">
         <div className="page-x mx-auto flex max-w-[1100px] flex-col items-center gap-10 py-14 sm:py-16 lg:flex-row lg:items-center lg:gap-12 lg:py-24">
           <Reveal className="flex w-full max-w-[46rem] flex-1 flex-col gap-5">
             <div className="flex flex-wrap items-center gap-3">
@@ -75,7 +75,7 @@ export function ProductPage({ product }: Props) {
         </div>
       </section>
 
-      <section className="section-pad bg-paper">
+      <section data-cursor-surface="light" className="section-pad bg-paper">
         <div className="mx-auto grid max-w-[1100px] gap-6 md:grid-cols-2">
           <Reveal>
             <article className="h-full rounded-[20px] border border-navy-100 bg-white p-8 md:p-10">
@@ -100,7 +100,7 @@ export function ProductPage({ product }: Props) {
         </div>
       </section>
 
-      <section className="section-pad bg-white">
+      <section data-cursor-surface="light" className="section-pad bg-white">
         <div className="mx-auto max-w-[1100px]">
           <Reveal className="mb-10 max-w-[36rem]">
             <h2 className="font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
@@ -130,7 +130,7 @@ export function ProductPage({ product }: Props) {
         </div>
       </section>
 
-      <section className="section-pad bg-paper">
+      <section data-cursor-surface="light" className="section-pad bg-paper">
         <div className="mx-auto max-w-[1100px]">
           <Reveal className="mb-10">
             <h2 className="font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
@@ -155,7 +155,7 @@ export function ProductPage({ product }: Props) {
       </section>
 
       {product.comparison && (
-        <section className="section-pad bg-white">
+        <section data-cursor-surface="light" className="section-pad bg-white">
           <div className="mx-auto grid max-w-[1100px] gap-6 lg:grid-cols-2">
             <Reveal>
               <article className="h-full rounded-[20px] border border-navy-100 bg-paper p-8">
@@ -204,7 +204,7 @@ export function ProductPage({ product }: Props) {
       )}
 
       {product.useCases && (
-        <section className="section-pad bg-white">
+        <section data-cursor-surface="light" className="section-pad bg-white">
           <div className="mx-auto max-w-[1100px]">
             <Reveal className="mb-4">
               <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
@@ -251,7 +251,7 @@ export function ProductPage({ product }: Props) {
       )}
 
       {product.offerings && (
-        <section className="section-pad bg-paper">
+        <section data-cursor-surface="light" className="section-pad bg-paper">
           <div className="mx-auto grid max-w-[1100px] gap-5 md:grid-cols-2">
             {product.offerings.map((o, i) => (
               <Reveal key={o.title} delay={i * 60}>
@@ -270,7 +270,7 @@ export function ProductPage({ product }: Props) {
       )}
 
       {product.microsoftPartnership && (
-        <section className="section-pad bg-paper">
+        <section data-cursor-surface="light" className="section-pad bg-paper">
           <div className="mx-auto max-w-[1100px]">
             <Reveal className="mb-10 max-w-[42rem]">
               <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
@@ -375,7 +375,7 @@ export function ProductPage({ product }: Props) {
         </section>
       )}
 
-      <section className="section-pad bg-deep-space">
+      <section data-cursor-surface="dark" className="section-pad bg-deep-space">
         <div className="mx-auto max-w-[1100px]">
           <Reveal className="mb-10">
             <h2 className="font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-paper">
@@ -397,7 +397,7 @@ export function ProductPage({ product }: Props) {
         </div>
       </section>
 
-      <section className="section-pad bg-paper">
+      <section data-cursor-surface="light" className="section-pad bg-paper">
         <Reveal className="mx-auto flex max-w-[800px] flex-col items-center gap-5 text-center">
           <h2 className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-normal text-deep-space">
             {product.footerLine}
@@ -412,7 +412,7 @@ export function ProductPage({ product }: Props) {
         </Reveal>
       </section>
 
-      <section className="page-x border-t border-navy-100 bg-white py-14">
+      <section data-cursor-surface="light" className="page-x border-t border-navy-100 bg-white py-14">
         <div className="mx-auto max-w-[1100px]">
           <p className="mb-6 text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
             Also from Gravice

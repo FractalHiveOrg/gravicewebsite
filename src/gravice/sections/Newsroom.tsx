@@ -7,7 +7,12 @@ export function Newsroom() {
   const rail = useRef<HTMLDivElement>(null);
   const by = (dx: number) => rail.current?.scrollBy({ left: dx, behavior: 'smooth' });
   return (
-    <section className="gv-band gv-news gv-light" data-gv="news" id="news">
+    <section
+      className="gv-band gv-news gv-light"
+      data-gv="news"
+      id="news"
+      data-cursor-surface="light"
+    >
       <div className="gv-wrap">
         <div className="gv-news-top">
           <div className="gv-stack"><div className="gv-eyebrow">{NEWS.eyebrow}</div><h2>{NEWS.title}</h2></div>

@@ -49,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         id="top"
         className="min-h-full flex flex-col bg-paper text-deep-space"
+        data-cursor-surface="light"
       >
         {/* Before paint: always open at the top on reload (not restored mid-page). */}
         <Script

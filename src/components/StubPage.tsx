@@ -15,7 +15,7 @@ export function StubPage({
   showProductsLink = true,
 }: Props) {
   return (
-    <section className="bg-deep-space">
+    <section className="bg-deep-space" data-cursor-surface="dark">
       <div className="page-x mx-auto flex max-w-[800px] flex-col gap-6 py-20 sm:py-24 lg:py-32">
         <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange">
           Coming soon

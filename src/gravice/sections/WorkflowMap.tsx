@@ -3,7 +3,7 @@ import { PRODUCTS, WORKFLOW } from '../content';
 /** Workflow map: four stages, the product that owns each, one shared platform bar underneath. */
 export function WorkflowMap() {
   return (
-    <section className="gv-band gv-flow gv-light" id="products">
+    <section className="gv-band gv-flow gv-light" id="products" data-cursor-surface="light">
       <div className="gv-wrap">
         <div className="gv-flow-head">
           <div className="gv-eyebrow">{WORKFLOW.eyebrow}</div>

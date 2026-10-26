@@ -3,7 +3,7 @@ import { HERO } from '../content';
 /** Hero: the globe forms here (data-gv="hero-globe"); text fades in once it has formed. */
 export function Hero() {
   return (
-    <section className="gv-band gv-hero" data-gv="hero" id="hero">
+    <section className="gv-band gv-hero" data-gv="hero" id="hero" data-cursor-surface="dark">
       <noscript>
         <style>{`.gv-hero [data-gv-reveal]{opacity:1;transform:none}`}</style>
       </noscript>

@@ -5,7 +5,12 @@ import { insights } from "@/lib/insights";
 
 export function Insights() {
   return (
-    <section className="section-pad bg-paper" data-gv="news" id="news">
+    <section
+      className="section-pad bg-paper"
+      data-gv="news"
+      id="news"
+      data-cursor-surface="light"
+    >
       <div className="mx-auto max-w-[1200px]">
         <Reveal className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="flex max-w-[40rem] flex-col gap-4">

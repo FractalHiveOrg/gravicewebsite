@@ -17,7 +17,7 @@ export default async function DemoPage({ searchParams }: DemoPageProps) {
   const eventSlug = getCalEventSlug(product);
 
   return (
-    <section className="bg-paper">
+    <section className="bg-paper" data-cursor-surface="light">
       <div className="page-x mx-auto flex max-w-[1100px] flex-col gap-10 py-14 sm:gap-12 sm:py-16 lg:py-24">
         <div className="mx-auto flex max-w-[640px] flex-col items-center gap-5 text-center">
           <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
