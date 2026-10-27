@@ -32,7 +32,7 @@ export function ProductStory() {
                 <div className="gv-eyebrow gv-eyebrow-product">{p.name}</div>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
-                <a className="gv-textlink" href={p.href} {...(p.external ? { target: '_blank', rel: 'noreferrer' } : {})}>{s.link}</a>
+                <a className="gv-textlink" href={p.href} data-clarity-event="product_link_click" data-clarity-source={`story_${s.product}`} {...(p.external ? { target: '_blank', rel: 'noreferrer' } : {})}>{s.link}</a>
               </div>
             );
           })}

@@ -13,7 +13,7 @@ export function ClosingCTA() {
         <div className="gv-cta-globe" data-gv="cta-globe" aria-hidden="true" />
         <h2>{CLOSING.title}</h2>
         <p>{CLOSING.body}</p>
-        <div className="gv-row"><a className="gv-btn gv-btn-primary" href={CLOSING.cta.href}>{CLOSING.cta.label}</a></div>
+        <div className="gv-row"><a className="gv-btn gv-btn-primary" href={CLOSING.cta.href} data-clarity-event="book_demo_click" data-clarity-source="closing_cta">{CLOSING.cta.label}</a></div>
       </div>
     </section>
   );

@@ -39,6 +39,9 @@ type Props = {
   className?: string;
   target?: string;
   rel?: string;
+  /** Clarity event fired on click (see ClarityAnalytics). */
+  clarityEvent?: string;
+  claritySource?: string;
 };
 
 export function Button({
@@ -49,6 +52,8 @@ export function Button({
   className = "",
   target,
   rel,
+  clarityEvent,
+  claritySource,
 }: Props) {
   const isLink = variant.startsWith("link");
   const hasDisplayOverride =
@@ -62,6 +67,8 @@ export function Button({
       target={target}
       rel={rel}
       data-magnetic
+      data-clarity-event={clarityEvent}
+      data-clarity-source={claritySource}
       className={[
         "items-center justify-center rounded-full font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
         hasDisplayOverride ? "" : "inline-flex",

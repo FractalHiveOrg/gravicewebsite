@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CalBooker } from "@/components/CalBooker";
+import { ClarityTags } from "@/components/ClarityTags";
 import { getCalEventSlug } from "@/lib/cal";
 
 export const metadata: Metadata = {
@@ -18,6 +19,10 @@ export default async function DemoPage({ searchParams }: DemoPageProps) {
 
   return (
     <section className="bg-paper" data-cursor-surface="light">
+      <ClarityTags
+        tags={{ demo_product: product ?? "general" }}
+        upgrade="demo_page_view"
+      />
       <div className="page-x mx-auto flex max-w-[1100px] flex-col gap-10 py-14 sm:gap-12 sm:py-16 lg:py-24">
         <div className="mx-auto flex max-w-[640px] flex-col items-center gap-5 text-center">
           <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
