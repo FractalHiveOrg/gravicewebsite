@@ -1,6 +1,6 @@
 import Clarity from "@microsoft/clarity";
 
-const projectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID
+const projectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "z465hl406u"
 
 /**
  * Returns Clarity once its queue exists, or null on the server / without a
