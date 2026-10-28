@@ -182,7 +182,7 @@
           - heading "Industries" [level=4] [ref=e233]
           - list [ref=e234]:
             - listitem [ref=e235]:
-              - link "Banking & NBFCs" [ref=e236] [cursor=pointer]:
+              - link "financial institutions" [ref=e236] [cursor=pointer]:
                 - /url: /industries/banking
             - listitem [ref=e237]:
               - link "Manufacturing" [ref=e238] [cursor=pointer]:

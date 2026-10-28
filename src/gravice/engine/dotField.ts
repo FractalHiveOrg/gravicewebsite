@@ -1,7 +1,9 @@
 /**
  * Gravice dot field: one set of 312 dots that travels through the page.
  *
- *   Hero      scattered dots → pulled into the orange core (glow) → burst → rotating globe.
+ *   Hero      the orange core appears first; gravity then pulls the scattered dots in on curving
+ *             paths until they settle into a rotating globe around it. The core is shaded in 3D
+ *             and breathes slowly.
  *             After the intro the core follows the cursor while it is over the hero.
  *   Story     as you scroll, the globe breaks apart and re-forms in the sticky centre column,
  *             then dissolves into the first product orb. Between steps the orb dissolves into
@@ -19,6 +21,7 @@
  *   data-gv="stage"        sticky centre column of the story
  *   data-gv="orb-canvas"   <canvas> inside the stage that the orbs are painted on
  *   data-gv="step"         one per story step, with data-gv-orb="composing|searching|solving|…"
+ *                          optionally data-gv-orb-color="#hex" and data-gv-orb-rotate="90" (degrees)
  *   data-gv="tick"         optional progress labels, one per step
  *   data-gv="news"         section the closing dots rise out of (optional)
  *   data-gv="cta"          closing section
@@ -35,7 +38,10 @@ export interface DotFieldOptions {
   field: HTMLCanvasElement;
   /** Full-viewport canvas above everything (only the cursor core is drawn here). */
   cursor: HTMLCanvasElement;
+  /** Dot colour on dark sections. Default Gravice blue. */
   dotColor?: string;
+  /** Dot colour while a dot is over a light section (any element with class gv-light or data-gv-light). Default Gravice blue. */
+  lightDotColor?: string;
   coreColor?: string;
   orbColor?: string;
   /** Orb clock rate. Library rates are tuned for 64px icons; 0.6 reads calmly at ~400px. */
@@ -44,6 +50,8 @@ export interface DotFieldOptions {
   intro?: boolean;
   /** Core follows the mouse over the hero after the intro. Default true. */
   followCursor?: boolean;
+  /** Without followCursor: dots near the mouse bend toward it over the hero globe, the core stays put. Default true. */
+  hoverDots?: boolean;
 }
 
 export interface DotFieldController {
@@ -61,20 +69,20 @@ interface Dot {
 interface Target { x: number; y: number; z: number; s: number; a: number; sq: number; ang: number }
 interface Box { x: number; y: number; w: number; h: number; top: number; bottom: number }
 
-const T_CONV = 0.8, T_BURST = 1.9, T_FORMED = 3.0, T_REVEAL = 3.3, T_HANDOFF = 3.9;
+// intro: the core appears first (0–0.7s), then gravity pulls the scattered dots in on curving paths
+const T_CONV = 0.5, T_FORMED = 2.6, T_REVEAL = 2.7, T_HANDOFF = 3.3;
 const TILT = -0.32;
 const clamp = (v: number, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
 const ease = (u: number) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
 const lerp = (a: number, b: number, u: number) => a + (b - a) * u;
 
-/** Latitude/longitude grid matching the Gravice logo: 13 rings × 24 = 312 dots. */
+/** 312 points spread evenly over a sphere (Fibonacci lattice). */
 const SPHERE: V3[] = (() => {
-  const v: V3[] = [];
-  for (let la = -72; la <= 72; la += 12)
-    for (let lo = 0; lo < 360; lo += 15) {
-      const a = (la * Math.PI) / 180, o = (lo * Math.PI) / 180;
-      v.push([Math.cos(a) * Math.sin(o), Math.sin(a), Math.cos(a) * Math.cos(o)]);
-    }
+  const v: V3[] = [], n = 312;
+  for (let j = 0; j < n; j++) {
+    const y = 1 - (2 * (j + 0.5)) / n, r = Math.sqrt(1 - y * y), th = j * 2.399963;
+    v.push([Math.cos(th) * r, y, Math.sin(th) * r]);
+  }
   return v;
 })();
 const P = SPHERE.length;
@@ -85,11 +93,17 @@ function rgb(hex: string): [number, number, number] {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
+/** Lighten (amt > 0, toward white) or darken (amt < 0, toward black) a hex colour. */
+function shade(hex: string, amt: number) {
+  const [r, g, b] = rgb(hex), t = amt > 0 ? 255 : 0, a = Math.abs(amt);
+  return `rgb(${Math.round(r + (t - r) * a)},${Math.round(g + (t - g) * a)},${Math.round(b + (t - b) * a)})`;
+}
+
 export function createDotField(opts: DotFieldOptions): DotFieldController {
   const {
     field, cursor,
-    dotColor = '#4A6FA5', coreColor = '#F26B2F', orbColor = '#3E5F93',
-    orbSpeed = 0.6, intro: playIntro = true, followCursor = true,
+    dotColor = '#4A6FA5', lightDotColor = '#4A6FA5', coreColor = '#F26B2F', orbColor = '#3E5F93',
+    orbSpeed = 0.6, intro: playIntro = true, followCursor = true, hoverDots = true,
   } = opts;
   const fx = field.getContext('2d')!;
   const cx = cursor.getContext('2d')!;
@@ -139,8 +153,10 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     const ct = Math.cos(TILT), st = Math.sin(TILT);
     const y2 = y * ct - z * st, z2 = y * st + z * ct;
     o.x = ox + R * x; o.y = oy + R * y2; o.z = z2;
-    o.s = bs * (0.45 + 0.55 * Math.max(z2, 0));
-    o.a = z2 > 0 ? 0.3 + 0.7 * z2 : Math.max(0, 0.07 * (1 + z2 * 1.4));
+    // depth: front dots larger and brighter, back dots small and faint but still visible
+    const dp = (z2 + 1) / 2;
+    o.s = bs * (0.4 + 0.75 * dp);
+    o.a = 0.14 + 0.86 * Math.pow(dp, 1.6);
     o.sq = Math.max(0.16, Math.abs(z2)); o.ang = Math.atan2(y2, x);
     return o;
   };
@@ -153,7 +169,7 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
   const tint = document.createElement('canvas');
   const tctx = tint.getContext('2d')!;
   let orbBox = 0, orbCanvasEl: HTMLCanvasElement | null = null;
-  const drawOrbs = (stage: HTMLElement | null, orbCv: HTMLCanvasElement | null, states: OrbState[], oa: number[], clock: number) => {
+  const drawOrbs = (stage: HTMLElement | null, orbCv: HTMLCanvasElement | null, states: OrbState[], colors: string[], rots: number[], oa: number[], clock: number) => {
     if (!stage || !orbCv) return;
     const oc = orbCv.getContext('2d');
     if (!oc) return;
@@ -171,9 +187,10 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
       tctx.setTransform(1, 0, 0, 1, 0, 0); tctx.globalCompositeOperation = 'source-over';
       tctx.clearRect(0, 0, tint.width, tint.height);
       const sc = (box * d) / 64; tctx.setTransform(sc, 0, 0, sc, 0, 0);
+      if (rots[k]) { tctx.translate(32, 32); tctx.rotate(rots[k]); tctx.translate(-32, -32); }
       drawOrb(tctx, states[k], clock, orbSpeed, reduce);
       tctx.setTransform(1, 0, 0, 1, 0, 0); tctx.globalCompositeOperation = 'source-in';
-      tctx.fillStyle = orbColor; tctx.fillRect(0, 0, tint.width, tint.height);
+      tctx.fillStyle = colors[k] || orbColor; tctx.fillRect(0, 0, tint.width, tint.height);
       oc.globalAlpha = a; oc.drawImage(tint, 0, 0); oc.globalAlpha = 1;
     });
   };
@@ -184,6 +201,7 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
   const HC = { x: W / 2, y: window.scrollY + H / 2, R: Math.min(W, H) * 0.3 };
   const core = { x: W / 2, y: H / 2, r: 0 };
   const ptr = { x: 0, y: 0, inHero: false, seen: false };
+  const hv = { x: 0, y: 0, a: 0 }; // hover pull point (eases after the mouse) and its strength 0…1
   const heroPresent = () => !!q('hero-globe');
   if (reduce || !playIntro || !heroPresent()) { introStart -= 1e4; burstDone = true; }
   scatter();
@@ -208,29 +226,39 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
   const A: Target = { x: 0, y: 0, z: 1, s: 0, a: 0, sq: 1, ang: 0 };
   const B: Target = { ...A }, T: Target = { ...A };
 
-  const drawDots = (sy: number, cursorMode: boolean, back: boolean) => {
-    fx.fillStyle = dotColor;
+  let lightBands: [number, number][] = [];
+  /** Paint one depth half of the dots; dots within 170px of (px, py) bend toward it by `amt`. */
+  const drawDots = (sy: number, back: boolean, px: number, py: number, amt: number) => {
     for (const p of dots) {
       if (back ? p.z >= 0 : p.z < 0) continue;
       let x = p.x, y = p.y - sy;
       if (y < -60 || y > H + 60 || p.a < 0.01) continue;
-      if (cursorMode) {
-        const ex = core.x - x, ey = core.y - y, d = Math.hypot(ex, ey);
-        if (d < 170) { const pull = 0.26 * Math.pow(1 - d / 170, 2); x += ex * pull; y += ey * pull; }
+      if (amt > 0.001) {
+        const ex = px - x, ey = py - y, d = Math.hypot(ex, ey);
+        if (d < 170) { const pull = 0.26 * Math.pow(1 - d / 170, 2) * amt; x += ex * pull; y += ey * pull; }
       }
+      let onLight = false;
+      for (const b of lightBands) if (y >= b[0] && y <= b[1]) { onLight = true; break; }
+      fx.fillStyle = onLight ? lightDotColor : dotColor;
       fx.globalAlpha = Math.min(1, p.a);
-      fx.beginPath(); fx.ellipse(x, y, Math.max(0.4, p.s * p.sq), Math.max(0.4, p.s), p.ang, 0, Math.PI * 2); fx.fill();
+      fx.beginPath(); fx.arc(x, y, Math.max(0.5, p.s), 0, Math.PI * 2); fx.fill();
     }
     fx.globalAlpha = 1;
   };
+  /** The living core: slow breathing in size and glow, glowing from within. */
   const drawCore = (ctx: CanvasRenderingContext2D, glow: number) => {
     if (core.r <= 0.3) return;
-    const gr = core.r * (3.2 + glow * 2.5);
-    const g = ctx.createRadialGradient(core.x, core.y, 0, core.x, core.y, gr);
-    g.addColorStop(0, `rgba(${cr},${cg},${cb},${(0.33 + 0.3 * glow).toFixed(2)})`);
+    const ph = reduce ? 0 : Math.sin(clock * 2.1), r = core.r * (1 + 0.035 * ph), X = core.x, Y = core.y;
+    const gr = r * (2.6 + glow * 4) * (1 + 0.08 * ph);
+    const g = ctx.createRadialGradient(X, Y, r * 0.6, X, Y, gr);
+    g.addColorStop(0, `rgba(${cr},${cg},${cb},${(0.24 + 0.35 * glow + 0.05 * ph).toFixed(3)})`);
     g.addColorStop(1, `rgba(${cr},${cg},${cb},0)`);
-    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(core.x, core.y, gr, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = coreColor; ctx.beginPath(); ctx.arc(core.x, core.y, core.r, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(X, Y, gr, 0, Math.PI * 2); ctx.fill();
+    // lit from within: brightest at the centre, deepening toward the edge (no outside light source)
+    const s3 = ctx.createRadialGradient(X, Y, 0, X, Y, r);
+    s3.addColorStop(0, shade(coreColor, 0.3)); s3.addColorStop(0.45, shade(coreColor, 0.08));
+    s3.addColorStop(0.85, shade(coreColor, -0.06)); s3.addColorStop(1, shade(coreColor, -0.2));
+    ctx.fillStyle = s3; ctx.beginPath(); ctx.arc(X, Y, r, 0, Math.PI * 2); ctx.fill();
   };
 
   const frame = (now: number) => {
@@ -248,6 +276,8 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     const steps = qa('step'), ticks = qa('tick');
     const ctaG = q('cta-globe'), ctaSec = q('cta'), newsEl = q('news');
     const states = steps.map((el) => (el.dataset.gvOrb || 'searching') as OrbState);
+    const colors = steps.map((el) => el.dataset.gvOrbColor || orbColor);
+    const rots = steps.map((el) => ((parseFloat(el.dataset.gvOrbRotate || '0') || 0) * Math.PI) / 180);
     const N = steps.length;
     const hasStory = !!(storyEl && stage && N > 0);
 
@@ -319,31 +349,32 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     }
 
     // ---- springs for the intro phases
+
     let k = 0.2, damp = 0.62, glow = 0;
-    if (!reduce && t < T_CONV) k = 0;
-    else if (!reduce && t < T_BURST) { const u = (t - T_CONV) / (T_BURST - T_CONV); k = 0.002 + 0.06 * u * u; damp = 0.86; glow = u; }
-    else if (!reduce && t < T_FORMED) { const u = (t - T_BURST) / (T_FORMED - T_BURST); k = 0.012 + 0.06 * u; damp = 0.84 - 0.06 * u; glow = 1 - u; }
+    if (!reduce && t < T_CONV) k = 0; // dots drift while the core appears
+    else if (!reduce && t < T_FORMED) { const u = (t - T_CONV) / (T_FORMED - T_CONV); k = 0.0015 + 0.07 * u * u; damp = 0.93 - 0.15 * u; glow = 0.8 * Math.sin(Math.PI * u); }
     else if (intro) { k = 0.07; damp = 0.78; }
-    if (!reduce && !burstDone && t >= T_BURST) {
+    if (!reduce && !burstDone && t >= T_CONV) {
+      // a sideways push so each dot's fall curves, like orbiting into a gravity well
       burstDone = true;
       for (const p of dots) {
-        const ex = p.x - HC.x, ey = p.y - HC.y, d = Math.hypot(ex, ey) || 1, sp = 9 + Math.random() * 12;
-        p.vx += (ex / d) * sp; p.vy += (ey / d) * sp;
+        const ex = p.x - HC.x, ey = p.y - HC.y, d = Math.hypot(ex, ey) || 1, sp = 1.5 + d * 0.006;
+        p.vx = (-ey / d) * sp; p.vy = (ex / d) * sp;
       }
     }
-    const converging = !reduce && t >= T_CONV && t < T_BURST;
+    const converging = false;
     const rot = reduce ? 0.5 : clock * 0.28;
     const from = seg === 0 ? HC : SC;
     const mx = (from.x + SC.x) / 2, my = (from.y + SC.y) / 2;
-    const spreadX = seg === 0 ? W * 0.18 : SC.R * 1.6, spreadY = seg === 0 ? H * 0.16 : SC.R * 1.4;
+    const spreadX = seg === 0 ? W * 0.5 : SC.R * 2.6, spreadY = seg === 0 ? H * 0.42 : SC.R * 2.2;
 
     for (let i = 0; i < P; i++) {
       const p = dots[i];
       if (converging) { T.x = HC.x + p.ox * HC.R * 0.16; T.y = HC.y + p.oy * HC.R * 0.16; T.z = -1; T.s = 1.8; T.a = 0.9; T.sq = 1; T.ang = 0; }
-      else if (intro || s <= -1) { proj(SPHERE[i], HC.x, HC.y, HC.R, rot, HC.R * 0.048, T); if (!heroG) T.a = 0; }
+      else if (intro || s <= -1) { proj(SPHERE[i], HC.x, HC.y, HC.R, rot, HC.R * 0.026, T); if (!heroG) T.a = 0; }
       else if (ctaIn && cg0) {
         const gx = cg0.x + cg0.w / 2, gy = cg0.y + cg0.h / 2;
-        proj(SPHERE[i], gx, gy, cg0.w * 0.46, clock * 0.6, cg0.w * 0.02, B);
+        proj(SPHERE[i], gx, gy, cg0.w * 0.46, clock * 0.6, cg0.w * 0.015, B);
         const qd = clamp((cp - p.r * 0.4) / 0.6), e = ease(qd), u1 = 1 - e;
         const sx = (p.ox * 0.5 + 0.5) * W, s0y = srcY + 6, kx = lerp(sx, gx, 0.55) + p.oy * W * 0.08, ky = lerp(s0y, gy, 0.35);
         T.x = u1 * u1 * sx + 2 * e * u1 * kx + e * e * B.x; T.y = u1 * u1 * s0y + 2 * e * u1 * ky + e * e * B.y;
@@ -352,9 +383,9 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
       }
       else if (s >= N || !hasStory) exitTo(p, SC.x, SC.y, SC.R, T);
       else {
-        if (seg === 0) { proj(SPHERE[i], HC.x, HC.y, HC.R, rot, HC.R * 0.048, A); if (!heroG) A.a = 0; proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.048, B); }
-        else if (seg < N) { proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.048, A); proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.048, B); }
-        else { proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.048, A); exitTo(p, SC.x, SC.y, SC.R, B); }
+        if (seg === 0) { proj(SPHERE[i], HC.x, HC.y, HC.R, rot, HC.R * 0.026, A); if (!heroG) A.a = 0; proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.026, B); }
+        else if (seg < N) { proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.026, A); proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.026, B); }
+        else { proj(SPHERE[i], SC.x, SC.y, SC.R, rot, SC.R * 0.026, A); exitTo(p, SC.x, SC.y, SC.R, B); }
         // quadratic path through a scatter point: the formation breaks apart, then re-forms
         const Sx = mx + p.ox * spreadX, Sy = my + p.oy * spreadY, u1 = 1 - w;
         T.x = u1 * u1 * A.x + 2 * w * u1 * Sx + w * w * B.x; T.y = u1 * u1 * A.y + 2 * w * u1 * Sy + w * w * B.y;
@@ -368,7 +399,7 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
       if (!converging && T.a < 0.12 && Math.hypot(T.x - p.ptx, T.y - p.pty) > SC.R * 0.5) { p.x = T.x; p.y = T.y; p.vx = p.vy = 0; p.a = Math.min(p.a, T.a); }
       p.ptx = T.x; p.pty = T.y;
       if (reduce) { p.x = T.x; p.y = T.y; p.s = T.s; p.a = T.a; p.sq = T.sq; p.ang = T.ang; p.z = T.z; continue; }
-      if (k === 0) { p.x += p.vx * f; p.y += p.vy * f; p.a += (0.55 - p.a) * 0.05 * f; continue; }
+      if (k === 0) { p.x += p.vx * f; p.y += p.vy * f; p.a += (0.4 - p.a) * 0.06 * f; continue; }
       if (intro) {
         p.vx = (p.vx + (T.x - p.x) * k * f) * Math.pow(damp, f);
         p.vy = (p.vy + (T.y - p.y) * k * f) * Math.pow(damp, f);
@@ -393,27 +424,37 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     else {
       const e = seg === 0 ? w : 1, bump = 4 * w * (1 - w);
       ccx = lerp(HC.x, SC.x, e); ccy = lerp(HC.y, SC.y, e);
-      cR = lerp(seg === 0 ? HC.R : SC.R, SC.R, e) * lerp(0.2, 0.11, e) * (1 - 0.35 * bump);
-      if (seg === N) cR = SC.R * 0.11 * (1 - w);
+      cR = lerp(seg === 0 ? HC.R : SC.R, SC.R, e) * 0.075 * (1 - 0.75 * bump);
+      if (seg === N) cR = SC.R * 0.075 * (1 - w);
     }
-    if (!reduce && t < T_CONV - 0.1) cR = 0;
-    if (!reduce && heroG && t >= T_CONV - 0.1 && t < T_CONV + 0.7) {
-      const u = (t - T_CONV + 0.1) / 0.8;
+    if (!reduce && heroG && t < 0.7) { // the core pops in first, with a small overshoot
+      const u = t / 0.7;
       cR = HC.R * 0.2 * Math.max(0, 1 + 2.2 * Math.pow(u - 1, 3) + 1.2 * Math.pow(u - 1, 2));
     }
     let tx = ccx, ty = ccy - sy;
     if (cursorMode) { tx = ptr.x; ty = ptr.y; cR = 8; }
     const cl = Math.min(1, (cursorMode ? 0.3 : intro ? 0.25 : 0.13) * f);
     core.x += (tx - core.x) * cl; core.y += (ty - core.y) * cl;
-    core.r += (cR - core.r) * Math.min(1, t < T_CONV + 0.7 ? 1 : 0.16 * f);
+    core.r += (cR - core.r) * Math.min(1, t < 0.7 ? 1 : 0.16 * f);
 
     // ---- paint: back dots, core (inside the formation), front dots; cursor core on the top canvas
     fx.clearRect(0, 0, W, H); cx.clearRect(0, 0, W, H);
-    drawDots(sy, cursorMode, true);
+    lightBands = Array.from(document.querySelectorAll('.gv-light,[data-gv-light]'))
+      .map((e) => { const r = e.getBoundingClientRect(); return [r.top, r.bottom] as [number, number]; })
+      .filter((b) => b[1] > -60 && b[0] < H + 60);
+    // hover: without cursor follow, dots still bend toward the mouse over the hero globe
+    const hoverMode = hoverDots && !cursorMode && fine && !reduce && !intro && ptr.seen && ptr.inHero && s <= -0.98 && !!heroG;
+    if (hoverMode) {
+      if (hv.a < 0.01) { hv.x = ptr.x; hv.y = ptr.y; }
+      else { const hl = Math.min(1, 0.3 * f); hv.x += (ptr.x - hv.x) * hl; hv.y += (ptr.y - hv.y) * hl; }
+    }
+    hv.a += ((hoverMode ? 1 : 0) - hv.a) * Math.min(1, 0.12 * f);
+    const [px, py, amt] = cursorMode ? [core.x, core.y, 1] : [hv.x, hv.y, hv.a];
+    drawDots(sy, true, px, py, amt);
     if (!cursorMode) drawCore(fx, glow);
-    drawDots(sy, cursorMode, false);
+    drawDots(sy, false, px, py, amt);
     if (cursorMode) drawCore(cx, 0);
-    if (hasStory) drawOrbs(stage, orbCv, states, oa, clock);
+    if (hasStory) drawOrbs(stage, orbCv, states, colors, rots, oa, clock);
   };
   raf = requestAnimationFrame(frame);
   if (reduce || !playIntro || !heroPresent()) setReveal(true);

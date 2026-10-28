@@ -1,0 +1,219 @@
+- generic [active] [ref=f11e1]:
+  - banner [ref=f11e2]:
+    - generic [ref=f11e3]:
+      - link "Gravice home" [ref=f11e4] [cursor=pointer]:
+        - /url: /
+        - img "Gravice" [ref=f11e5]
+      - navigation "Primary" [ref=f11e6]:
+        - link "Products" [ref=f11e8] [cursor=pointer]:
+          - /url: /#products
+          - text: Products
+          - generic [aria-hidden] [ref=f11e9]: ▾
+        - link "Industries" [ref=f11e11] [cursor=pointer]:
+          - /url: /industries
+          - text: Industries
+          - generic [aria-hidden] [ref=f11e12]: ▾
+        - link "Why Gravice" [ref=f11e13] [cursor=pointer]:
+          - /url: /#why
+        - link "Company" [ref=f11e15] [cursor=pointer]:
+          - /url: /company
+          - text: Company
+          - generic [aria-hidden] [ref=f11e16]: ▾
+        - link "Insights" [ref=f11e17] [cursor=pointer]:
+          - /url: /insights
+      - link "Book a demo" [ref=f11e19] [cursor=pointer]:
+        - /url: /demo
+  - main [ref=f11e20]:
+    - generic [ref=f11e21]:
+      - generic [ref=f11e23]:
+        - generic [ref=f11e24]:
+          - generic [ref=f11e25]:
+            - text: Gravice
+            - generic [ref=f11e27]:
+              - generic [ref=f11e28]: E
+              - text: ElevateRM
+          - generic [ref=f11e29]: Relationship management
+          - heading "Every deal, every customer, one workspace." [level=1] [ref=f11e31]
+          - paragraph [ref=f11e32]: ElevateRM gives relationship managers everything they need, from deal creation to closure, on one platform. Less time on admin tasks. More time with customers.
+          - generic [ref=f11e33]:
+            - link "Book a demo" [ref=f11e34] [cursor=pointer]:
+              - /url: /demo?product=elevaterm
+            - link "All products" [ref=f11e35] [cursor=pointer]:
+              - /url: /#products
+          - emphasis [ref=f11e37]: For banks with a commercial banking footprint
+        - img "ElevateRM orb" [ref=f11e39]
+      - generic [ref=f11e41]:
+        - generic [aria-hidden] [ref=f11e42]:
+          - generic [ref=f11e44]: Today
+          - generic [ref=f11e45]: With ElevateRM
+        - generic [ref=f11e46]:
+          - generic [ref=f11e47]:
+            - generic [ref=f11e48]: Where it breaks
+            - paragraph [ref=f11e49]: Relationship pipelines are scattered. Deals, follow-ups, and upsell opportunities sit across email, Excel, and notebooks.
+          - generic [ref=f11e50]:
+            - generic [ref=f11e51]: What changes
+            - paragraph [ref=f11e52]: Every deal in one workspace. Pipeline, client history, and follow-ups in one place — from creation to closure to upsell.
+      - generic [ref=f11e54]:
+        - heading "How ElevateRM works" [level=2] [ref=f11e56]
+        - list [ref=f11e59]:
+          - listitem [ref=f11e60]:
+            - generic [ref=f11e61]: Step 1
+            - heading "Create" [level=3] [ref=f11e62]
+            - paragraph [ref=f11e63]: Capture details and open deals in minutes.
+          - listitem [ref=f11e64]:
+            - generic [ref=f11e65]: Step 2
+            - heading "Engage" [level=3] [ref=f11e66]
+            - paragraph [ref=f11e67]: Client history and bank exposure, all in one place.
+          - listitem [ref=f11e68]:
+            - generic [ref=f11e69]: Step 3
+            - heading "Close" [level=3] [ref=f11e70]
+            - paragraph [ref=f11e71]: Track proposals and approvals through to sanction.
+          - listitem [ref=f11e72]:
+            - generic [ref=f11e73]: Step 4
+            - heading "Grow" [level=3] [ref=f11e74]
+            - paragraph [ref=f11e75]: Spot cross-sell and upsell opportunities across the book.
+      - generic [ref=f11e77]:
+        - heading "Built in" [level=2] [ref=f11e79]
+        - generic [ref=f11e80]:
+          - article [ref=f11e81]:
+            - heading "Deal pipeline" [level=3] [ref=f11e82]
+            - paragraph [ref=f11e83]: Every opportunity, stage, and next step in one view.
+          - article [ref=f11e84]:
+            - heading "Customer 360" [level=3] [ref=f11e85]
+            - paragraph [ref=f11e86]: Relationships, exposure, and history at a glance.
+          - article [ref=f11e87]:
+            - heading "Manager dashboards" [level=3] [ref=f11e88]
+            - paragraph [ref=f11e89]: Team productivity and pipeline health for leadership.
+          - article [ref=f11e90]:
+            - heading "Activity history" [level=3] [ref=f11e91]
+            - paragraph [ref=f11e92]: A complete auditable record of platform actions.
+      - generic [ref=f11e94]:
+        - heading "Across the credit journey" [level=2] [ref=f11e96]
+        - list [ref=f11e97]:
+          - listitem [ref=f11e98]:
+            - generic [ref=f11e99]: "01"
+            - heading "Prospect & engage" [level=3] [ref=f11e100]
+            - paragraph [ref=f11e101]: Lead capture and customer 360 view
+          - listitem [ref=f11e102]:
+            - generic [ref=f11e103]: "02"
+            - heading "Originate & sanction" [level=3] [ref=f11e104]
+            - paragraph [ref=f11e105]: Deal creation and tracking through closure
+          - listitem [ref=f11e106]:
+            - generic [ref=f11e107]: "03"
+            - heading "Monitor & review" [level=3] [ref=f11e108]
+            - paragraph [ref=f11e109]: Portfolio view across every relationship
+          - listitem [ref=f11e110]:
+            - generic [ref=f11e111]: "04"
+            - heading "Renew & grow" [level=3] [ref=f11e112]
+            - paragraph [ref=f11e113]: Cross-sell and upsell opportunities
+          - listitem [ref=f11e114]:
+            - generic [ref=f11e115]: "05"
+            - heading "Audit & report" [level=3] [ref=f11e116]
+            - paragraph [ref=f11e117]: Complete deal history
+      - generic [ref=f11e119]:
+        - img "ElevateRM orb" [ref=f11e120]
+        - heading "More time with customers. Less time chasing emails." [level=2] [ref=f11e121]
+        - paragraph [ref=f11e122]: Enterprise deployment for commercial banking teams.
+        - generic [ref=f11e123]:
+          - link "Book a demo" [ref=f11e124] [cursor=pointer]:
+            - /url: /demo?product=elevaterm
+          - link "Explore other products →" [ref=f11e125] [cursor=pointer]:
+            - /url: /#products
+        - generic [ref=f11e126]:
+          - generic [ref=f11e127]: Also from Gravice
+          - generic [ref=f11e128]:
+            - link "V-track orb V-Track Valuation assurance" [ref=f11e129] [cursor=pointer]:
+              - /url: /products/v-track
+              - img "V-track orb" [ref=f11e130]
+              - generic [ref=f11e131]:
+                - generic [ref=f11e132]: V-Track
+                - generic [ref=f11e133]: Valuation assurance
+              - emphasis [aria-hidden] [ref=f11e134]: →
+            - link "NICO orb NICO Intelligent automation" [ref=f11e135] [cursor=pointer]:
+              - /url: /products/nico
+              - img "NICO orb" [ref=f11e136]
+              - generic [ref=f11e137]:
+                - generic [ref=f11e138]: NICO
+                - generic [ref=f11e139]: Intelligent automation
+              - emphasis [aria-hidden] [ref=f11e140]: →
+  - contentinfo [ref=f11e141]:
+    - generic [ref=f11e142]:
+      - link "Gravice" [ref=f11e143] [cursor=pointer]:
+        - /url: /
+      - link "ElevateRM" [ref=f11e181] [cursor=pointer]:
+        - /url: /products/elevaterm
+      - link "V-Track" [ref=f11e182] [cursor=pointer]:
+        - /url: /products/v-track
+      - link "NICO" [ref=f11e183] [cursor=pointer]:
+        - /url: /products/nico
+    - generic [ref=f11e184]:
+      - generic [ref=f11e185]:
+        - paragraph [ref=f11e186]: Gravice is a fintech company that builds software for enterprises and growing businesses. Its products are ElevateRM, V-Track, and NICO.
+        - link "LinkedIn ↗" [ref=f11e187] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/fractalhive/posts/
+      - generic [ref=f11e188]:
+        - generic [ref=f11e189]:
+          - heading "Products" [level=4] [ref=f11e190]
+          - list [ref=f11e191]:
+            - listitem [ref=f11e192]:
+              - link "ElevateRM" [ref=f11e193] [cursor=pointer]:
+                - /url: /products/elevaterm
+            - listitem [ref=f11e194]:
+              - link "V-Track" [ref=f11e195] [cursor=pointer]:
+                - /url: /products/v-track
+            - listitem [ref=f11e196]:
+              - link "NICO" [ref=f11e197] [cursor=pointer]:
+                - /url: /products/nico
+        - generic [ref=f11e198]:
+          - heading "Industries" [level=4] [ref=f11e199]
+          - list [ref=f11e200]:
+            - listitem [ref=f11e201]:
+              - link "financial institutions" [ref=f11e202] [cursor=pointer]:
+                - /url: /industries/banking
+            - listitem [ref=f11e203]:
+              - link "Manufacturing" [ref=f11e204] [cursor=pointer]:
+                - /url: /industries/manufacturing
+        - generic [ref=f11e205]:
+          - heading "Company" [level=4] [ref=f11e206]
+          - list [ref=f11e207]:
+            - listitem [ref=f11e208]:
+              - link "About" [ref=f11e209] [cursor=pointer]:
+                - /url: /company/about
+            - listitem [ref=f11e210]:
+              - link "Careers" [ref=f11e211] [cursor=pointer]:
+                - /url: /company/careers
+            - listitem [ref=f11e212]:
+              - link "Contact" [ref=f11e213] [cursor=pointer]:
+                - /url: /company/contact
+        - generic [ref=f11e214]:
+          - heading "Resources" [level=4] [ref=f11e215]
+          - list [ref=f11e216]:
+            - listitem [ref=f11e217]:
+              - link "Insights" [ref=f11e218] [cursor=pointer]:
+                - /url: /insights
+            - listitem [ref=f11e219]:
+              - link "Glossary" [ref=f11e220] [cursor=pointer]:
+                - /url: /resources/glossary
+            - listitem [ref=f11e221]:
+              - link "Trust Center" [ref=f11e222] [cursor=pointer]:
+                - /url: /trust
+            - listitem [ref=f11e223]:
+              - link "Privacy" [ref=f11e224] [cursor=pointer]:
+                - /url: /legal/privacy
+            - listitem [ref=f11e225]:
+              - link "Terms" [ref=f11e226] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=f11e227]:
+              - link "Cookies" [ref=f11e228] [cursor=pointer]:
+                - /url: /legal/cookies
+    - generic [ref=f11e229]:
+      - generic [ref=f11e230]: © 2026 Gravice. All rights reserved. Formerly FractalHive Solutions Private Limited.
+      - generic [ref=f11e231]:
+        - link "Privacy" [ref=f11e232] [cursor=pointer]:
+          - /url: /legal/privacy
+        - text: ·
+        - link "Terms" [ref=f11e233] [cursor=pointer]:
+          - /url: /legal/terms
+        - text: ·
+        - link "Cookies" [ref=f11e234] [cursor=pointer]:
+          - /url: /legal/cookies

@@ -1,57 +1,237 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { Button } from "@/components/Button";
 import { ClarityTags } from "@/components/ClarityTags";
 import { NicoMark } from "@/components/NicoMark";
-import { ProductOrbVisual } from "@/components/ProductOrbVisual";
-import { Reveal } from "@/components/Reveal";
-import type { Product } from "@/lib/products";
+import { ProductFaq } from "@/components/product/ProductFaq";
+import { ProductHowItWorks } from "@/components/product/ProductHowItWorks";
+import { ProductSecurity } from "@/components/product/ProductSecurity";
+import { ProductImage } from "@/components/product/ProductImage";
+import { ProductOrb, type GraviceProduct } from "@/gravice/components/ProductOrb";
+import { ProductHeroVisual } from "@/gravice/components/product/ProductHeroVisual";
+import { ShiftAnimation } from "@/gravice/components/product/ShiftAnimation";
+import { productFaqs } from "@/lib/productFaqs";
+import { productImages } from "@/lib/productImages";
+import { productSecurity } from "@/lib/productSecurity";
+import type { Product, ProductSlug } from "@/lib/products";
 import { productList } from "@/lib/products";
 
-const accentBar: Record<Product["accent"], string> = {
-  purple: "bg-lattice-purple",
-  navy: "bg-navy",
-  orange: "bg-pull-orange",
+/**
+ * Product page in the Gravice v2 template (prototypes/elevaterm.html, v-track.html, nico.html):
+ * hero with the product orb → shift animation → sticky "How it works" → built in →
+ * product-specific sections → credit journey → closing with orb and "Also from Gravice".
+ */
+const orbFor: Record<ProductSlug, GraviceProduct> = {
+  elevaterm: "elevaterm",
+  "v-track": "vtrack",
+  nico: "nico",
 };
 
-const accentText: Record<Product["accent"], string> = {
-  purple: "text-purple-300",
-  navy: "text-navy-200",
-  orange: "text-pull-orange",
+const themeFor: Record<ProductSlug, string> = {
+  elevaterm: "gv-product-erm",
+  "v-track": "gv-product-vt",
+  nico: "gv-product-nico",
 };
+
+const MARKETPLACE_BENEFITS = [
+  {
+    title: "Buy through a channel you already use",
+    body: "Find and procure V-Track from the marketplace your IT and procurement teams already work with.",
+  },
+  {
+    title: "One Microsoft invoice",
+    body: "Marketplace purchases are billed alongside your existing Microsoft charges, with no new vendor billing to set up.",
+  },
+  {
+    title: "Use your Azure commitment",
+    body: "Eligible purchases can count toward your Microsoft Azure Consumption Commitment (MACC).",
+  },
+  {
+    title: "Faster procurement",
+    body: "Your existing Microsoft agreement shortens vendor onboarding, security reviews, and contracting.",
+  },
+];
 
 type Props = { product: Product };
 
 export function ProductPage({ product }: Props) {
   const others = productList.filter((p) => p.slug !== product.slug);
+  const orb = orbFor[product.slug];
+  const images = productImages[product.slug];
+
+  // sections after "Built in" (white) alternate cream / white
+  const extras: { key: string; render: (band: string) => ReactNode }[] = [];
+  if (product.useCases) {
+    const useCases = product.useCases;
+    extras.push({
+      key: "use-cases",
+      render: (band) => (
+        <section key="use-cases" data-cursor-surface="light" className={`gv-band gv-light ${band}`}>
+          <div className="gv-wrap">
+            <div className="gv-p-top">
+              <div className="gv-eyebrow">Use cases for banks &amp; NBFCs</div>
+              <h2>One engine. Any process.</h2>
+            </div>
+            <div className="gv-p-grid gv-p-grid-3">
+              {useCases.map((uc) => (
+                <article key={uc.title} className="gv-p-card">
+                  <h3>{uc.title}</h3>
+                  <p>{uc.body}</p>
+                </article>
+              ))}
+              <article className="gv-p-dark" style={{ justifyContent: "space-between" }}>
+                <div className="gv-stack">
+                  <div className="gv-eyebrow">Your process</div>
+                  <p>Show us your manual workflow. We will show you how NICO automates it.</p>
+                </div>
+                <Button
+                  href="/demo?product=nico"
+                  size="sm"
+                  className="mt-6 w-fit"
+                  clarityEvent="book_demo_click"
+                  claritySource="product_nico_card"
+                >
+                  Book a demo
+                </Button>
+              </article>
+            </div>
+          </div>
+        </section>
+      ),
+    });
+  }
+  if (product.offerings) {
+    const offerings = product.offerings;
+    extras.push({
+      key: "offerings",
+      render: (band) => (
+        <section key="offerings" data-cursor-surface="light" className={`gv-band gv-light ${band}`}>
+          <div className="gv-wrap gv-p-grid">
+            {offerings.map((o) => (
+              <article key={o.title} className="gv-p-dark">
+                <h3>{o.title}</h3>
+                <p>{o.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ),
+    });
+  }
+  if (product.microsoftPartnership) {
+    const ms = product.microsoftPartnership;
+    extras.push({
+      key: "microsoft",
+      render: (band) => (
+        <section key="microsoft" data-cursor-surface="light" className={`gv-band gv-light ${band}`}>
+          <div className="gv-wrap gv-p-ms">
+            <div className="gv-p-top" style={{ marginBottom: 20 }}>
+              <div className="gv-eyebrow">Our partnership</div>
+              <h2>{ms.headline}</h2>
+              <p style={{ color: "var(--gv-muted-ink)", fontSize: 17, lineHeight: 1.6 }}>{ms.summary}</p>
+            </div>
+            <div className="gv-p-dark gv-p-ms-head">
+              <div>
+                <h3>Official Microsoft Partner</h3>
+                <p>Microsoft AI Cloud Partner Program · ISV Success</p>
+                <div className="gv-p-ms-chips">
+                  <span>Listed on Microsoft Marketplace</span>
+                  <span>Built on Microsoft Azure</span>
+                </div>
+              </div>
+              <div className="gv-p-ms-badge">
+                <i aria-hidden>
+                  <b style={{ background: "#F25022" }} />
+                  <b style={{ background: "#7FBA00" }} />
+                  <b style={{ background: "#00A4EF" }} />
+                  <b style={{ background: "#FFB900" }} />
+                </i>
+                <span>
+                  Available on
+                  <br />
+                  Microsoft Marketplace
+                </span>
+              </div>
+            </div>
+            <h3 className="gv-p-ms-sub">Why buying through Microsoft Marketplace helps</h3>
+            <div className="gv-p-grid">
+              {MARKETPLACE_BENEFITS.map((item) => (
+                <article key={item.title} className="gv-p-card">
+                  <span className="gv-p-bar" aria-hidden />
+                  <h4>{item.title}</h4>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+            <div className="gv-p-dark gv-p-ms-cta">
+              <h3>Find {product.name} on Microsoft Marketplace.</h3>
+              <Button
+                href={ms.marketplaceUrl}
+                className="shrink-0"
+                clarityEvent="marketplace_click"
+                claritySource={product.slug}
+              >
+                View on the Marketplace →
+              </Button>
+            </div>
+          </div>
+        </section>
+      ),
+    });
+  }
+  extras.push({
+    key: "journey",
+    render: (band) => (
+      <section key="journey" data-cursor-surface="light" className={`gv-band gv-light ${band}`}>
+        <div className="gv-wrap">
+          <div className="gv-p-top">
+            <h2>Across the credit journey</h2>
+          </div>
+          <ol className="gv-p-journey" style={{ ["--n" as string]: product.coverage.length }}>
+            {product.coverage.map((row, i) => (
+              <li key={row.stage}>
+                <span className="gv-p-jn">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{row.stage}</h3>
+                <p>{row.capability}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    ),
+  });
+  extras.push({
+    key: "security",
+    render: (band) => <ProductSecurity key="security" security={productSecurity[product.slug]} band={band} />,
+  });
+  extras.push({
+    key: "faq",
+    render: (band) => <ProductFaq key="faq" faq={productFaqs[product.slug]} band={band} />,
+  });
+  const bands = extras.map((_, i) => (i % 2 === 0 ? "gv-p-cream" : "gv-p-paper"));
 
   return (
-    <>
+    <div className={themeFor[product.slug]}>
       <ClarityTags tags={{ product: product.slug }} />
-      <section data-cursor-surface="dark" className="bg-deep-space">
-        <div className="page-x mx-auto flex max-w-[1100px] flex-col items-center gap-10 py-14 sm:py-16 lg:flex-row lg:items-center lg:gap-12 lg:py-24">
-          <Reveal className="flex w-full max-w-[46rem] flex-1 flex-col gap-5">
-            <div className="flex flex-wrap items-center gap-3">
-              <p
-                className={`text-[12px] font-semibold uppercase tracking-[0.96px] ${accentText[product.accent]}`}
-              >
-                {product.tagline}
-              </p>
-              {product.badge && (
-                <span className="rounded-full border border-pull-orange/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-pull-orange">
-                  {product.badge}
-                </span>
-              )}
+
+      {/* 1 · hero */}
+      <section data-cursor-surface="dark" className="gv-band gv-p-hero">
+        <div className="gv-wrap gv-p-hero-grid">
+          <div className="gv-p-hero-copy">
+            <div className="gv-p-lockup">
+              Gravice<span className="gv-p-sep" />
+              <b>
+                <i>{product.name[0]}</i>
+                {product.name}
+              </b>
             </div>
-            <h1 className="font-serif text-[clamp(2.5rem,5vw,3.75rem)] font-normal leading-[1.08] tracking-[-0.02em] text-paper">
-              {product.headline}
-            </h1>
-            <p className="text-[18px] leading-[1.6] text-navy-200">
-              {product.summary}
-            </p>
-            <p className="text-[14px] font-medium text-navy-200">
-              {product.audience}
-            </p>
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className="gv-p-eyebrow-row">
+              <div className="gv-eyebrow">{product.tagline}</div>
+              {product.badge && <span className="gv-p-badge">{product.badge}</span>}
+            </div>
+            <h1>{product.headline}</h1>
+            <p className="gv-p-lede">{product.summary}</p>
+            <div className="gv-row">
               {product.slug === "nico" ? (
                 <Button
                   href="https://nico.fractalhive.com"
@@ -76,350 +256,64 @@ export function ProductPage({ product }: Props) {
                 All products
               </Button>
             </div>
-          </Reveal>
-          <Reveal delay={100} className="shrink-0">
-            <ProductOrbVisual slug={product.slug} size={360} />
-          </Reveal>
-        </div>
-      </section>
-
-      <section data-cursor-surface="light" className="section-pad bg-paper">
-        <div className="mx-auto grid max-w-[1100px] gap-6 md:grid-cols-2">
-          <Reveal>
-            <article className="h-full rounded-[20px] border border-navy-100 bg-white p-8 md:p-10">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
-                Where it breaks
-              </p>
-              <p className="mt-4 text-[17px] leading-[1.6] text-slate">
-                {product.problem}
-              </p>
-            </article>
-          </Reveal>
-          <Reveal delay={80}>
-            <article className="h-full rounded-[20px] bg-deep-space p-8 md:p-10">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange">
-                What changes
-              </p>
-              <p className="mt-4 text-[17px] leading-[1.6] text-navy-200">
-                {product.outcome}
-              </p>
-            </article>
-          </Reveal>
-        </div>
-      </section>
-
-      <section data-cursor-surface="light" className="section-pad bg-white">
-        <div className="mx-auto max-w-[1100px]">
-          <Reveal className="mb-10 max-w-[36rem]">
-            <h2 className="font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
-              How {product.name} works
-            </h2>
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {product.steps.map((step, i) => (
-              <Reveal key={step.title} delay={i * 60}>
-                <article className="motion-card h-full rounded-[20px] border border-navy-100 bg-paper p-6">
-                  <div
-                    className={`mb-4 h-1 w-10 rounded-full ${accentBar[product.accent]}`}
-                  />
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-slate">
-                    Step {i + 1}
-                  </p>
-                  <h3 className="mt-2 font-serif text-xl font-normal text-deep-space">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-[1.55] text-slate">
-                    {step.body}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section data-cursor-surface="light" className="section-pad bg-paper">
-        <div className="mx-auto max-w-[1100px]">
-          <Reveal className="mb-10">
-            <h2 className="font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
-              Built in
-            </h2>
-          </Reveal>
-          <div className="grid gap-5 md:grid-cols-2">
-            {product.features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 50}>
-                <article className="rounded-[20px] border border-navy-100 bg-white p-7">
-                  <h3 className="font-serif text-xl font-normal text-deep-space">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-[1.6] text-slate">
-                    {f.body}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {product.comparison && (
-        <section data-cursor-surface="light" className="section-pad bg-white">
-          <div className="mx-auto grid max-w-[1100px] gap-6 lg:grid-cols-2">
-            <Reveal>
-              <article className="h-full rounded-[20px] border border-navy-100 bg-paper p-8">
-                <h2 className="font-serif text-2xl font-normal text-deep-space">
-                  Today
-                </h2>
-                <ul className="mt-6 flex flex-col gap-4">
-                  {product.comparison.today.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-[15px] leading-[1.55] text-slate"
-                    >
-                      <span
-                        className="mt-2 size-1.5 shrink-0 rounded-full bg-slate"
-                        aria-hidden
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            </Reveal>
-            <Reveal delay={80}>
-              <article className="h-full rounded-[20px] bg-deep-space p-8">
-                <h2 className="font-serif text-2xl font-normal text-paper">
-                  With {product.name}
-                </h2>
-                <ul className="mt-6 flex flex-col gap-4">
-                  {product.comparison.withProduct.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-[15px] leading-[1.55] text-navy-200"
-                    >
-                      <span
-                        className="mt-2 size-1.5 shrink-0 rounded-full bg-pull-orange"
-                        aria-hidden
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {product.useCases && (
-        <section data-cursor-surface="light" className="section-pad bg-white">
-          <div className="mx-auto max-w-[1100px]">
-            <Reveal className="mb-4">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
-                Use cases for banks &amp; NBFCs
-              </p>
-            </Reveal>
-            <Reveal className="mb-10 max-w-[36rem]">
-              <h2 className="font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-deep-space">
-                One engine. Any process.
-              </h2>
-            </Reveal>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {product.useCases.map((uc, i) => (
-                <Reveal key={uc.title} delay={i * 50}>
-                  <article className="motion-card h-full rounded-[20px] border border-navy-100 bg-paper p-6">
-                    <h3 className="font-serif text-lg font-normal text-deep-space">
-                      {uc.title}
-                    </h3>
-                    <p className="mt-2 text-[14px] leading-[1.55] text-slate">
-                      {uc.body}
-                    </p>
-                  </article>
-                </Reveal>
-              ))}
-              <Reveal delay={(product.useCases.length || 0) * 50}>
-                <article className="motion-card flex h-full flex-col justify-between rounded-[20px] bg-deep-space p-6">
-                  <div>
-                    <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange">
-                      Your process
-                    </p>
-                    <p className="mt-3 text-[15px] leading-[1.55] text-navy-200">
-                      Show us your manual workflow. We will show you how NICO
-                      automates it.
-                    </p>
-                  </div>
-                  <Button
-                    href="/demo?product=nico"
-                    size="sm"
-                    className="mt-6 w-fit"
-                    clarityEvent="book_demo_click"
-                    claritySource="product_nico_card"
-                  >
-                    Book a demo
-                  </Button>
-                </article>
-              </Reveal>
+            <div className="gv-p-built-for">
+              <em>{product.audience}</em>
             </div>
           </div>
-        </section>
-      )}
+          <ProductHeroVisual product={orb}>
+            <ProductImage slot={images.hero} className="gv-ph-dark" alt={`${product.name} ${images.hero.label.toLowerCase()}`} />
+          </ProductHeroVisual>
+        </div>
+      </section>
 
-      {product.offerings && (
-        <section data-cursor-surface="light" className="section-pad bg-paper">
-          <div className="mx-auto grid max-w-[1100px] gap-5 md:grid-cols-2">
-            {product.offerings.map((o, i) => (
-              <Reveal key={o.title} delay={i * 60}>
-                <article className="rounded-[20px] bg-deep-space p-8">
-                  <h3 className="font-serif text-2xl font-normal text-paper">
-                    {o.title}
-                  </h3>
-                  <p className="mt-3 text-[16px] leading-[1.6] text-navy-200">
-                    {o.body}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
+      {/* 2 · where it breaks → what changes */}
+      <section data-cursor-surface="light" className="gv-band gv-light gv-p-shift">
+        <div className="gv-wrap">
+          <ShiftAnimation variant={orb} afterLabel={`With ${product.name}`} />
+          <div className="gv-p-shift-grid">
+            <div className="gv-p-shift-card">
+              <div className="gv-eyebrow">Where it breaks</div>
+              <p>{product.problem}</p>
+            </div>
+            <div className="gv-p-shift-card">
+              <div className="gv-eyebrow">What changes</div>
+              <p>{product.outcome}</p>
+            </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {product.microsoftPartnership && (
-        <section data-cursor-surface="light" className="section-pad bg-paper">
-          <div className="mx-auto max-w-[1100px]">
-            <Reveal className="mb-10 max-w-[42rem]">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
-                Our partnership
-              </p>
-              <h2 className="mt-4 font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-normal leading-[1.15] text-deep-space">
-                {product.microsoftPartnership.headline}
-              </h2>
-              <p className="mt-4 text-[17px] leading-[1.6] text-slate">
-                {product.microsoftPartnership.summary}
-              </p>
-            </Reveal>
+      {/* 3 · how it works */}
+      <ProductHowItWorks name={product.name} steps={product.steps} screens={images.steps} />
 
-            <Reveal delay={60}>
-              <div className="flex flex-col gap-6 rounded-[20px] bg-deep-space p-7 sm:p-9 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-                <div className="flex flex-col gap-4">
-                  <h3 className="font-serif text-[clamp(1.5rem,2.5vw,1.85rem)] font-normal text-paper">
-                    Official Microsoft Partner
-                  </h3>
-                  <p className="text-[15px] text-navy-200">
-                    Microsoft AI Cloud Partner Program · ISV Success
-                  </p>
-                  <div className="flex flex-wrap gap-2.5">
-                    <span className="rounded-full border border-paper/25 px-3.5 py-1.5 text-[12px] font-medium text-paper">
-                      Listed on Microsoft Marketplace
-                    </span>
-                    <span className="rounded-full border border-paper/25 px-3.5 py-1.5 text-[12px] font-medium text-paper">
-                      Built on Microsoft Azure
-                    </span>
-                  </div>
-                </div>
-                <div className="flex shrink-0 items-center gap-3 rounded-xl bg-white px-5 py-4 shadow-[0_12px_40px_-20px_rgba(0,0,0,0.45)]">
-                  <span className="grid grid-cols-2 gap-0.5" aria-hidden>
-                    <span className="size-3.5 bg-[#F25022]" />
-                    <span className="size-3.5 bg-[#7FBA00]" />
-                    <span className="size-3.5 bg-[#00A4EF]" />
-                    <span className="size-3.5 bg-[#FFB900]" />
-                  </span>
-                  <p className="text-[14px] font-semibold leading-snug text-deep-space">
-                    Available on
-                    <br />
-                    Microsoft Marketplace
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={100} className="mt-10">
-              <h3 className="mb-6 font-serif text-[clamp(1.35rem,2.5vw,1.65rem)] font-normal text-deep-space">
-                Why buying through Microsoft Marketplace helps
-              </h3>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {[
-                  {
-                    title: "Buy through a channel you already use",
-                    body: "Find and procure V-Track from the marketplace your IT and procurement teams already work with.",
-                  },
-                  {
-                    title: "One Microsoft invoice",
-                    body: "Marketplace purchases are billed alongside your existing Microsoft charges, with no new vendor billing to set up.",
-                  },
-                  {
-                    title: "Use your Azure commitment",
-                    body: "Eligible purchases can count toward your Microsoft Azure Consumption Commitment (MACC).",
-                  },
-                  {
-                    title: "Faster procurement",
-                    body: "Your existing Microsoft agreement shortens vendor onboarding, security reviews, and contracting.",
-                  },
-                ].map((item, i) => (
-                  <article
-                    key={item.title}
-                    className="motion-card rounded-[20px] border border-navy-100 bg-white p-6"
-                    style={{ transitionDelay: `${i * 40}ms` }}
-                  >
-                    <div className="mb-4 h-1 w-10 rounded-full bg-navy" />
-                    <h4 className="font-serif text-lg font-normal text-deep-space">
-                      {item.title}
-                    </h4>
-                    <p className="mt-2 text-[15px] leading-[1.55] text-slate">
-                      {item.body}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal delay={140} className="mt-10">
-              <div className="flex flex-col items-start justify-between gap-5 rounded-[20px] bg-deep-space px-7 py-8 sm:flex-row sm:items-center sm:px-9">
-                <h3 className="font-serif text-[clamp(1.35rem,2.5vw,1.75rem)] font-normal text-paper">
-                  Find {product.name} on Microsoft Marketplace.
-                </h3>
-                <Button
-                  href={product.microsoftPartnership.marketplaceUrl}
-                  className="shrink-0"
-                  clarityEvent="marketplace_click"
-                  claritySource={product.slug}
-                >
-                  View on the Marketplace →
-                </Button>
-              </div>
-            </Reveal>
+      {/* 4 · built in */}
+      <section data-cursor-surface="light" className="gv-band gv-light gv-p-paper">
+        <div className="gv-wrap">
+          <div className="gv-p-top">
+            <h2>Built in</h2>
           </div>
-        </section>
-      )}
-
-      <section data-cursor-surface="dark" className="section-pad bg-deep-space">
-        <div className="mx-auto max-w-[1100px]">
-          <Reveal className="mb-10">
-            <h2 className="font-serif text-[clamp(1.75rem,3vw,2.25rem)] font-normal text-paper">
-              Across the credit journey
-            </h2>
-          </Reveal>
-          <div className="grid gap-3">
-            {product.coverage.map((row, i) => (
-              <Reveal key={row.stage} delay={i * 40}>
-                <div className="grid gap-2 rounded-2xl border border-paper/10 bg-navy/40 px-5 py-4 lg:grid-cols-[minmax(0,240px)_1fr] lg:items-center">
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.06em] text-pull-orange">
-                    {row.stage}
-                  </p>
-                  <p className="text-[15px] text-navy-200">{row.capability}</p>
-                </div>
-              </Reveal>
+          <div className={`gv-p-grid${product.features.length % 3 === 0 ? " gv-p-grid-3" : ""}`}>
+            {product.features.map((f, i) => (
+              <article key={f.title} className="gv-p-feat">
+                <ProductImage slot={images.features[i]} className="gv-ph-card" />
+                <h3>{f.title}</h3>
+                <p>{f.body}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section data-cursor-surface="light" className="section-pad bg-paper">
-        <Reveal className="mx-auto flex max-w-[800px] flex-col items-center gap-5 text-center">
-          <h2 className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] font-normal text-deep-space">
-            {product.footerLine}
-          </h2>
-          <p className="text-[16px] text-slate">{product.footerNote}</p>
-          <div className="flex flex-wrap justify-center gap-4 pt-2">
+      {/* product-specific sections, credit journey, security & deployment, FAQ */}
+      {extras.map((s, i) => s.render(bands[i]))}
+
+      {/* 9 · closing + also from Gravice */}
+      <section data-cursor-surface="dark" className="gv-band gv-p-close">
+        <div className="gv-wrap gv-p-close-inner">
+          <ProductOrb product={orb} size={220} />
+          <h2>{product.footerLine}</h2>
+          <p>{product.footerNote}</p>
+          <div className="gv-row">
             <Button
               href={`/demo?product=${product.slug}`}
               clarityEvent="book_demo_click"
@@ -427,37 +321,34 @@ export function ProductPage({ product }: Props) {
             >
               Book a demo
             </Button>
-            <Button href="/#products" variant="link-light">
+            <Button href="/#products" variant="secondary-dark">
               Explore other products →
             </Button>
           </div>
-        </Reveal>
-      </section>
-
-      <section data-cursor-surface="light" className="page-x border-t border-navy-100 bg-white py-14">
-        <div className="mx-auto max-w-[1100px]">
-          <p className="mb-6 text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
-            Also from Gravice
-          </p>
-          <div className="grid gap-4 md:grid-cols-2">
-            {others.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/products/${p.slug}`}
-                data-magnetic
-                data-clarity-event="product_link_click"
-                data-clarity-source={`related_${p.slug}`}
-                className="motion-card rounded-[20px] border border-navy-100 p-6 transition-colors hover:border-pull-orange/40"
-              >
-                <p className="font-serif text-xl font-normal text-deep-space">
-                  {p.name}
-                </p>
-                <p className="mt-2 text-[14px] text-slate">{p.tagline}</p>
-              </Link>
-            ))}
+          <div className="gv-p-also">
+            <span className="gv-p-also-label">Also from Gravice</span>
+            <div className="gv-p-also-grid">
+              {others.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/products/${p.slug}`}
+                  data-magnetic
+                  data-clarity-event="product_link_click"
+                  data-clarity-source={`related_${p.slug}`}
+                  className="gv-p-also-card"
+                >
+                  <ProductOrb product={orbFor[p.slug]} size={76} style={{ flex: "none" }} />
+                  <div>
+                    <b>{p.name}</b>
+                    <span>{p.tagline}</span>
+                  </div>
+                  <em aria-hidden>→</em>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

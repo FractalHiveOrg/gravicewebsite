@@ -4,8 +4,9 @@ import { useEffect, useRef, type CSSProperties } from "react";
 
 /**
  * Gravice hero animation.
- * Scattered dots drift, get pulled into the orange core (glow), burst outward,
- * then lock into the rotating dot globe with the core inside it.
+ * The orange core appears first; gravity then pulls the scattered dots in on curving
+ * paths until they settle into a rotating globe around it. The core is shaded in 3D
+ * and breathes slowly.
  * After the intro the core can follow the cursor while it is over the canvas.
  *
  * The canvas fills its parent, so give the parent a size (for example a square
@@ -32,10 +33,9 @@ export interface HeroGlobeProps {
   style?: CSSProperties;
 }
 
-const T_CONV = 0.8;   // core appears, dots start to fall in
-const T_BURST = 1.9;  // dots burst out of the core
-const T_FORMED = 3.0; // globe has formed
-const T_DONE = 3.9;   // cursor follow becomes available
+const T_CONV = 0.5;   // gravity starts pulling (the core has popped in during 0–0.7s)
+const T_FORMED = 2.6; // globe has formed
+const T_DONE = 3.3;   // cursor follow becomes available
 const TILT = -0.32;
 
 type Dot = {
@@ -44,14 +44,13 @@ type Dot = {
   ox: number; oy: number;
 };
 
-/** Latitude/longitude grid, matching the Gravice logo. 13 rings × 24 = 312 dots. */
+/** 312 points spread evenly over a sphere (Fibonacci lattice). */
 const SPHERE: [number, number, number][] = (() => {
-  const v: [number, number, number][] = [];
-  for (let la = -72; la <= 72; la += 12)
-    for (let lo = 0; lo < 360; lo += 15) {
-      const a = (la * Math.PI) / 180, o = (lo * Math.PI) / 180;
-      v.push([Math.cos(a) * Math.sin(o), Math.sin(a), Math.cos(a) * Math.cos(o)]);
-    }
+  const v: [number, number, number][] = [], n = 312;
+  for (let j = 0; j < n; j++) {
+    const y = 1 - (2 * (j + 0.5)) / n, r = Math.sqrt(1 - y * y), th = j * 2.399963;
+    v.push([Math.cos(th) * r, y, Math.sin(th) * r]);
+  }
   return v;
 })();
 
@@ -87,6 +86,7 @@ export function HeroGlobe({
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const intro = playIntro && !reduce;
     const [cr, cg, cb] = hexToRgb(coreColor);
+    const shade = (amt: number) => { const t = amt > 0 ? 255 : 0, a = Math.abs(amt); return `rgb(${Math.round(cr + (t - cr) * a)},${Math.round(cg + (t - cg) * a)},${Math.round(cb + (t - cb) * a)})`; };
 
     let W = 0, H = 0;
     const resize = () => {
@@ -138,8 +138,9 @@ export function HeroGlobe({
       const ct = Math.cos(TILT), st = Math.sin(TILT);
       const y2 = y * ct - z * st, z2 = y * st + z * ct;
       T.x = cx + R * x; T.y = cy + R * y2; T.z = z2;
-      T.s = R * 0.048 * (0.45 + 0.55 * Math.max(z2, 0));
-      T.a = z2 > 0 ? 0.3 + 0.7 * z2 : Math.max(0, 0.07 * (1 + z2 * 1.4));
+      const dp = (z2 + 1) / 2; // front dots larger and brighter, back dots small and faint
+      T.s = R * 0.026 * (0.4 + 0.75 * dp);
+      T.a = 0.14 + 0.86 * Math.pow(dp, 1.6);
       T.sq = Math.max(0.16, Math.abs(z2));
       T.ang = Math.atan2(y2, x);
     };
@@ -156,7 +157,7 @@ export function HeroGlobe({
         }
         ctx.globalAlpha = Math.min(1, p.a);
         ctx.beginPath();
-        ctx.ellipse(x, y, Math.max(0.4, p.s * p.sq), Math.max(0.4, p.s), p.ang, 0, Math.PI * 2);
+        ctx.arc(x, y, Math.max(0.5, p.s), 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.globalAlpha = 1;
@@ -164,14 +165,17 @@ export function HeroGlobe({
 
     const drawCore = (glow: number) => {
       if (core.r <= 0.3) return;
-      const gr = core.r * (3.2 + glow * 2.5);
-      const g = ctx.createRadialGradient(core.x, core.y, 0, core.x, core.y, gr);
-      g.addColorStop(0, `rgba(${cr},${cg},${cb},${(0.33 + 0.3 * glow).toFixed(2)})`);
+      // breathing glow and a core that glows from within
+      const ph = reduce ? 0 : Math.sin(clock * 2.1), r = core.r * (1 + 0.035 * ph), X = core.x, Y = core.y;
+      const gr = r * (2.6 + glow * 4) * (1 + 0.08 * ph);
+      const g = ctx.createRadialGradient(X, Y, r * 0.6, X, Y, gr);
+      g.addColorStop(0, `rgba(${cr},${cg},${cb},${(0.24 + 0.35 * glow + 0.05 * ph).toFixed(3)})`);
       g.addColorStop(1, `rgba(${cr},${cg},${cb},0)`);
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(core.x, core.y, gr, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = coreColor;
-      ctx.beginPath(); ctx.arc(core.x, core.y, core.r, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(X, Y, gr, 0, Math.PI * 2); ctx.fill();
+      // lit from within: brightest at the centre, deepening toward the edge
+      const s3 = ctx.createRadialGradient(X, Y, 0, X, Y, r);
+      s3.addColorStop(0, shade(0.3)); s3.addColorStop(0.45, shade(0.08)); s3.addColorStop(0.85, shade(-0.06)); s3.addColorStop(1, shade(-0.2));
+      ctx.fillStyle = s3; ctx.beginPath(); ctx.arc(X, Y, r, 0, Math.PI * 2); ctx.fill();
     };
 
     const frame = (now: number) => {
@@ -185,17 +189,16 @@ export function HeroGlobe({
 
       // spring settings for each intro phase
       let k = 0.07, damp = 0.78, glow = 0;
-      if (t < T_CONV) k = 0;
-      else if (t < T_BURST) { const u = (t - T_CONV) / (T_BURST - T_CONV); k = 0.002 + 0.06 * u * u; damp = 0.86; glow = u; }
-      else if (t < T_FORMED) { const u = (t - T_BURST) / (T_FORMED - T_BURST); k = 0.012 + 0.06 * u; damp = 0.84 - 0.06 * u; glow = 1 - u; }
-      if (!burstDone && t >= T_BURST) {
-        burstDone = true;
+      if (t < T_CONV) k = 0; // dots drift while the core appears
+      else if (t < T_FORMED) { const u = (t - T_CONV) / (T_FORMED - T_CONV); k = 0.0015 + 0.07 * u * u; damp = 0.93 - 0.15 * u; glow = 0.8 * Math.sin(Math.PI * u); }
+      if (!burstDone && t >= T_CONV) {
+        burstDone = true; // a sideways push so each dot's fall curves, like orbiting into a gravity well
         for (const p of dots) {
-          const ex = p.x - cx, ey = p.y - cy, d = Math.hypot(ex, ey) || 1, sp = 9 + Math.random() * 12;
-          p.vx += (ex / d) * sp; p.vy += (ey / d) * sp;
+          const ex = p.x - cx, ey = p.y - cy, d = Math.hypot(ex, ey) || 1, sp = 1.5 + d * 0.006;
+          p.vx = (-ey / d) * sp; p.vy = (ex / d) * sp;
         }
       }
-      const converging = t >= T_CONV && t < T_BURST;
+      const converging = false;
       const rot = reduce ? 0.5 : clock * rotationSpeed;
 
       for (let i = 0; i < dots.length; i++) {
@@ -208,7 +211,7 @@ export function HeroGlobe({
         if (reduce || (!intro && clock < 0.05)) {
           p.x = T.x; p.y = T.y; p.s = T.s; p.a = T.a; p.sq = T.sq; p.ang = T.ang; p.z = T.z; continue;
         }
-        if (k === 0) { p.x += p.vx * f; p.y += p.vy * f; p.a += (0.55 - p.a) * 0.05 * f; continue; }
+        if (k === 0) { p.x += p.vx * f; p.y += p.vy * f; p.a += (0.4 - p.a) * 0.06 * f; continue; }
         p.vx = (p.vx + (T.x - p.x) * k * f) * Math.pow(damp, f);
         p.vy = (p.vy + (T.y - p.y) * k * f) * Math.pow(damp, f);
         p.x += p.vx * f; p.y += p.vy * f;
@@ -220,16 +223,16 @@ export function HeroGlobe({
 
       // core: grows in with a small overshoot, sits inside the globe, optionally follows the cursor
       const cursor = followCursor && fine && !reduce && t >= T_DONE && ptr.inside;
-      let cR = t < T_CONV - 0.1 ? 0 : R * 0.2;
-      if (t >= T_CONV - 0.1 && t < T_CONV + 0.7) {
-        const u = (t - T_CONV + 0.1) / 0.8;
+      let cR = R * 0.2;
+      if (t < 0.7) { // the core pops in first, with a small overshoot
+        const u = t / 0.7;
         cR = R * 0.2 * Math.max(0, 1 + 2.2 * Math.pow(u - 1, 3) + 1.2 * Math.pow(u - 1, 2));
       }
       const tx = cursor ? ptr.x : cx, ty = cursor ? ptr.y : cy;
       if (cursor) cR = 8;
       const cl = Math.min(1, (cursor ? 0.3 : 0.12) * f);
       core.x += (tx - core.x) * cl; core.y += (ty - core.y) * cl;
-      core.r += (cR - core.r) * Math.min(1, t < T_CONV + 0.7 ? 1 : 0.16 * f);
+      core.r += (cR - core.r) * Math.min(1, t < 0.7 ? 1 : 0.16 * f);
       if (reduce) { core.x = cx; core.y = cy; core.r = R * 0.2; }
 
       ctx.clearRect(0, 0, W, H);

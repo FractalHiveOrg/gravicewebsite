@@ -1,149 +1,85 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, type CSSProperties } from "react";
-import { MODE_DRAWS, resolvePreset } from "thinking-orbs/engine";
+import { useEffect, useRef } from 'react';
+import { drawSolving, SOLVE_CYCLE } from '../engine/solvingOrb';
+import { drawBelt } from '../engine/beltOrb';
+import { drawScan } from '../engine/scanOrb';
+import { drawCore, prefersReducedMotion, startLoop } from '../engine/core';
 
 /**
- * Gravice product orbs, built on the thinking-orbs engine (MIT, Jakub Antalik).
- * npm install thinking-orbs
+ * Gravice product orbs, as used on the homepage story and on each product page
+ * (hero, closing, "Also from Gravice" cards).
+ *   ElevateRM → belt orb   (engine/beltOrb.ts): a belt of dots around the core; the wave moves them up and down
+ *   V-track   → scan orb   (engine/scanOrb.ts): a scan line sweeps the globe and leaves an afterglow
+ *   NICO      → solving orb (engine/solvingOrb.ts): scramble, pause, click back into order, hold
+ * The orange core sits at the centre and breathes.
  *
- * Each product has its own orb, drawn large, tinted Gravice blue, slowed to one
- * calm shared speed, with the orange Gravice core showing through the centre.
- *   ElevateRM → "connecting": a network of relationships wiring itself
- *   V-track   → "searching":  a scan line sweeping a dotted globe (the collateral book)
- *   NICO      → "solving":    scrambled bands clicking back into order
+ * The orbs build on thinking-orbs by Jakub Antalik (MIT).
  */
 export type GraviceProduct = 'elevaterm' | 'vtrack' | 'nico';
 
-const PRODUCT_STATE = {
-  elevaterm: 'connecting',
-  vtrack: 'searching',
-  nico: 'solving',
-} as const;
+/** Belt settings tuned for large sizes (do not change without checking ElevateRM visually). */
+export const BELT_OPTS = { lanes: 3, segs: 44, ghostN: 38, rBase: 0.935, rDepth: 1.445, rsPow: 0.6, rMin: 0.3, bandMul: 3.9, wobMul: 1 };
 
-const LABEL: Record<GraviceProduct, string> = {
-  elevaterm: 'ElevateRM',
-  vtrack: 'V-track',
-  nico: 'NICO',
-};
+const LABEL: Record<GraviceProduct, string> = { elevaterm: 'ElevateRM', vtrack: 'V-track', nico: 'NICO' };
 
 export interface ProductOrbProps {
   product: GraviceProduct;
-  /** Rendered size in CSS px (square). Default 400 */
+  /** Rendered size in CSS px (square). Omit to fill the parent's width (keep the parent square). */
   size?: number;
-  /** Dot colour. Default Gravice blue */
+  /** 'dark' = on navy (#4A6FA5 dots), 'light' = on cream/white (#3E5F93 dots). Default 'dark' */
+  tone?: 'dark' | 'light';
+  /** Override the dot colour. */
   color?: string;
-  /** Core colour. Default Gravice orange */
-  coreColor?: string;
-  /** Show the orange core in the centre. Default true */
+  /** Show the orange core. Default true */
   showCore?: boolean;
-  /**
-   * Animation clock rate. The library's own rates are tuned for a 64px icon
-   * (solving 1.82, connecting 3.3, searching ~1.6); at large sizes 0.6 reads calmly. Default 0.6
-   */
-  speed?: number;
+  /** Core radius as a fraction of the orb size. Default 0.045 for ElevateRM, 0.06 otherwise (matches the prototypes). */
+  coreScale?: number;
   /** Freeze on the current frame. */
   paused?: boolean;
   className?: string;
-  style?: CSSProperties;
+  style?: React.CSSProperties;
 }
 
-export function ProductOrb({
-  product,
-  size = 400,
-  color = '#3E5F93',
-  coreColor = '#F26B2F',
-  showCore = true,
-  speed = 0.6,
-  paused = false,
-  className,
-  style,
-}: ProductOrbProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+export function ProductOrb({ product, size, tone = 'dark', color, showCore = true, coreScale, paused = false, className, style }: ProductOrbProps) {
+  const ref = useRef<HTMLCanvasElement>(null);
   const pausedRef = useRef(paused);
-  pausedRef.current = paused;
+  useEffect(() => { pausedRef.current = paused; }, [paused]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const d = Math.min(2, window.devicePixelRatio || 1);
-    const px = Math.round(size * d);
-    canvas.width = px; canvas.height = px;
-
-    // the engine paints in a single ink; draw it offscreen, then recolour it
-    const tint = document.createElement('canvas');
-    tint.width = px; tint.height = px;
-    const tctx = tint.getContext('2d');
-    if (!tctx) return;
-    const preset = resolvePreset(PRODUCT_STATE[product], 64);
-    const draw = MODE_DRAWS[preset.mode];
-
-    // core sizing matches the website: ~4% of the orb box, with a soft glow
-    const coreR = size * 0.042;
-
+    const cv = ref.current; if (!cv) return;
+    const ctx = cv.getContext('2d'); if (!ctx) return;
+    const tint = document.createElement('canvas'); const tc = tint.getContext('2d'); if (!tc) return;
+    const reduce = prefersReducedMotion();
+    const ink = color ?? (tone === 'dark' ? '#4A6FA5' : '#3E5F93');
+    const cs = coreScale ?? (product === 'elevaterm' ? 0.045 : 0.06);
     let visible = true;
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; });
-    io.observe(canvas);
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }); io.observe(cv);
 
-    let raf = 0, clock = 2, last = performance.now();
-    const paint = () => {
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.clearRect(0, 0, px, px);
-      ctx.setTransform(d, 0, 0, d, 0, 0);
-      if (showCore) {
-        const c = size / 2, gr = coreR * 3.6;
-        const g = ctx.createRadialGradient(c, c, 0, c, c, gr);
-        g.addColorStop(0, hexA(coreColor, 0.35));
-        g.addColorStop(1, hexA(coreColor, 0));
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, gr, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = coreColor; ctx.beginPath(); ctx.arc(c, c, coreR, 0, Math.PI * 2); ctx.fill();
-      }
-      tctx.setTransform(1, 0, 0, 1, 0, 0);
-      tctx.globalCompositeOperation = 'source-over';
-      tctx.clearRect(0, 0, px, px);
-      const sc = px / 64;
-      tctx.setTransform(sc, 0, 0, sc, 0, 0);
-      draw(tctx, 64, clock * speed, false, preset.opts);
-      tctx.setTransform(1, 0, 0, 1, 0, 0);
-      tctx.globalCompositeOperation = 'source-in';
-      tctx.fillStyle = color;
-      tctx.fillRect(0, 0, px, px);
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    const paint = (t: number) => {
+      const d = Math.min(2, window.devicePixelRatio || 1), w = cv.getBoundingClientRect().width || size || 0, px = Math.max(1, Math.round(w * d));
+      if (cv.width !== px || cv.height !== px) { cv.width = cv.height = px; }
+      if (tint.width !== px || tint.height !== px) { tint.width = tint.height = px; }
+      tc.setTransform(1, 0, 0, 1, 0, 0); tc.globalCompositeOperation = 'source-over'; tc.clearRect(0, 0, px, px);
+      tc.setTransform(px / 64, 0, 0, px / 64, 0, 0);
+      if (product === 'elevaterm') drawBelt(tc, t * 0.6, BELT_OPTS);
+      else if (product === 'vtrack') drawScan(tc, t);
+      else drawSolving(tc, reduce ? SOLVE_CYCLE - 1 : t);
+      tc.setTransform(1, 0, 0, 1, 0, 0); tc.globalCompositeOperation = 'source-in'; tc.fillStyle = ink; tc.fillRect(0, 0, px, px);
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, px, px);
+      if (showCore) drawCore(ctx, px / 2, px / 2, px * cs, t, { reduceMotion: reduce });
       ctx.drawImage(tint, 0, 0);
     };
-
-    const frame = (now: number) => {
-      raf = requestAnimationFrame(frame);
-      const dt = Math.min(50, now - last); last = now;
-      if (!visible || document.hidden || pausedRef.current) return;
-      clock += dt / 1000;
-      paint();
-    };
-    paint();
-    if (!reduce) raf = requestAnimationFrame(frame);
-
-    return () => { cancelAnimationFrame(raf); io.disconnect(); };
-  }, [product, size, color, coreColor, showCore, speed]);
+    paint(2);
+    if (reduce) return () => io.disconnect();
+    const stop = startLoop((t) => { if (visible && !pausedRef.current) paint(t + 2); });
+    return () => { stop(); io.disconnect(); };
+  }, [product, size, tone, color, showCore, coreScale]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      role="img"
-      aria-label={`${LABEL[product]} orb`}
-      className={className}
-      style={{ display: 'block', width: size, height: size, maxWidth: '100%', ...style }}
-    />
+    <canvas ref={ref} role="img" aria-label={`${LABEL[product]} orb`} className={className}
+      style={{ display: 'block', width: size ?? '100%', height: size ?? 'auto', aspectRatio: '1', maxWidth: '100%', ...style }} />
   );
-}
-
-/** `#rrggbb` (or `#rgb`) plus alpha → rgba() string. */
-function hexA(hex: string, a: number) {
-  const h = hex.replace('#', '');
-  const n = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h, 16);
-  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
 }
 
 type Named = Omit<ProductOrbProps, 'product'>;

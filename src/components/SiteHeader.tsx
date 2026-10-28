@@ -6,7 +6,14 @@ import { Button } from "@/components/Button";
 import { Logo } from "@/components/Logo";
 import { NavDropdown } from "@/components/NavDropdown";
 
-const nav = [
+type NavItem = {
+  label: string;
+  /** Omitted for menus with no landing page: the label only opens the menu. */
+  href?: string;
+  children?: { label: string; href: string }[];
+};
+
+const nav: NavItem[] = [
   {
     label: "Products",
     href: "/#products",
@@ -18,16 +25,14 @@ const nav = [
   },
   {
     label: "Industries",
-    href: "/industries",
     children: [
-      { label: "Banking & NBFCs", href: "/industries/banking" },
+      { label: "Financial Institutions", href: "/industries/financial-institutions" },
       { label: "Manufacturing", href: "/industries/manufacturing" },
     ],
   },
   { label: "Why Gravice", href: "/#why" },
   {
     label: "Company",
-    href: "/company",
     children: [
       { label: "About", href: "/company/about" },
       { label: "Careers", href: "/company/careers" },
@@ -74,7 +79,7 @@ export function SiteHeader() {
             ) : (
               <Link
                 key={item.label}
-                href={item.href}
+                href={item.href ?? "/"}
                 className="transition-colors hover:text-pull-orange"
               >
                 {item.label}
@@ -117,13 +122,17 @@ export function SiteHeader() {
           <nav className="flex flex-col gap-3 text-paper" aria-label="Mobile">
             {nav.map((item) => (
               <div key={item.label}>
-                <Link
-                  href={item.href}
-                  className="block py-1 font-medium"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="block py-1 font-medium"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="block py-1 font-medium">{item.label}</span>
+                )}
                 {item.children && (
                   <div className="ml-3 flex flex-col gap-1 border-l border-paper/15 pl-3 text-sm text-navy-200">
                     {item.children.map((child) => (

@@ -32,6 +32,7 @@ export const DotField = forwardRef<DotFieldHandle, DotFieldProps>(function DotFi
     orbSpeed,
     intro,
     followCursor = false,
+    hoverDots,
   },
   ref,
 ) {
@@ -50,12 +51,13 @@ export const DotField = forwardRef<DotFieldHandle, DotFieldProps>(function DotFi
       orbSpeed,
       intro,
       followCursor,
+      hoverDots,
     });
     return () => {
       ctl.current?.destroy();
       ctl.current = null;
     };
-  }, [dotColor, coreColor, orbColor, orbSpeed, intro, followCursor]);
+  }, [dotColor, coreColor, orbColor, orbSpeed, intro, followCursor, hoverDots]);
 
   useImperativeHandle(
     ref,

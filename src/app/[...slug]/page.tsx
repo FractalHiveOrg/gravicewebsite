@@ -28,7 +28,7 @@ export default async function CatchAllStub({ params }: Props) {
   if (!stub) notFound();
   return (
     <StubPage
-      title={stub.title}
+      title={stub.title}  
       description={stub.description}
       cta={stub.cta}
       showProductsLink={stub.showProductsLink}

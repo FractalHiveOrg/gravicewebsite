@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/Button";
 import { insights } from "@/lib/insights";
 
@@ -25,6 +26,29 @@ export default function InsightsPage() {
             productivity, and assurance-first banking.
           </p>
         </div>
+
+        <Link
+          href="/insights/fractalhive-is-now-gravice"
+          className="motion-card group mb-10 grid overflow-hidden rounded-[22px] border border-navy-100/60 bg-white hover:border-navy-100 lg:grid-cols-[1.2fr_1fr]"
+        >
+          <div className="gv-a-feature-art" aria-hidden />
+          <div className="flex flex-col justify-center gap-3.5 px-6 py-8 sm:px-9 sm:py-9">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
+              Company news · Featured
+            </p>
+            <h2 className="font-serif text-[clamp(1.75rem,2.8vw,2.375rem)] font-normal leading-[1.12] text-deep-space transition-colors group-hover:text-navy">
+              FractalHive is now Gravice.
+            </h2>
+            <p className="text-[16px] leading-relaxed text-slate">
+              A new name for a clear purpose: intelligence at the centre of
+              banking and business operations. Here&apos;s what changes, and
+              what doesn&apos;t.
+            </p>
+            <span className="pt-1 text-[14px] font-medium text-pull-orange-deep">
+              Read the announcement →
+            </span>
+          </div>
+        </Link>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {insights.map((a) => (

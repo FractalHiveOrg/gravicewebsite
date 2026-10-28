@@ -1,0 +1,256 @@
+- generic [active] [ref=f13e1]:
+  - banner [ref=f13e2]:
+    - generic [ref=f13e3]:
+      - link "Gravice home" [ref=f13e4] [cursor=pointer]:
+        - /url: /
+        - img "Gravice" [ref=f13e5]
+      - navigation "Primary" [ref=f13e6]:
+        - link "Products" [ref=f13e8] [cursor=pointer]:
+          - /url: /#products
+          - text: Products
+          - generic [aria-hidden] [ref=f13e9]: ▾
+        - link "Industries" [ref=f13e11] [cursor=pointer]:
+          - /url: /industries
+          - text: Industries
+          - generic [aria-hidden] [ref=f13e12]: ▾
+        - link "Why Gravice" [ref=f13e13] [cursor=pointer]:
+          - /url: /#why
+        - link "Company" [ref=f13e15] [cursor=pointer]:
+          - /url: /company
+          - text: Company
+          - generic [aria-hidden] [ref=f13e16]: ▾
+        - link "Insights" [ref=f13e17] [cursor=pointer]:
+          - /url: /insights
+      - link "Book a demo" [ref=f13e19] [cursor=pointer]:
+        - /url: /demo
+  - main [ref=f13e20]:
+    - generic [ref=f13e21]:
+      - generic [ref=f13e23]:
+        - generic [ref=f13e24]:
+          - generic [ref=f13e25]:
+            - text: Gravice
+            - generic [ref=f13e27]:
+              - generic [ref=f13e28]: "N"
+              - text: NICO
+          - generic [ref=f13e29]: Intelligent automation
+          - heading "One engine. Any process." [level=1] [ref=f13e31]
+          - paragraph [ref=f13e32]: NICO is an agentic orchestration platform that automates business processes end-to-end, from document ingestion to downstream processing. If a process runs on documents and decisions, NICO can automate it.
+          - generic [ref=f13e33]:
+            - link [ref=f13e34] [cursor=pointer]:
+              - /url: https://nico.fractalhive.com
+              - text: Explore
+              - img "NICO" [ref=f13e35]
+            - link "All products" [ref=f13e36] [cursor=pointer]:
+              - /url: /#products
+          - emphasis [ref=f13e38]: For banks, NBFCs, and operations teams
+        - img "NICO orb" [ref=f13e40]
+      - generic [ref=f13e42]:
+        - generic [aria-hidden] [ref=f13e43]:
+          - generic [ref=f13e45]: Today
+          - generic [ref=f13e46]: With NICO
+        - generic [ref=f13e47]:
+          - generic [ref=f13e48]:
+            - generic [ref=f13e49]: Where it breaks
+            - paragraph [ref=f13e50]: Documents are keyed in by hand. Invoices, notices, and approvals are typed, checked, and chased manually.
+          - generic [ref=f13e51]:
+            - generic [ref=f13e52]: What changes
+            - paragraph [ref=f13e53]: Documents processed automatically. NICO Intelligence reads and checks each document, rules route approvals, and every step is logged.
+      - generic [ref=f13e55]:
+        - heading "How NICO works" [level=2] [ref=f13e57]
+        - list [ref=f13e60]:
+          - listitem [ref=f13e61]:
+            - generic [ref=f13e62]: Step 1
+            - heading "Receive" [level=3] [ref=f13e63]
+            - paragraph [ref=f13e64]: Documents arrive by email, upload, or API.
+          - listitem [ref=f13e65]:
+            - generic [ref=f13e66]: Step 2
+            - heading "Read" [level=3] [ref=f13e67]
+            - paragraph [ref=f13e68]: NICO Intelligence classifies documents and extracts contextual data.
+          - listitem [ref=f13e69]:
+            - generic [ref=f13e70]: Step 3
+            - heading "Check" [level=3] [ref=f13e71]
+            - paragraph [ref=f13e72]: Validate against your rules, masters, and limits.
+          - listitem [ref=f13e73]:
+            - generic [ref=f13e74]: Step 4
+            - heading "Resolve" [level=3] [ref=f13e75]
+            - paragraph [ref=f13e76]: NICO Intelligence handles exceptions that need human judgment.
+          - listitem [ref=f13e77]:
+            - generic [ref=f13e78]: Step 5
+            - heading "Approve" [level=3] [ref=f13e79]
+            - paragraph [ref=f13e80]: Route to the right decision-makers with complete context.
+          - listitem [ref=f13e81]:
+            - generic [ref=f13e82]: Step 6
+            - heading "Complete" [level=3] [ref=f13e83]
+            - paragraph [ref=f13e84]: Post to your systems and log every step.
+      - generic [ref=f13e86]:
+        - heading "Built in" [level=2] [ref=f13e88]
+        - generic [ref=f13e89]:
+          - article [ref=f13e90]:
+            - heading "Predictable" [level=3] [ref=f13e91]
+            - paragraph [ref=f13e92]: Defined processes follow the same path, every time.
+          - article [ref=f13e93]:
+            - heading "Explainable" [level=3] [ref=f13e94]
+            - paragraph [ref=f13e95]: Every NICO Intelligence step shows what it read and how it decided.
+          - article [ref=f13e96]:
+            - heading "Auditable" [level=3] [ref=f13e97]
+            - paragraph [ref=f13e98]: A complete log of every document, check, and step.
+      - generic [ref=f13e100]:
+        - generic [ref=f13e101]:
+          - generic [ref=f13e102]: Use cases for banks & NBFCs
+          - heading "One engine. Any process." [level=2] [ref=f13e103]
+        - generic [ref=f13e104]:
+          - article [ref=f13e105]:
+            - heading "Lender notices" [level=3] [ref=f13e106]
+            - paragraph [ref=f13e107]: Read incoming notices, extract key details and deadlines, and route each one to the correct team.
+          - article [ref=f13e108]:
+            - heading "KYC verification" [level=3] [ref=f13e109]
+            - paragraph [ref=f13e110]: Extract and cross-check data from identity and address documents, and flag mismatches for review.
+          - article [ref=f13e111]:
+            - heading "Application processing" [level=3] [ref=f13e112]
+            - paragraph [ref=f13e113]: Capture data from loan applications and supporting documents, and auto-check each file for completeness.
+          - article [ref=f13e114]:
+            - heading "Complex workflows" [level=3] [ref=f13e115]
+            - paragraph [ref=f13e116]: Route credit, deviation, and exception workflows with complete context and audit trail.
+          - article [ref=f13e117]:
+            - heading "Invoices and accounts payable" [level=3] [ref=f13e118]
+            - paragraph [ref=f13e119]: Capture vendor invoices, validate them against your rules, and post them to your ERP.
+          - article [ref=f13e120]:
+            - generic [ref=f13e121]:
+              - generic [ref=f13e122]: Your process
+              - paragraph [ref=f13e123]: Show us your manual workflow. We will show you how NICO automates it.
+            - link "Book a demo" [ref=f13e124] [cursor=pointer]:
+              - /url: /demo?product=nico
+      - generic [ref=f13e126]:
+        - article [ref=f13e127]:
+          - heading "NICO SaaS" [level=3] [ref=f13e128]
+          - paragraph [ref=f13e129]: Get started immediately with ready-made workflows.
+        - article [ref=f13e130]:
+          - heading "NICO Enterprise" [level=3] [ref=f13e131]
+          - paragraph [ref=f13e132]: Custom workflows, integrations, and deployment for large organisations.
+      - generic [ref=f13e134]:
+        - heading "Across the credit journey" [level=2] [ref=f13e136]
+        - list [ref=f13e137]:
+          - listitem [ref=f13e138]:
+            - generic [ref=f13e139]: "01"
+            - heading "Prospect & engage" [level=3] [ref=f13e140]
+            - paragraph [ref=f13e141]: KYC and onboarding document processing
+          - listitem [ref=f13e142]:
+            - generic [ref=f13e143]: "02"
+            - heading "Originate & sanction" [level=3] [ref=f13e144]
+            - paragraph [ref=f13e145]: Approval workflows and routing
+          - listitem [ref=f13e146]:
+            - generic [ref=f13e147]: "03"
+            - heading "Disburse & enable" [level=3] [ref=f13e148]
+            - paragraph [ref=f13e149]: Document checks and processing
+          - listitem [ref=f13e150]:
+            - generic [ref=f13e151]: "04"
+            - heading "Audit & report" [level=3] [ref=f13e152]
+            - paragraph [ref=f13e153]: Every human, system, and agentic action logged
+      - generic [ref=f13e155]:
+        - img "NICO orb" [ref=f13e156]
+        - heading "Automation your teams can trust." [level=2] [ref=f13e157]
+        - paragraph [ref=f13e158]: Powered by NICO Intelligence.
+        - generic [ref=f13e159]:
+          - link "Book a demo" [ref=f13e160] [cursor=pointer]:
+            - /url: /demo?product=nico
+          - link "Explore other products →" [ref=f13e161] [cursor=pointer]:
+            - /url: /#products
+        - generic [ref=f13e162]:
+          - generic [ref=f13e163]: Also from Gravice
+          - generic [ref=f13e164]:
+            - link "ElevateRM orb ElevateRM Relationship management" [ref=f13e165] [cursor=pointer]:
+              - /url: /products/elevaterm
+              - img "ElevateRM orb" [ref=f13e166]
+              - generic [ref=f13e167]:
+                - generic [ref=f13e168]: ElevateRM
+                - generic [ref=f13e169]: Relationship management
+              - emphasis [aria-hidden] [ref=f13e170]: →
+            - link "V-track orb V-Track Valuation assurance" [ref=f13e171] [cursor=pointer]:
+              - /url: /products/v-track
+              - img "V-track orb" [ref=f13e172]
+              - generic [ref=f13e173]:
+                - generic [ref=f13e174]: V-Track
+                - generic [ref=f13e175]: Valuation assurance
+              - emphasis [aria-hidden] [ref=f13e176]: →
+  - contentinfo [ref=f13e177]:
+    - generic [ref=f13e178]:
+      - link "Gravice" [ref=f13e179] [cursor=pointer]:
+        - /url: /
+      - link "ElevateRM" [ref=f13e217] [cursor=pointer]:
+        - /url: /products/elevaterm
+      - link "V-Track" [ref=f13e218] [cursor=pointer]:
+        - /url: /products/v-track
+      - link "NICO" [ref=f13e219] [cursor=pointer]:
+        - /url: /products/nico
+    - generic [ref=f13e220]:
+      - generic [ref=f13e221]:
+        - paragraph [ref=f13e222]: Gravice is a fintech company that builds software for enterprises and growing businesses. Its products are ElevateRM, V-Track, and NICO.
+        - link "LinkedIn ↗" [ref=f13e223] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/fractalhive/posts/
+      - generic [ref=f13e224]:
+        - generic [ref=f13e225]:
+          - heading "Products" [level=4] [ref=f13e226]
+          - list [ref=f13e227]:
+            - listitem [ref=f13e228]:
+              - link "ElevateRM" [ref=f13e229] [cursor=pointer]:
+                - /url: /products/elevaterm
+            - listitem [ref=f13e230]:
+              - link "V-Track" [ref=f13e231] [cursor=pointer]:
+                - /url: /products/v-track
+            - listitem [ref=f13e232]:
+              - link "NICO" [ref=f13e233] [cursor=pointer]:
+                - /url: /products/nico
+        - generic [ref=f13e234]:
+          - heading "Industries" [level=4] [ref=f13e235]
+          - list [ref=f13e236]:
+            - listitem [ref=f13e237]:
+              - link "financial institutions" [ref=f13e238] [cursor=pointer]:
+                - /url: /industries/banking
+            - listitem [ref=f13e239]:
+              - link "Manufacturing" [ref=f13e240] [cursor=pointer]:
+                - /url: /industries/manufacturing
+        - generic [ref=f13e241]:
+          - heading "Company" [level=4] [ref=f13e242]
+          - list [ref=f13e243]:
+            - listitem [ref=f13e244]:
+              - link "About" [ref=f13e245] [cursor=pointer]:
+                - /url: /company/about
+            - listitem [ref=f13e246]:
+              - link "Careers" [ref=f13e247] [cursor=pointer]:
+                - /url: /company/careers
+            - listitem [ref=f13e248]:
+              - link "Contact" [ref=f13e249] [cursor=pointer]:
+                - /url: /company/contact
+        - generic [ref=f13e250]:
+          - heading "Resources" [level=4] [ref=f13e251]
+          - list [ref=f13e252]:
+            - listitem [ref=f13e253]:
+              - link "Insights" [ref=f13e254] [cursor=pointer]:
+                - /url: /insights
+            - listitem [ref=f13e255]:
+              - link "Glossary" [ref=f13e256] [cursor=pointer]:
+                - /url: /resources/glossary
+            - listitem [ref=f13e257]:
+              - link "Trust Center" [ref=f13e258] [cursor=pointer]:
+                - /url: /trust
+            - listitem [ref=f13e259]:
+              - link "Privacy" [ref=f13e260] [cursor=pointer]:
+                - /url: /legal/privacy
+            - listitem [ref=f13e261]:
+              - link "Terms" [ref=f13e262] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=f13e263]:
+              - link "Cookies" [ref=f13e264] [cursor=pointer]:
+                - /url: /legal/cookies
+    - generic [ref=f13e265]:
+      - generic [ref=f13e266]: © 2026 Gravice. All rights reserved. Formerly FractalHive Solutions Private Limited.
+      - generic [ref=f13e267]:
+        - link "Privacy" [ref=f13e268] [cursor=pointer]:
+          - /url: /legal/privacy
+        - text: ·
+        - link "Terms" [ref=f13e269] [cursor=pointer]:
+          - /url: /legal/terms
+        - text: ·
+        - link "Cookies" [ref=f13e270] [cursor=pointer]:
+          - /url: /legal/cookies
+  - button "Open Next.js Dev Tools" [ref=f13e276] [cursor=pointer]

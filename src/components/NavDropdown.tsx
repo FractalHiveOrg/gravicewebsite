@@ -7,7 +7,8 @@ type Child = { label: string; href: string };
 
 type Props = {
   label: string;
-  href: string;
+  /** Without an href the label is a button that only toggles the menu. */
+  href?: string;
   items: Child[];
 };
 
@@ -52,6 +53,19 @@ export function NavDropdown({ label, href, items }: Props) {
     };
   }, []);
 
+  const triggerClass = "inline-flex items-center gap-1 transition-colors hover:text-pull-orange";
+  const caret = (
+    <span
+      className={[
+        "inline-block text-[10px] opacity-60 transition-transform duration-200",
+        open ? "rotate-180" : "",
+      ].join(" ")}
+      aria-hidden
+    >
+      ▾
+    </span>
+  );
+
   return (
     <div
       ref={rootRef}
@@ -59,26 +73,33 @@ export function NavDropdown({ label, href, items }: Props) {
       onPointerEnter={openMenu}
       onPointerLeave={scheduleClose}
     >
-      <Link
-        href={href}
-        className="inline-flex items-center gap-1 transition-colors hover:text-pull-orange"
-        aria-expanded={open}
-        aria-haspopup="menu"
-        aria-controls={menuId}
-        onFocus={openMenu}
-        onClick={() => setOpen(false)}
-      >
-        {label}
-        <span
-          className={[
-            "inline-block text-[10px] opacity-60 transition-transform duration-200",
-            open ? "rotate-180" : "",
-          ].join(" ")}
-          aria-hidden
+      {href ? (
+        <Link
+          href={href}
+          className={triggerClass}
+          aria-expanded={open}
+          aria-haspopup="menu"
+          aria-controls={menuId}
+          onFocus={openMenu}
+          onClick={() => setOpen(false)}
         >
-          ▾
-        </span>
-      </Link>
+          {label}
+          {caret}
+        </Link>
+      ) : (
+        <button
+          type="button"
+          className={`${triggerClass} cursor-pointer`}
+          aria-expanded={open}
+          aria-haspopup="menu"
+          aria-controls={menuId}
+          onFocus={openMenu}
+          onClick={openMenu}
+        >
+          {label}
+          {caret}
+        </button>
+      )}
 
       <div
         id={menuId}

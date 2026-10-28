@@ -1,4 +1,4 @@
-import { GlobeMark } from "../components/GlobeMark";
+import { Logo } from "@/components/Logo";
 import { PRODUCTS } from "../content";
 
 /** Footer with the product logo row. */
@@ -6,10 +6,7 @@ export function SiteFooter() {
   return (
     <footer className="gv-footer" data-cursor-surface="dark">
       <div className="gv-wrap gv-flogos">
-        <a href="/">
-          <GlobeMark size={24} />
-          Gravice
-        </a>
+        <Logo theme="dark" />
         {(Object.keys(PRODUCTS) as (keyof typeof PRODUCTS)[]).map((k) => (
           <a key={k} href={PRODUCTS[k].href}>
             {PRODUCTS[k].name}
@@ -50,7 +47,7 @@ export function SiteFooter() {
             <h4>Industries</h4>
             <ul>
               <li>
-                <a href="/industries/banking">Banking &amp; NBFCs</a>
+                <a href="/industries/financial-institutions">Financial Institutions</a>
               </li>
               <li>
                 <a href="/industries/manufacturing">Manufacturing</a>
@@ -65,6 +62,9 @@ export function SiteFooter() {
               </li>
               <li>
                 <a href="/company/careers">Careers</a>
+              </li>
+              <li>
+                <a href="/company/life-at-gravice">Life at Gravice</a>
               </li>
               <li>
                 <a href="/company/contact">Contact</a>

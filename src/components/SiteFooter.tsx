@@ -13,7 +13,7 @@ const columns = [
   {
     title: "Industries",
     links: [
-      { label: "Banking & NBFCs", href: "/industries/banking" },
+      { label: "Financial Institutions", href: "/industries/financial-institutions" },
       { label: "Manufacturing", href: "/industries/manufacturing" },
     ],
   },
@@ -22,6 +22,7 @@ const columns = [
     links: [
       { label: "About", href: "/company/about" },
       { label: "Careers", href: "/company/careers" },
+      { label: "Life at Gravice", href: "/company/life-at-gravice" },
       { label: "Contact", href: "/company/contact" },
     ],
   },
