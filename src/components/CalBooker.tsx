@@ -3,6 +3,7 @@
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 import { CAL_USERNAME } from "@/lib/cal";
+import { setClarityTag, trackEvent, upgradeSession } from "@/lib/clarity";
 
 type CalBookerProps = {
   eventSlug: string;
@@ -17,8 +18,18 @@ export function CalBooker({
   const namespace = `demo-${eventSlug}`;
 
   useEffect(() => {
+    let cancelled = false;
+    const onBooked = () => {
+      trackEvent("booking_completed");
+      setClarityTag("booking_event", eventSlug);
+      upgradeSession("booking_completed");
+    };
+    const onFailed = () => trackEvent("booking_widget_failed");
+    const calApi = getCalApi({ namespace });
+
     void (async () => {
-      const cal = await getCalApi({ namespace });
+      const cal = await calApi;
+      if (cancelled) return;
       cal("ui", {
         theme: "light",
         hideEventTypeDetails: false,
@@ -28,8 +39,18 @@ export function CalBooker({
           dark: { "cal-brand": "#F6682E" },
         },
       });
+      cal("on", { action: "bookingSuccessfulV2", callback: onBooked });
+      cal("on", { action: "linkFailed", callback: onFailed });
     })();
-  }, [namespace]);
+
+    return () => {
+      cancelled = true;
+      void calApi.then((cal) => {
+        cal("off", { action: "bookingSuccessfulV2", callback: onBooked });
+        cal("off", { action: "linkFailed", callback: onFailed });
+      });
+    };
+  }, [namespace, eventSlug]);
 
   return (
     <div className="cal-booker-shell w-full min-w-0 min-h-[680px] overflow-hidden rounded-[20px] border border-navy-100 bg-white sm:min-h-[720px]">

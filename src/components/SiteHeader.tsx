@@ -84,7 +84,13 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <Button href="/demo" size="sm" className="hidden md:inline-flex">
+          <Button
+            href="/demo"
+            size="sm"
+            className="hidden md:inline-flex"
+            clarityEvent="book_demo_click"
+            claritySource="header"
+          >
             Book a demo
           </Button>
           <button
@@ -134,7 +140,13 @@ export function SiteHeader() {
                 )}
               </div>
             ))}
-            <Button href="/demo" size="sm" className="mt-2 flex w-full md:hidden">
+            <Button
+              href="/demo"
+              size="sm"
+              className="mt-2 flex w-full md:hidden"
+              clarityEvent="book_demo_click"
+              claritySource="header_mobile"
+            >
               Book a demo
             </Button>
           </nav>

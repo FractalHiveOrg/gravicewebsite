@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/Button";
+import { ClarityTags } from "@/components/ClarityTags";
 import { NicoMark } from "@/components/NicoMark";
 import { ProductOrbVisual } from "@/components/ProductOrbVisual";
 import { Reveal } from "@/components/Reveal";
@@ -25,6 +26,7 @@ export function ProductPage({ product }: Props) {
 
   return (
     <>
+      <ClarityTags tags={{ product: product.slug }} />
       <section data-cursor-surface="dark" className="bg-deep-space">
         <div className="page-x mx-auto flex max-w-[1100px] flex-col items-center gap-10 py-14 sm:py-16 lg:flex-row lg:items-center lg:gap-12 lg:py-24">
           <Reveal className="flex w-full max-w-[46rem] flex-1 flex-col gap-5">
@@ -56,11 +58,17 @@ export function ProductPage({ product }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="gap-2.5"
+                  clarityEvent="nico_explore_click"
+                  claritySource="product_hero"
                 >
                   Explore <NicoMark on="dark" height={18} />
                 </Button>
               ) : (
-                <Button href={`/demo?product=${product.slug}`}>
+                <Button
+                  href={`/demo?product=${product.slug}`}
+                  clarityEvent="book_demo_click"
+                  claritySource="product_hero"
+                >
                   Book a demo
                 </Button>
               )}
@@ -240,7 +248,13 @@ export function ProductPage({ product }: Props) {
                       automates it.
                     </p>
                   </div>
-                  <Button href="/demo?product=nico" size="sm" className="mt-6 w-fit">
+                  <Button
+                    href="/demo?product=nico"
+                    size="sm"
+                    className="mt-6 w-fit"
+                    clarityEvent="book_demo_click"
+                    claritySource="product_nico_card"
+                  >
                     Book a demo
                   </Button>
                 </article>
@@ -366,6 +380,8 @@ export function ProductPage({ product }: Props) {
                 <Button
                   href={product.microsoftPartnership.marketplaceUrl}
                   className="shrink-0"
+                  clarityEvent="marketplace_click"
+                  claritySource={product.slug}
                 >
                   View on the Marketplace →
                 </Button>
@@ -404,7 +420,13 @@ export function ProductPage({ product }: Props) {
           </h2>
           <p className="text-[16px] text-slate">{product.footerNote}</p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <Button href={`/demo?product=${product.slug}`}>Book a demo</Button>
+            <Button
+              href={`/demo?product=${product.slug}`}
+              clarityEvent="book_demo_click"
+              claritySource="product_footer"
+            >
+              Book a demo
+            </Button>
             <Button href="/#products" variant="link-light">
               Explore other products →
             </Button>
@@ -423,6 +445,8 @@ export function ProductPage({ product }: Props) {
                 key={p.slug}
                 href={`/products/${p.slug}`}
                 data-magnetic
+                data-clarity-event="product_link_click"
+                data-clarity-source={`related_${p.slug}`}
                 className="motion-card rounded-[20px] border border-navy-100 p-6 transition-colors hover:border-pull-orange/40"
               >
                 <p className="font-serif text-xl font-normal text-deep-space">

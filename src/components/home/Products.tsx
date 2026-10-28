@@ -24,7 +24,9 @@ export function Products() {
         </Reveal>
 
         <Reveal delay={160} className="flex justify-center">
-          <Button href="/demo">Book a demo</Button>
+          <Button href="/demo" clarityEvent="book_demo_click" claritySource="products_section">
+            Book a demo
+          </Button>
         </Reveal>
       </div>
     </section>
