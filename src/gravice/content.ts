@@ -27,7 +27,7 @@ export const STORY = {
   steps: [
     {
       product: "erm" as ProductKey,
-      orb: "connecting" as OrbState,
+      orb: "composing" as OrbState,
       title: "Less paperwork, more deals for your relationship managers.",
       body: "ElevateRM takes the admin off relationship managers' desks. It keeps every client, meeting and follow-up in one place and shows each RM which clients need them today, so deals close faster.",
       link: "Explore ElevateRM →",

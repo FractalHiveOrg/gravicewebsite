@@ -18,7 +18,7 @@
  *   data-gv="story"        the scroll story section
  *   data-gv="stage"        sticky centre column of the story
  *   data-gv="orb-canvas"   <canvas> inside the stage that the orbs are painted on
- *   data-gv="step"         one per story step, with data-gv-orb="connecting|searching|solving|…"
+ *   data-gv="step"         one per story step, with data-gv-orb="composing|searching|solving|…"
  *   data-gv="tick"         optional progress labels, one per step
  *   data-gv="news"         section the closing dots rise out of (optional)
  *   data-gv="cta"          closing section
@@ -27,8 +27,8 @@
  *
  * Toggles: class "gv-on" on the active step/tick, "gv-in" on revealed elements.
  */
-import { MODE_DRAWS, resolvePreset } from 'thinking-orbs/engine';
 import type { OrbState } from 'thinking-orbs/engine';
+import { drawOrb } from './orbs';
 
 export interface DotFieldOptions {
   /** Full-viewport canvas behind content (dots, cores). */
@@ -149,7 +149,7 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     return o;
   };
 
-  // ---- orbs (thinking-orbs engine, MIT © Jakub Antalik), drawn large and tinted
+  // ---- orbs (Gravice belt / scan / solve, see ./orbs), drawn large and tinted
   const tint = document.createElement('canvas');
   const tctx = tint.getContext('2d')!;
   let orbBox = 0, orbCanvasEl: HTMLCanvasElement | null = null;
@@ -168,11 +168,10 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     if (r.bottom < 0 || r.top > H) return;
     oa.forEach((a, k) => {
       if (a <= 0.01 || !states[k]) return;
-      const pr = resolvePreset(states[k], 64);
       tctx.setTransform(1, 0, 0, 1, 0, 0); tctx.globalCompositeOperation = 'source-over';
       tctx.clearRect(0, 0, tint.width, tint.height);
       const sc = (box * d) / 64; tctx.setTransform(sc, 0, 0, sc, 0, 0);
-      MODE_DRAWS[pr.mode](tctx, 64, (reduce ? 2 : clock) * orbSpeed, false, pr.opts);
+      drawOrb(tctx, states[k], clock, orbSpeed, reduce);
       tctx.setTransform(1, 0, 0, 1, 0, 0); tctx.globalCompositeOperation = 'source-in';
       tctx.fillStyle = orbColor; tctx.fillRect(0, 0, tint.width, tint.height);
       oc.globalAlpha = a; oc.drawImage(tint, 0, 0); oc.globalAlpha = 1;

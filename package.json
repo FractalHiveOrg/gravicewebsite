@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build:nico2 && next build",
-    "build:nico2": "node scripts/build-nico2.mjs",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },

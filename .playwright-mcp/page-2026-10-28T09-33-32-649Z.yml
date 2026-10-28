@@ -1,0 +1,234 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Gravice home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Gravice" [ref=e5]
+      - navigation "Primary" [ref=e6]:
+        - link "Products" [ref=e8] [cursor=pointer]:
+          - /url: /#products
+          - text: Products
+          - generic [aria-hidden] [ref=e9]: ▾
+        - link "Industries" [ref=e11] [cursor=pointer]:
+          - /url: /industries
+          - text: Industries
+          - generic [aria-hidden] [ref=e12]: ▾
+        - link "Why Gravice" [ref=e13] [cursor=pointer]:
+          - /url: /#why
+        - link "Company" [ref=e15] [cursor=pointer]:
+          - /url: /company
+          - text: Company
+          - generic [aria-hidden] [ref=e16]: ▾
+        - link "Insights" [ref=e17] [cursor=pointer]:
+          - /url: /insights
+      - link "Book a demo" [ref=e19] [cursor=pointer]:
+        - /url: /demo
+  - main [ref=e20]:
+    - generic [ref=e22]:
+      - generic [ref=e24]: Tech for enterprises and growing businesses
+      - heading "Intelligence, at the centre." [level=1] [ref=e25]
+      - paragraph [ref=e26]: Gravice builds software that brings order to slow, manual, high-stakes work, so enterprises and growing businesses can move faster with less risk.
+      - generic [ref=e27]:
+        - link "Explore products" [ref=e28] [cursor=pointer]:
+          - /url: "#products"
+        - link "Book a demo" [ref=e29] [cursor=pointer]:
+          - /url: /demo
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]: What Gravice can do for you
+        - heading "Intelligence that does the work, so your people can make the call." [level=2] [ref=e34]
+        - paragraph [ref=e35]: The same intelligence runs inside every Gravice product. Here is what each one does for your teams.
+        - generic [aria-hidden] [ref=e36]:
+          - generic [ref=e37]: ElevateRM
+          - generic [ref=e38]: V-Track
+          - generic [ref=e39]: NICO
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: ElevateRM
+          - heading "Less paperwork, more deals for your relationship managers." [level=3] [ref=e45]
+          - paragraph [ref=e46]: ElevateRM takes the admin off relationship managers' desks. It keeps every client, meeting and follow-up in one place and shows each RM which clients need them today, so deals close faster.
+          - link "Explore ElevateRM →" [ref=e47] [cursor=pointer]:
+            - /url: /products/elevaterm
+        - generic [ref=e48]:
+          - generic [ref=e49]: V-Track
+          - heading "Every collateral revaluation, on time." [level=3] [ref=e50]
+          - paragraph [ref=e51]: V-Track gives banks and NBFCs one view of their collateral book. It tracks each asset's next revaluation date, alerts teams before anything falls due, and keeps reports ready for audit and the RBI.
+          - link "Explore V-Track →" [ref=e52] [cursor=pointer]:
+            - /url: /products/v-track
+        - generic [ref=e53]:
+          - generic [ref=e54]: NICO
+          - heading "Documents in, decisions out." [level=3] [ref=e55]
+          - paragraph [ref=e56]: NICO reads invoices, loan files and delivery notes, checks them against your rules, and sends approved entries to Tally or your ERP. Your team only reviews what needs a decision.
+          - link "Explore NICO →" [ref=e57] [cursor=pointer]:
+            - /url: /products/nico
+    - generic [ref=e58]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - paragraph [ref=e62]: Our offerings
+          - heading "Three platforms. One layer of assurance." [level=2] [ref=e63]
+          - paragraph [ref=e64]: ElevateRM, V-Track, and NICO sit above the systems you already run — LOS, CMS, ERP, and core banking — without rip-and-replace.
+        - 'img "Gravice platform layer: ElevateRM, V-Track, and NICO sit above LOS, CMS, ERP, and core banking, with shared assurance capabilities around the Gravity Mirror hub." [ref=e66]':
+          - paragraph [ref=e82]: ElevateRM
+          - paragraph [ref=e83]: V-Track
+          - img "NICO" [ref=e85]
+          - paragraph [ref=e86]: Audit trail
+          - paragraph [ref=e87]: Smart alerts
+          - paragraph [ref=e88]: Approval workflows
+          - paragraph [ref=e89]: Document Intelligence
+          - paragraph [ref=e90]: Dashboards & MIS
+          - paragraph [ref=e91]: Access control
+          - paragraph [ref=e92]: Integrations & APIs
+          - paragraph [ref=e93]: Compliance reports
+          - paragraph [ref=e94]: LOS
+          - paragraph [ref=e95]: ERP
+          - paragraph [ref=e96]: CMS
+          - paragraph [ref=e97]: Core banking
+        - link "Book a demo" [ref=e99] [cursor=pointer]:
+          - /url: /demo
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - generic [ref=e103]:
+            - paragraph [ref=e104]: Why Gravice
+            - heading "A partner that brings order, and keeps its word." [level=2] [ref=e105]
+          - link "Visit the Trust Center →" [ref=e106] [cursor=pointer]:
+            - /url: /trust
+        - generic [ref=e107]:
+          - article [ref=e109]:
+            - heading "Structure by design" [level=3] [ref=e110]
+            - paragraph [ref=e111]: We turn slow, manual processes into clear, trackable workflows that your teams and auditors can rely on.
+          - article [ref=e113]:
+            - heading "Execution you can count on" [level=3] [ref=e114]
+            - paragraph [ref=e115]: We commit to what we can deliver, then deliver it, and stay with you long after go-live.
+          - article [ref=e117]:
+            - heading "Fair partnership" [level=3] [ref=e118]
+            - paragraph [ref=e119]: Every deal has to work for both sides. That is how we build long relationships with the institutions we serve.
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - generic [ref=e123]:
+            - paragraph [ref=e124]: Insights
+            - heading "Ideas on bringing structure to business operations." [level=2] [ref=e125]
+          - link "All insights →" [ref=e126] [cursor=pointer]:
+            - /url: /insights
+        - generic [ref=e127]:
+          - link "LinkedIn Gold Loans May Reach ₹30 Lakh Crore by FY28. Is the Industry Ready? As more banks and NBFCs expand into Gold Loans, is the industry equally prepared from a collateral governance perspective? Read on LinkedIn →" [ref=e129] [cursor=pointer]:
+            - /url: https://www.linkedin.com/pulse/gold-loans-may-reach-30-lakh-crore-fy28-industry-ready-fractalhive-df8yc/
+            - generic [ref=e131]:
+              - paragraph [ref=e132]: LinkedIn
+              - heading "Gold Loans May Reach ₹30 Lakh Crore by FY28. Is the Industry Ready?" [level=3] [ref=e133]
+              - paragraph [ref=e134]: As more banks and NBFCs expand into Gold Loans, is the industry equally prepared from a collateral governance perspective?
+              - generic [ref=e135]: Read on LinkedIn →
+          - 'link "LinkedIn Collateral Valuation assurance and risk management Collateral Valuation assurance: Moving from Static Checks to Continuous Control. Read on LinkedIn →" [ref=e137] [cursor=pointer]':
+            - /url: https://www.linkedin.com/pulse/collateral-valuation-assurance-risk-management-fractalhive-hovdc/
+            - generic [ref=e139]:
+              - paragraph [ref=e140]: LinkedIn
+              - heading "Collateral Valuation assurance and risk management" [level=3] [ref=e141]
+              - paragraph [ref=e142]: "Collateral Valuation assurance: Moving from Static Checks to Continuous Control."
+              - generic [ref=e143]: Read on LinkedIn →
+          - link "LinkedIn The Value of Marginal Gains A Day in the Life of a Relationship Manager — What's Silently Weakening the Sales Engine? Read on LinkedIn →" [ref=e145] [cursor=pointer]:
+            - /url: https://www.linkedin.com/pulse/day-life-relationship-manager-whats-silently-weakening-sales-uykpc/
+            - generic [ref=e147]:
+              - paragraph [ref=e148]: LinkedIn
+              - heading "The Value of Marginal Gains" [level=3] [ref=e149]
+              - paragraph [ref=e150]: A Day in the Life of a Relationship Manager — What's Silently Weakening the Sales Engine?
+              - generic [ref=e151]: Read on LinkedIn →
+          - link "LinkedIn 'Catch 22' - An AI success story From concept to an enterprise-grade product in just 22 days. Read on LinkedIn →" [ref=e153] [cursor=pointer]:
+            - /url: https://www.linkedin.com/pulse/catch-22-ai-success-story-fractalhive-hybjc/
+            - generic [ref=e155]:
+              - paragraph [ref=e156]: LinkedIn
+              - heading "'Catch 22' - An AI success story" [level=3] [ref=e157]
+              - paragraph [ref=e158]: From concept to an enterprise-grade product in just 22 days.
+              - generic [ref=e159]: Read on LinkedIn →
+          - link "LinkedIn Small Changes, Big Gains How can small changes deliver massive gains. Read on LinkedIn →" [ref=e161] [cursor=pointer]:
+            - /url: https://www.linkedin.com/posts/fractalhive_banking-commercialbanks-transformation-activity-7446871430572699648-WS4L
+            - generic [ref=e163]:
+              - paragraph [ref=e164]: LinkedIn
+              - heading "Small Changes, Big Gains" [level=3] [ref=e165]
+              - paragraph [ref=e166]: How can small changes deliver massive gains.
+              - generic [ref=e167]: Read on LinkedIn →
+    - generic [ref=e169]:
+      - heading "See what Gravice can do for you." [level=2] [ref=e171]
+      - paragraph [ref=e172]: Book a 30-minute demo. Tell us which product you are interested in and we will route you to the right team.
+      - link "Book a demo" [ref=e174] [cursor=pointer]:
+        - /url: /demo
+  - contentinfo [ref=e175]:
+    - generic [ref=e176]:
+      - link "Gravice" [ref=e177] [cursor=pointer]:
+        - /url: /
+      - link "ElevateRM" [ref=e215] [cursor=pointer]:
+        - /url: /products/elevaterm
+      - link "V-Track" [ref=e216] [cursor=pointer]:
+        - /url: /products/v-track
+      - link "NICO" [ref=e217] [cursor=pointer]:
+        - /url: /products/nico
+    - generic [ref=e218]:
+      - generic [ref=e219]:
+        - paragraph [ref=e220]: Gravice is a fintech company that builds software for enterprises and growing businesses. Its products are ElevateRM, V-Track, and NICO.
+        - link "LinkedIn ↗" [ref=e221] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/fractalhive/posts/
+      - generic [ref=e222]:
+        - generic [ref=e223]:
+          - heading "Products" [level=4] [ref=e224]
+          - list [ref=e225]:
+            - listitem [ref=e226]:
+              - link "ElevateRM" [ref=e227] [cursor=pointer]:
+                - /url: /products/elevaterm
+            - listitem [ref=e228]:
+              - link "V-Track" [ref=e229] [cursor=pointer]:
+                - /url: /products/v-track
+            - listitem [ref=e230]:
+              - link "NICO" [ref=e231] [cursor=pointer]:
+                - /url: /products/nico
+        - generic [ref=e232]:
+          - heading "Industries" [level=4] [ref=e233]
+          - list [ref=e234]:
+            - listitem [ref=e235]:
+              - link "Banking & NBFCs" [ref=e236] [cursor=pointer]:
+                - /url: /industries/banking
+            - listitem [ref=e237]:
+              - link "Manufacturing" [ref=e238] [cursor=pointer]:
+                - /url: /industries/manufacturing
+        - generic [ref=e239]:
+          - heading "Company" [level=4] [ref=e240]
+          - list [ref=e241]:
+            - listitem [ref=e242]:
+              - link "About" [ref=e243] [cursor=pointer]:
+                - /url: /company/about
+            - listitem [ref=e244]:
+              - link "Careers" [ref=e245] [cursor=pointer]:
+                - /url: /company/careers
+            - listitem [ref=e246]:
+              - link "Contact" [ref=e247] [cursor=pointer]:
+                - /url: /company/contact
+        - generic [ref=e248]:
+          - heading "Resources" [level=4] [ref=e249]
+          - list [ref=e250]:
+            - listitem [ref=e251]:
+              - link "Insights" [ref=e252] [cursor=pointer]:
+                - /url: /insights
+            - listitem [ref=e253]:
+              - link "Glossary" [ref=e254] [cursor=pointer]:
+                - /url: /resources/glossary
+            - listitem [ref=e255]:
+              - link "Trust Center" [ref=e256] [cursor=pointer]:
+                - /url: /trust
+            - listitem [ref=e257]:
+              - link "Privacy" [ref=e258] [cursor=pointer]:
+                - /url: /legal/privacy
+            - listitem [ref=e259]:
+              - link "Terms" [ref=e260] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e261]:
+              - link "Cookies" [ref=e262] [cursor=pointer]:
+                - /url: /legal/cookies
+    - generic [ref=e263]:
+      - generic [ref=e264]: © 2026 Gravice. All rights reserved. Formerly FractalHive Solutions Private Limited.
+      - generic [ref=e265]:
+        - link "Privacy" [ref=e266] [cursor=pointer]:
+          - /url: /legal/privacy
+        - text: ·
+        - link "Terms" [ref=e267] [cursor=pointer]:
+          - /url: /legal/terms
+        - text: ·
+        - link "Cookies" [ref=e268] [cursor=pointer]:
+          - /url: /legal/cookies
+  - button "Open Next.js Dev Tools" [ref=e274] [cursor=pointer]
