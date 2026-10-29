@@ -69,8 +69,18 @@ const HIRING = [
 ];
 
 const LIFE_PHOTOS: ImageSlot[] = [
-  { id: "LIFE-01", label: "Team at work", size: "1600 × 1200" },
-  { id: "LIFE-02", label: "Offsite", size: "1200 × 1600" },
+  {
+    id: "LIFE-01",
+    label: "Team offsite",
+    size: "1600 × 1200",
+    src: "https://fractalhiveassets.blob.core.windows.net/assets/grp2.jpeg?sp=r&st=2026-10-29T12:40:21Z&se=2036-10-29T20:55:21Z&spr=https&sv=2026-02-06&sr=b&sig=hDMnLB4pO8maOqGp7%2FR1rXqqgNy7AFbUtc6azADYjho%3D",
+  },
+  {
+    id: "LIFE-02",
+    label: "Festival at the office",
+    size: "1200 × 1600",
+    src: "https://fractalhiveassets.blob.core.windows.net/assets/grp1.jpeg?sp=r&st=2026-10-29T12:40:05Z&se=2036-10-29T20:55:05Z&spr=https&sv=2026-02-06&sr=b&sig=%2FqnoZKyS4BVbVLEkY5muooEzigRcP4VTIptVRLyadHU%3D",
+  },
 ];
 
 function OpenRolesButton({ source }: { source: string }) {

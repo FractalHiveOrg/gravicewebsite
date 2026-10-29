@@ -128,13 +128,13 @@ export function ProductPage({ product }: Props) {
       key: "microsoft",
       render: (band) => (
         <section key="microsoft" data-cursor-surface="light" className={`gv-band gv-light ${band}`}>
-          <div className="gv-wrap gv-p-ms">
+          <div className="gv-wrap gv-p-ms p-">
             <div className="gv-p-top" style={{ marginBottom: 20 }}>
               <div className="gv-eyebrow">Our partnership</div>
               <h2>{ms.headline}</h2>
               <p style={{ color: "var(--gv-muted-ink)", fontSize: 17, lineHeight: 1.6 }}>{ms.summary}</p>
             </div>
-            <div className="gv-p-dark gv-p-ms-head">
+            <div className="gv-p-dark gv-p-ms-head p-6">
               <div>
                 <h3>Official Microsoft Partner</h3>
                 {/* <p>Microsoft AI Cloud Partner Program · ISV Success</p> */}

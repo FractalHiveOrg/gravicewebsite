@@ -12,9 +12,24 @@ import type { ImageSlot } from "@/lib/productImages";
 const CAREERS_HREF = "/company/careers";
 
 const HERO_PHOTOS: ImageSlot[] = [
-  { id: "LIFE-01", label: "Team at work", size: "1600 × 1200" },
-  { id: "LIFE-02", label: "Offsite", size: "1200 × 1600" },
-  { id: "LIFE-03", label: "Celebration", size: "1600 × 1000" },
+  {
+    id: "LIFE-01",
+    label: "Team offsite",
+    size: "1600 × 1200",
+    src: "https://fractalhiveassets.blob.core.windows.net/assets/grp2.jpeg?sp=r&st=2026-10-29T12:40:21Z&se=2036-10-29T20:55:21Z&spr=https&sv=2026-02-06&sr=b&sig=hDMnLB4pO8maOqGp7%2FR1rXqqgNy7AFbUtc6azADYjho%3D",
+  },
+  {
+    id: "LIFE-02",
+    label: "Festival at the office",
+    size: "1200 × 1600",
+    src: "https://fractalhiveassets.blob.core.windows.net/assets/grp1.jpeg?sp=r&st=2026-10-29T12:40:05Z&se=2036-10-29T20:55:05Z&spr=https&sv=2026-02-06&sr=b&sig=%2FqnoZKyS4BVbVLEkY5muooEzigRcP4VTIptVRLyadHU%3D",
+  },
+  {
+    id: "LIFE-03",
+    label: "Team day out",
+    size: "1600 × 1000",
+    src: "https://fractalhiveassets.blob.core.windows.net/assets/Fun.jpeg?sp=r&st=2026-10-29T12:39:03Z&se=2036-10-29T20:54:03Z&spr=https&sv=2026-02-06&sr=b&sig=oc%2B5bVHBubMp%2Fr%2FiBGxdZ%2FRYdoq5h2LNedz0srfvuFU%3D",
+  },
 ];
 
 const WPL: { title: string; body: string; photo: ImageSlot }[] = [
@@ -26,12 +41,22 @@ const WPL: { title: string; body: string; photo: ImageSlot }[] = [
   {
     title: "Play",
     body: "Offsites, festivals and the occasional cricket match. A team that knows each other works better together.",
-    photo: { id: "LIFE-05", label: "Play", size: "1600 × 1200", note: "offsite or festival" },
+    photo: {
+      id: "LIFE-05",
+      label: "Team cricket match",
+      size: "1600 × 1200",
+      src: "https://fractalhiveassets.blob.core.windows.net/assets/cricket.jpeg?sp=r&st=2026-10-29T12:39:34Z&se=2036-10-29T20:54:34Z&spr=https&sv=2026-02-06&sr=b&sig=UaTZq4i2eBJ5YF4KnwHHZQubk1%2BLT7%2FEvmbMTBf%2BJFY%3D",
+    },
   },
   {
     title: "Learn",
     body: "Banking from veterans, technology from builders, and time set aside every week to learn something new.",
-    photo: { id: "LIFE-06", label: "Learn", size: "1600 × 1200", note: "a learning session" },
+    photo: {
+      id: "LIFE-06",
+      label: "A learning session",
+      size: "1600 × 1200",
+      src: "https://fractalhiveassets.blob.core.windows.net/assets/Session.jpeg?sp=r&st=2026-10-29T12:39:21Z&se=2036-10-29T20:54:21Z&spr=https&sv=2026-02-06&sr=b&sig=LLef67MJjVg694k4ge0jyIbjlbUJA3%2FxX%2BzMTRJ3P2o%3D",
+    },
   },
 ];
 
@@ -48,8 +73,18 @@ const RITUALS = [
 const GALLERY: ImageSlot[] = [
   { id: "LIFE-07", label: "Office", size: "1200 × 1600" },
   { id: "LIFE-08", label: "Hackathon", size: "1600 × 1200" },
-  { id: "LIFE-09", label: "Festival", size: "1600 × 1200" },
-  { id: "LIFE-10", label: "Team lunch", size: "1600 × 1200" },
+  {
+    id: "LIFE-09",
+    label: "Team café outing",
+    size: "1600 × 1200",
+    src: "https://fractalhiveassets.blob.core.windows.net/assets/fun2.jpeg?sp=r&st=2026-10-29T12:39:47Z&se=2036-10-29T20:54:47Z&spr=https&sv=2026-02-06&sr=b&sig=bnEruZ2HI0vbTVv6rVCycVX6F3xF0tF7UrW29GbGtMI%3D",
+  },
+  {
+    id: "LIFE-10",
+    label: "Team lunch",
+    size: "1600 × 1200",
+    src: "https://fractalhiveassets.blob.core.windows.net/assets/lunch.jpeg?sp=r&st=2026-10-29T12:40:34Z&se=2036-10-29T20:55:34Z&spr=https&sv=2026-02-06&sr=b&sig=ZjddIQzdfRA52oW1V4DPpFrf83tbErl0lS7KHxQGgVU%3D",
+  },
   { id: "LIFE-11", label: "Customer visit", size: "1600 × 1200" },
 ];
 

@@ -140,10 +140,6 @@ export const products: Record<ProductSlug, Product> = {
         body: "Rule-based margin calls, top-ups, and escalations.",
       },
       {
-        title: "Insurance tracking",
-        body: "Coverage status, renewal alerts, and sum assured versus valuation checks.",
-      },
-      {
         title: "Portfolio dashboard",
         body: "Concentration, stress, and recovery views at portfolio level.",
       },
