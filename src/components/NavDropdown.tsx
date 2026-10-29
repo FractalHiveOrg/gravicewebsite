@@ -57,7 +57,7 @@ export function NavDropdown({ label, href, items }: Props) {
   const caret = (
     <span
       className={[
-        "inline-block text-[10px] opacity-60 transition-transform duration-200",
+        "inline-block text-[30px] opacity-60 transition-transform duration-200",
         open ? "rotate-180" : "",
       ].join(" ")}
       aria-hidden
