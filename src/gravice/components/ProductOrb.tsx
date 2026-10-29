@@ -16,7 +16,7 @@ import { drawCore, prefersReducedMotion, startLoop } from '../engine/core';
  *
  * The orbs build on thinking-orbs by Jakub Antalik (MIT).
  */
-export type GraviceProduct = 'elevaterm' | 'vtrack' | 'nico';
+export type GraviceProduct = 'elevaterm' | 'vtrack' | 'nico' 
 
 /** Belt settings tuned for large sizes (do not change without checking ElevateRM visually). */
 export const BELT_OPTS = { lanes: 3, segs: 44, ghostN: 38, rBase: 0.935, rDepth: 1.445, rsPow: 0.6, rMin: 0.3, bandMul: 3.9, wobMul: 1 };

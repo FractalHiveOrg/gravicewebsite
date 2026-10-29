@@ -21,7 +21,7 @@ function Answer({ item }: { item: FaqItem }) {
   return (
     <p>
       {body}
-      {item.a && item.confirm ? " " : null}
+      {/* {item.a && item.confirm ? " " : null} */}
       {item.confirm && <em>{item.confirm}</em>}
     </p>
   );

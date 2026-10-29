@@ -28,7 +28,7 @@ export function ProductSecurity({ security, band }: { security: Security; band: 
                   </>
                 )}
               </p>
-              {card.confirm && <span className="gv-p-tbc">{card.confirm}</span>}
+              {/* {card.confirm && <span className="gv-p-tbc">{card.confirm}</span>} */}
             </article>
           ))}
         </div>

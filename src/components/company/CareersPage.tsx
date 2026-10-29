@@ -141,7 +141,6 @@ export function CareersPage() {
               </div>
             ))}
           </div>
-          <p className="gv-c-tbc">Benefits to confirm with HR before launch.</p>
         </div>
       </section>
 
@@ -160,7 +159,6 @@ export function CareersPage() {
               </li>
             ))}
           </ol>
-          <p className="gv-c-tbc">Hiring steps to confirm before launch.</p>
         </div>
       </section>
 

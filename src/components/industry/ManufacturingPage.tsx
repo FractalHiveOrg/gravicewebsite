@@ -12,6 +12,7 @@ import {
   type Role,
 } from "@/components/industry/IndustrySections";
 import { WorkflowDemo } from "@/gravice/components/industry/WorkflowDemo";
+import { ArrowUpRight } from "lucide-react";
 
 /**
  * Manufacturing industry page (prototypes/manufacturing.html; copy from Figma "Manufacturing — Desktop (v2)"):
@@ -159,7 +160,7 @@ function Ctas({ source }: { source: string }) {
         clarityEvent="nico_explore_click"
         claritySource={source}
       >
-        Try NICO free ↗
+        Try NICO for Free <ArrowUpRight />
       </Button>
       <Button
         href="/demo?product=nico"
@@ -231,7 +232,7 @@ export function ManufacturingPage() {
         <div className="gv-wrap">
           <div className="gv-i-top">
             <div className="gv-eyebrow">Platform integrations</div>
-            <h2>Works with the tools you already use.</h2>
+            <h2>Works with the software you already use.</h2>
           </div>
           <div className="gv-i-int-grid">
             {INTEGRATIONS.map((g) => (
@@ -239,7 +240,7 @@ export function ManufacturingPage() {
                 <h3>{g.title}</h3>
                 <div className="gv-i-int-tiles">
                   {g.tiles.map((t) => (
-                    <em key={t.name} className={t.key ? "gv-key" : undefined}>
+                    <em key={t.name} >
                       {t.name}
                     </em>
                   ))}
@@ -247,24 +248,21 @@ export function ManufacturingPage() {
               </div>
             ))}
           </div>
-          <div className="gv-i-int-foot">
+          {/* <div className="gv-i-int-foot">
             {CONTROLS.map((c) => (
               <div key={c.title} className="gv-p-card gv-p-sec-card">
                 <h3>{c.title}</h3>
                 <p>{c.body}</p>
               </div>
             ))}
-          </div>
-          <p className="gv-i-int-note">
-            <span className="gv-p-tbc">To confirm which connectors are live on each plan.</span>
-          </p>
+          </div> */}
         </div>
       </section>
 
       <IndustryInsights title="Reading for manufacturers." items={INSIGHTS} />
 
       <IndustryClosing
-        title="See Gravice on your own invoices and orders."
+        title="See how Gravice can work for you."
         lede="Try NICO free in the web app, or book a 30-minute demo with our team."
         actions={<Ctas source="industry_manufacturing_footer" />}
         explore={[

@@ -10,7 +10,7 @@ export function Hero() {
         <h1 data-gv-reveal>{HERO.title}</h1>
         <p className="gv-lede" data-gv-reveal>{HERO.lede}</p>
         <div className="gv-row" data-gv-reveal>
-          <a className="gv-btn gv-btn-primary" href={HERO.primary.href}>{HERO.primary.label}</a>
+          {/* <a className="gv-btn gv-btn-primary text-white" href={HERO.primary.href}>{HERO.primary.label}</a> */}
           <a className="gv-btn gv-btn-ghost" href={HERO.secondary.href}>{HERO.secondary.label}</a>
         </div>
       </div>

@@ -30,7 +30,7 @@
 
 /* ---- buttons and links ---- */
 .gv-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 26px;border-radius:999px;font:600 15px/1 var(--gv-sans);border:1px solid transparent;cursor:pointer;transition:background .2s,border-color .2s;box-sizing:border-box}
-.gv-btn-primary{background:var(--gv-orange);color:#1A0E06!important}
+.gv-btn-primary{background:var(--gv-orange);color:#ffffff!important}
 .gv-btn-primary:hover{background:#FF7C42}
 .gv-btn-ghost{border-color:#5A6B84;color:var(--gv-on-navy)}
 .gv-btn-ghost:hover{border-color:var(--gv-on-navy)}

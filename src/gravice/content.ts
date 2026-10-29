@@ -9,7 +9,7 @@ export const PRODUCTS: Record<
 > = {
   erm: { name: "ElevateRM", letter: "E", href: "/products/elevaterm" },
   vt: { name: "V-Track", letter: "V", href: "/products/v-track" },
-  nico: { name: "NICO", letter: "N", href: "/products/nico" },
+  nico: { name: "NICO", letter: "N", href: "https://app.nico.fractalhive.com/" },
 };
 
 export const HERO = {

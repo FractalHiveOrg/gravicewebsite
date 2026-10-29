@@ -191,7 +191,7 @@ export function FinancialServicesPage() {
       <IndustryInsights title="Reading for lenders." items={INSIGHTS} />
 
       <IndustryClosing
-        title="See Gravice with examples from lenders like you."
+        title="See how Gravice can work for you."
         lede="Book a 30-minute demo. Tell us which part of the credit journey you want to fix first."
         actions={
           <Button href="/demo" clarityEvent="book_demo_click" claritySource="industry_financial_footer">

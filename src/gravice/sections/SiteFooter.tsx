@@ -1,5 +1,8 @@
 import { Logo } from "@/components/Logo";
 import { PRODUCTS } from "../content";
+import { NicoLogo } from "@/components/NicoLogo";
+import { VtrackLogo } from "@/components/vtrack";
+import { ElevateRMLogo } from "@/components/ElevateRMLogo";
 
 /** Footer with the product logo row. */
 export function SiteFooter() {
@@ -9,9 +12,11 @@ export function SiteFooter() {
         <Logo theme="dark" />
         {(Object.keys(PRODUCTS) as (keyof typeof PRODUCTS)[]).map((k) => (
           <a key={k} href={PRODUCTS[k].href}>
-            {PRODUCTS[k].name}
+                {PRODUCTS[k].name == "NICO" && <NicoLogo  size={60} />}
+                {PRODUCTS[k].name == "V-Track" && <VtrackLogo  size={100} />}
+                  {PRODUCTS[k].name == "ElevateRM" && <ElevateRMLogo  size={130} />}
             {PRODUCTS[k].external ? " ↗" : ""}
-          </a>
+          </a>  
         ))}
       </div>
       <div className="gv-wrap gv-fwrap">
@@ -39,7 +44,7 @@ export function SiteFooter() {
                 <a href="/products/v-track">V-Track</a>
               </li>
               <li>
-                <a href="/products/nico">NICO</a>
+                <a href="https://app.nico.fractalhive.com/">NICO</a>
               </li>
             </ul>
           </div>

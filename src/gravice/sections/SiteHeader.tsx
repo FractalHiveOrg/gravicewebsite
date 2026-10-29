@@ -14,7 +14,7 @@ export function SiteHeader() {
       <div className="gv-mainbar"><div className="gv-wrap gv-nav">
         <a className="gv-brand" href="#top" aria-label="Gravice home"><GlobeMark />Gravice</a>
         <nav className="gv-links" aria-label="Main">
-          <a href="#products">Products</a><a href="#products">Industries</a><a href="#what">Why Gravice</a>
+          <a href="#products">Products</a><a href="#products">Industries</a>{/*<a href="#what">Why Gravice</a>*/}
           <a href="#news">Customers</a><a href="#news">Company</a><a href="#news">Insights</a>
         </nav>
         <a className="gv-btn gv-btn-primary gv-btn-sm" href="#cta">Book a demo</a>

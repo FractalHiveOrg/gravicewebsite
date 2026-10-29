@@ -13,7 +13,7 @@ type Size = "sm" | "lg";
 
 const variantClass: Record<Variant, string> = {
   primary:
-    "bg-pull-orange text-deep-space hover:bg-[#f88c60] border border-transparent shadow-[0_0_0_0_rgba(246,104,46,0)] hover:shadow-[0_10px_28px_-12px_rgba(246,104,46,0.55)]",
+    "bg-pull-orange text-white! hover:bg-[#f88c60] border border-transparent shadow-[0_0_0_0_rgba(246,104,46,0)] hover:shadow-[0_10px_28px_-12px_rgba(246,104,46,0.55)]",
   "secondary-dark":
     "bg-transparent text-paper border-[1.25px] border-paper/60 hover:border-paper hover:bg-paper/5",
   "secondary-light":

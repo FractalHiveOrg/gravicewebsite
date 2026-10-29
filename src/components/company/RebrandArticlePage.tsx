@@ -59,7 +59,7 @@ export function RebrandArticlePage() {
               </div>
               <h1>{TITLE}</h1>
               <div className="gv-a-meta">
-                <span>Date to confirm</span>
+                <span>October 29, 2026</span>
                 <i aria-hidden="true" />
                 <span>3 min read</span>
                 <i aria-hidden="true" />
@@ -92,9 +92,6 @@ export function RebrandArticlePage() {
               <p>If you have questions, your usual Gravice contact will help.</p>
             </div>
 
-            <p className="gv-c-tbc">
-              Draft copy. Confirm the date, the details for customers, and any legal wording before publishing.
-            </p>
 
             <div className="gv-a-share">
               <span>Share</span>

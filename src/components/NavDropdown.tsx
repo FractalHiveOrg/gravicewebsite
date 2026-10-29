@@ -1,132 +1,58 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
+import {
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
-type Child = { label: string; href: string };
+type Child = { label: string; href: string; description?: string };
 
 type Props = {
   label: string;
-  /** Without an href the label is a button that only toggles the menu. */
+  /** Landing page for the menu, listed first as "All <label>". */
   href?: string;
+  /** Sub text for the "All <label>" entry. */
+  description?: string;
   items: Child[];
 };
 
-export function NavDropdown({ label, href, items }: Props) {
-  const [open, setOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const menuId = useId();
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  function clearClose() {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-      closeTimer.current = null;
-    }
-  }
-
-  function scheduleClose() {
-    clearClose();
-    closeTimer.current = setTimeout(() => setOpen(false), 120);
-  }
-
-  function openMenu() {
-    clearClose();
-    setOpen(true);
-  }
-
-  useEffect(() => {
-    function onDocPointer(e: PointerEvent) {
-      if (!rootRef.current?.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("pointerdown", onDocPointer);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("pointerdown", onDocPointer);
-      document.removeEventListener("keydown", onKey);
-      clearClose();
-    };
-  }, []);
-
-  const triggerClass = "inline-flex items-center gap-1 transition-colors hover:text-pull-orange";
-  const caret = (
-    <span
-      className={[
-        "inline-block text-[30px] opacity-60 transition-transform duration-200",
-        open ? "rotate-180" : "",
-      ].join(" ")}
-      aria-hidden
-    >
-      ▾
-    </span>
-  );
+/** One dropdown in the desktop header. Render inside `NavigationMenuList`. */
+export function NavDropdown({ label, href, description, items }: Props) {
+  const links: Child[] = href
+    ? [{ label: `All ${label.toLowerCase()}`, href, description }, ...items]
+    : items;
 
   return (
-    <div
-      ref={rootRef}
-      className="relative"
-      onPointerEnter={openMenu}
-      onPointerLeave={scheduleClose}
-    >
-      {href ? (
-        <Link
-          href={href}
-          className={triggerClass}
-          aria-expanded={open}
-          aria-haspopup="menu"
-          aria-controls={menuId}
-          onFocus={openMenu}
-          onClick={() => setOpen(false)}
-        >
-          {label}
-          {caret}
-        </Link>
-      ) : (
-        <button
-          type="button"
-          className={`${triggerClass} cursor-pointer`}
-          aria-expanded={open}
-          aria-haspopup="menu"
-          aria-controls={menuId}
-          onFocus={openMenu}
-          onClick={openMenu}
-        >
-          {label}
-          {caret}
-        </button>
-      )}
-
-      <div
-        id={menuId}
-        role="menu"
-        className={[
-          "absolute left-0 top-full z-50 pt-3 transition-[opacity,transform,visibility] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
-          open
-            ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-1 opacity-0 pointer-events-none",
-        ].join(" ")}
-        onPointerEnter={openMenu}
-        onPointerLeave={scheduleClose}
-      >
-        <div className="min-w-[200px] rounded-xl border border-paper/10 bg-navy p-2 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.55)]">
-          {items.map((child) => (
-            <Link
-              key={child.href}
-              href={child.href}
-              role="menuitem"
-              className="block rounded-lg px-3 py-2 text-sm text-paper transition-colors hover:bg-paper/10 hover:text-pull-orange"
-              onClick={() => setOpen(false)}
-            >
-              {child.label}
-            </Link>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className="h-auto cursor-pointer gap-1 bg-transparent p-0 text-[length:inherit] font-[inherit] text-paper transition-colors hover:text-pull-orange focus:text-pull-orange data-[state=open]:text-pull-orange [&>svg]:top-0.5 [&>svg]:ml-0 [&>svg]:size-5 [&>svg]:opacity-60">
+        {label}
+      </NavigationMenuTrigger>
+      <NavigationMenuContent className="z-50 p-2 md:w-[360px] group-data-[viewport=false]/navigation-menu:mt-3group-data-[viewport=false]/navigation-menu:rounded-xl group-data-[viewport=false]/navigation-menu:border-paper/10 group-data-[viewport=false]/navigation-menu:bg-deep-space group-data-[viewport=false]/navigation-menu:text-paper group-data-[viewport=false]/navigation-menu:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.55)]">
+        <ul className="grid gap-1">
+          {links.map((child) => (
+            <li key={child.href}>
+              <NavigationMenuLink
+                asChild
+                className="group/link gap-1 rounded-lg px-3 py-2.5 text-paper transition-colors hover:bg-paper/10 focus:bg-paper/10"
+              >
+                <Link href={child.href}>
+                  <span className="text-[15px] font-medium leading-tight transition-colors group-hover/link:text-pull-orange group-focus/link:text-pull-orange">
+                    {child.label}
+                  </span>
+                  {child.description ? (
+                    <span className="text-[13px] leading-snug text-navy-200">
+                      {child.description}
+                    </span>
+                  ) : null}
+                </Link>
+              </NavigationMenuLink>
+            </li>
           ))}
-        </div>
-      </div>
-    </div>
+        </ul>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
   );
 }

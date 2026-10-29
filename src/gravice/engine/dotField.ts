@@ -213,6 +213,29 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
   };
   setReveal(false); // reset (React StrictMode mounts effects twice)
 
+  // ---- scroll lock while the intro plays (wheel, touch and keyboard; released at T_HANDOFF)
+  const SCROLL_KEYS = new Set([' ', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End']);
+  let locked = false;
+  const blockScroll = (e: Event) => { e.preventDefault(); };
+  const blockKeys = (e: KeyboardEvent) => {
+    const t = e.target as Element | null;
+    if (SCROLL_KEYS.has(e.key) && !(t && t.closest && t.closest('input,textarea,select,[contenteditable]'))) e.preventDefault();
+  };
+  const setLock = (on: boolean) => {
+    if (on === locked) return;
+    locked = on;
+    if (on) {
+      window.addEventListener('wheel', blockScroll, { passive: false });
+      window.addEventListener('touchmove', blockScroll, { passive: false });
+      window.addEventListener('keydown', blockKeys);
+    } else {
+      window.removeEventListener('wheel', blockScroll);
+      window.removeEventListener('touchmove', blockScroll);
+      window.removeEventListener('keydown', blockKeys);
+    }
+  };
+  if (!reduce && playIntro && heroPresent()) setLock(true);
+
   const onMove = (e: PointerEvent) => {
     if (e.pointerType !== 'mouse') return;
     ptr.x = e.clientX; ptr.y = e.clientY; ptr.seen = true;
@@ -269,6 +292,7 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     const f = dt / 16.667; clock += dt / 1000;
     const t = (now - introStart) / 1000, intro = t < T_HANDOFF, sy = window.scrollY;
     if (!revealed && t >= T_REVEAL) setReveal(true);
+    if (locked && t >= T_HANDOFF) setLock(false);
 
     // ---- where things are
     const heroG = q('hero-globe'), storyEl = q('story'), stage = q('stage');
@@ -463,12 +487,12 @@ export function createDotField(opts: DotFieldOptions): DotFieldController {
     replay() {
       if (reduce) return;
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-      introStart = performance.now(); burstDone = false; setReveal(false);
+      introStart = performance.now(); burstDone = false; setReveal(false); setLock(true);
       core.r = 0; HC.x = W / 2; HC.y = H / 2; HC.R = Math.min(W, H) * 0.3; scatter();
     },
-    skip() { introStart = performance.now() - T_HANDOFF * 1000; burstDone = true; setReveal(true); },
+    skip() { introStart = performance.now() - T_HANDOFF * 1000; burstDone = true; setReveal(true); setLock(false); },
     destroy() {
-      alive = false; cancelAnimationFrame(raf);
+      alive = false; cancelAnimationFrame(raf); setLock(false);
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', onMove);
       document.documentElement.removeEventListener('mouseleave', onLeave);

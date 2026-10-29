@@ -112,7 +112,6 @@ export function LifePage() {
               </div>
             ))}
           </div>
-          <p className="gv-c-tbc">Examples. Confirm which rituals the team runs before launch.</p>
         </div>
       </section>
 

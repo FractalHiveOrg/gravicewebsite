@@ -67,7 +67,6 @@ export const productSecurity: Record<ProductSlug, ProductSecurity> = {
       {
         title: "Connects to what you run",
         body: "Tally, Zoho Books, WhatsApp and cloud drives, with custom APIs for Enterprise customers.",
-        inlineConfirm: "To confirm the current list.",
         confirm: TBC,
       },
       {

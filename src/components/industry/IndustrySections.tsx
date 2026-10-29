@@ -158,28 +158,7 @@ export function IndustryClosing({
         <h2>{title}</h2>
         <p>{lede}</p>
         <div className="gv-row">{actions}</div>
-        <div className={`gv-p-also${explore.length === 3 ? " gv-i-also-3" : ""}`}>
-          <span className="gv-p-also-label">Explore the products</span>
-          <div className="gv-p-also-grid">
-            {explore.map((e) => (
-              <Link
-                key={e.product}
-                href={PRODUCT_META[e.product].href}
-                data-magnetic
-                data-clarity-event="product_link_click"
-                data-clarity-source={`industry_${e.product}`}
-                className="gv-p-also-card"
-              >
-                <ProductMark product={e.product} size={44} />
-                <div>
-                  <b>{PRODUCT_META[e.product].name}</b>
-                  <span>{e.line}</span>
-                </div>
-                <em aria-hidden>→</em>
-              </Link>
-            ))}
-          </div>
-        </div>
+        
       </div>
     </section>
   );

@@ -168,7 +168,7 @@ export function AboutPage() {
         <div className="gv-wrap">
           <div className="gv-i-top">
             <div className="gv-eyebrow">What we build</div>
-            <h2>Three products. One platform underneath.</h2>
+            <h2>Three products. <br /> One platform underneath.</h2>
           </div>
           <div className="gv-c-cards3">
             {PRODUCTS.map((p) => (

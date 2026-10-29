@@ -15,6 +15,10 @@ import { productImages } from "@/lib/productImages";
 import { productSecurity } from "@/lib/productSecurity";
 import type { Product, ProductSlug } from "@/lib/products";
 import { productList } from "@/lib/products";
+import { CompanyLogo } from "./companyLogo";
+import { ElevateRMLogo } from "./ElevateRMLogo";
+import { VtrackLogo } from "./vtrack";
+import { NicoLogo } from "./NicoLogo";
 
 /**
  * Product page in the Gravice v2 template (prototypes/elevaterm.html, v-track.html, nico.html):
@@ -219,11 +223,13 @@ export function ProductPage({ product }: Props) {
         <div className="gv-wrap gv-p-hero-grid">
           <div className="gv-p-hero-copy">
             <div className="gv-p-lockup">
-              Gravice<span className="gv-p-sep" />
+              {/* <CompanyLogo size={40} /> */}
+              {/* <span className="gv-p-sep" /> */}
               <b>
-                <i>{product.name[0]}</i>
-                {product.name}
-              </b>
+                {product.slug==="elevaterm"&&<ElevateRMLogo size={200} />}
+                {product.slug==="v-track"&&<VtrackLogo size={150} />}
+                {product.slug==="nico"&&<NicoLogo size={110} />}
+              </b>  
             </div>
             <div className="gv-p-eyebrow-row">
               <div className="gv-eyebrow">{product.tagline}</div>
@@ -233,6 +239,8 @@ export function ProductPage({ product }: Props) {
             <p className="gv-p-lede">{product.summary}</p>
             <div className="gv-row">
               {product.slug === "nico" ? (
+                <>
+                
                 <Button
                   href="https://nico.fractalhive.com"
                   target="_blank"
@@ -240,9 +248,18 @@ export function ProductPage({ product }: Props) {
                   className="gap-2.5"
                   clarityEvent="nico_explore_click"
                   claritySource="product_hero"
-                >
-                  Explore <NicoMark on="dark" height={18} />
+                  >
+                  Try Nico for Free
                 </Button>
+                 <Button
+                  href={`/demo?product=${product.slug}`}
+                  clarityEvent="book_demo_click"
+                  claritySource="product_hero"
+                  variant="secondary-dark"
+                >
+                  Book a demo
+                </Button>
+                  </>
               ) : (
                 <Button
                   href={`/demo?product=${product.slug}`}
@@ -252,17 +269,16 @@ export function ProductPage({ product }: Props) {
                   Book a demo
                 </Button>
               )}
-              <Button href="/#products" variant="secondary-dark">
+              {/* <Button href="/#products" variant="secondary-dark">
                 All products
-              </Button>
+              </Button> */}
             </div>
             <div className="gv-p-built-for">
               <em>{product.audience}</em>
             </div>
           </div>
-          <ProductHeroVisual product={orb}>
-            <ProductImage slot={images.hero} className="gv-ph-dark" alt={`${product.name} ${images.hero.label.toLowerCase()}`} />
-          </ProductHeroVisual>
+          <ProductHeroVisual product={orb}/>
+          
         </div>
       </section>
 

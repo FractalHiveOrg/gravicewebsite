@@ -7,11 +7,6 @@ export type Stub = {
 };
 
 export const stubs: Record<string, Stub> = {
-  "company/contact": {
-    title: "Contact",
-    description:
-      "Prefer a structured conversation? Book a 30-minute demo and we will route you to the right team.",
-  },
   trust: {
     title: "Trust Center",
     description:

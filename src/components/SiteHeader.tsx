@@ -5,38 +5,84 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { Logo } from "@/components/Logo";
 import { NavDropdown } from "@/components/NavDropdown";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 
 type NavItem = {
   label: string;
   /** Omitted for menus with no landing page: the label only opens the menu. */
   href?: string;
-  children?: { label: string; href: string }[];
+  /** Sub text for the "All <label>" entry when the menu has an href. */
+  description?: string;
+  children?: { label: string; href: string; description?: string }[];
 };
 
 const nav: NavItem[] = [
   {
     label: "Products",
     href: "/#products",
+    description: "Three platforms. One layer of assurance.",
     children: [
-      { label: "ElevateRM", href: "/products/elevaterm" },
-      { label: "V-Track", href: "/products/v-track" },
-      { label: "NICO", href: "/products/nico" },
+      {
+        label: "ElevateRM",
+        href: "/products/elevaterm",
+        description: "Relationship management, from deal creation to closure.",
+      },
+      {
+        label: "V-Track",
+        href: "/products/v-track",
+        description: "Continuous valuation, LTV and insurance tracking for collateral.",
+      },
+      {
+        label: "NICO",
+        href: "https://app.nico.fractalhive.com/",
+        description: "Agentic automation for document-heavy processes.",
+      },
     ],
   },
   {
     label: "Industries",
     children: [
-      { label: "Financial Institutions", href: "/industries/financial-institutions" },
-      { label: "Manufacturing", href: "/industries/manufacturing" },
+      {
+        label: "Financial Institutions",
+        href: "/industries/financial-institutions",
+        description: "RM, collateral and loan documents for banks and NBFCs.",
+      },
+      {
+        label: "Manufacturing",
+        href: "/industries/manufacturing",
+        description: "Invoices, GRNs and POs into your ERP without retyping.",
+      },
     ],
   },
-  { label: "Why Gravice", href: "/#why" },
+  // { label: "Why Gravice", href: "/#why" },
   {
     label: "Company",
     children: [
-      { label: "About", href: "/company/about" },
-      { label: "Careers", href: "/company/careers" },
-      { label: "Contact", href: "/company/contact" },
+      {
+        label: "About",
+        href: "/company/about",
+        description: "Who we are and why we build Gravice.",
+      },
+      {
+        label: "Careers",
+        href: "/company/careers",
+        description: "Join a small team shipping high-stakes software.",
+      },
+      {
+        label: "Contact",
+        href: "/company/contact",
+        description: "Book a call and we will route you to the right team.",
+      },
+      {
+        label: "Life at Gravice",
+        href: "/company/life-at-gravice",
+        description: "How we work, learn and celebrate together.",
+      },
     ],
   },
   { label: "Insights", href: "/insights" },
@@ -61,32 +107,37 @@ export function SiteHeader() {
         scrolled ? "is-scrolled" : "",
       ].join(" ")}
     >
-      <div className="page-x mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-3 md:h-[84px] md:gap-6">
+      <div className="page-x mx-auto flex h-18 max-w-360 items-center justify-between gap-3 md:h-[84px] md:gap-6">
         <Logo theme="dark" className="min-w-0 shrink" />
 
-        <nav
-          className="hidden items-center gap-5 text-[14px] font-medium text-paper xl:flex xl:gap-8 xl:text-[15px]"
+        <NavigationMenu
+          viewport={false}
+          className="hidden flex-none text-[14px] font-medium text-paper xl:flex xl:text-[15px]"
           aria-label="Primary"
         >
-          {nav.map((item) =>
-            item.children ? (
-              <NavDropdown
-                key={item.label}
-                label={item.label}
-                href={item.href}
-                items={item.children}
-              />
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href ?? "/"}
-                className="transition-colors hover:text-pull-orange"
-              >
-                {item.label}
-              </Link>
-            ),
-          )}
-        </nav>
+          <NavigationMenuList className="gap-5 xl:gap-8">
+            {nav.map((item) =>
+              item.children ? (
+                <NavDropdown
+                  key={item.label}
+                  label={item.label}
+                  href={item.href}
+                  description={item.description}
+                  items={item.children}
+                />
+              ) : (
+                <NavigationMenuItem key={item.label}>
+                  <NavigationMenuLink
+                    asChild
+                    className="block rounded-none p-0 text-[length:inherit] transition-colors hover:bg-transparent hover:text-pull-orange focus:bg-transparent focus:text-pull-orange"
+                  >
+                    <Link href={item.href ?? "/"}>{item.label}</Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ),
+            )}
+          </NavigationMenuList>
+        </NavigationMenu>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <Button
@@ -152,7 +203,7 @@ export function SiteHeader() {
             <Button
               href="/demo"
               size="sm"
-              className="mt-2 flex w-full md:hidden"
+              className="mt-2 flex w-full md:hidden text-white"
               clarityEvent="book_demo_click"
               claritySource="header_mobile"
             >
