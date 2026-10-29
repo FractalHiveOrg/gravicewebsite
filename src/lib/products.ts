@@ -38,20 +38,20 @@ export const products: Record<ProductSlug, Product> = {
     headline: "Every deal, every customer, one workspace.",
     summary:
       "ElevateRM gives relationship managers everything they need, from deal creation to closure, on one platform. Less time on admin tasks. More time with customers.",
-    audience: "For banks with a commercial banking footprint",
+    audience: "For banks and NBFCswith a commercial banking footprint",
     accent: "purple",
     problem:
       "Relationship pipelines are scattered. Deals, follow-ups, and upsell opportunities sit across email, Excel, and notebooks.",
     outcome:
-      "Every deal in one workspace. Pipeline, client history, and follow-ups in one place — from creation to closure to upsell.",
+      "Every deal in one workspace. Pipeline, client history, and follow-ups in one place - from creation to closure to upsell.",
     steps: [
       {
         title: "Create",
-        body: "Capture details and open deals in minutes.",
+        body: "Capture details and initiate proposals in minutes.",
       },
       {
         title: "Engage",
-        body: "Client history and bank exposure, all in one place.",
+        body: "Customer history and bank exposure, all in one place.",
       },
       {
         title: "Close",
@@ -121,10 +121,10 @@ export const products: Record<ProductSlug, Product> = {
       "Every revaluation enforced on time, in one place. One digital register with time- and event-based alerts and an audit-ready history.",
     steps: [
       { title: "Digitise", body: "Bring every collateral into one digital register." },
-      { title: "Schedule", body: "Set time- and event-based revaluation cadence." },
-      { title: "Alert", body: "Surface what is overdue or approaching breach." },
+      { title: "Schedule", body: "Set time and event-based valuation cadence." },
+      { title: "Alert", body: "Surface what is overdue or approaching LTV breach." },
       { title: "Revalue", body: "Drive market-linked, model-driven asset updates." },
-      { title: "Audit", body: "Keep a complete history of every valuation cycle." },
+      { title: "Audit", body: "Keep a complete history of every action." },
     ],
     features: [
       {
@@ -176,15 +176,15 @@ export const products: Record<ProductSlug, Product> = {
       },
       {
         stage: "Monitor & review",
-        capability: "Time- and event-based valuation alerts",
+        capability: "Time and event based valuation alerts",
       },
       {
         stage: "Renew & grow",
-        capability: "Current valuations ahead of renewal",
+        capability: "Current valuations and growth opportunities ahead of renewal",
       },
       {
         stage: "Audit & report",
-        capability: "Complete history of the valuation cycle",
+        capability: "Complete history of your valuation actions",
       },
     ],
     microsoftPartnership: {

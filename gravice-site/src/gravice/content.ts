@@ -20,19 +20,19 @@ export const HERO = {
 export const STORY = {
   eyebrow: 'What Gravice can do for you',
   title: 'Intelligence that does the work, so your people can make the call.',
-  body: 'The same intelligence runs inside every Gravice product. Here is what each one does for your teams.',
+  body: 'Gravice intelligence runs inside every product. Here is what our products do for your teams.',
   steps: [
     {
       product: 'erm' as ProductKey,
       orb: 'connecting' as OrbState, // a network of relationships wiring itself
       title: 'Less paperwork, more deals for your relationship managers.',
-      body: "ElevateRM takes the admin off relationship managers' desks. It keeps every client, meeting and follow-up in one place and shows each RM which clients need them today, so deals close faster.",
+      body: "ElevateRM takes the admin work off relationship managers' desks. It keeps every client, meeting, and follow-up in one place and shows each RM which clients need them today, so deals close faster.",
       link: 'Explore ElevateRM →',
     },
     {
       product: 'vt' as ProductKey,
       orb: 'searching' as OrbState, // a scan line sweeping a dotted globe: the collateral book
-      title: 'Every collateral revaluation, on time.',
+      title: 'Collateral compliance. On time, every time.',
       body: "V-track gives banks and NBFCs one view of their collateral book. It tracks each asset's next revaluation date, alerts teams before anything falls due, and keeps reports ready for audit and the RBI.",
       link: 'Explore V-track →',
     },

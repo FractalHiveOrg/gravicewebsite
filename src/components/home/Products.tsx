@@ -14,8 +14,8 @@ export function Products() {
             Three platforms. <br />One layer of assurance.
           </h2>
           <p className="text-[17px] leading-[1.6] text-navy-200">
-            ElevateRM, V-Track, and NICO sit above the systems you already run —
-            LOS, CMS, ERP, and core banking — without rip-and-replace.
+            ElevateRM, V-Track, and NICO sit above the systems you already run:
+            <br />LOS, CMS, ERP, and core banking. <br />Without any rip-and-replace.
           </p>
         </Reveal>
 

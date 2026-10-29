@@ -39,8 +39,8 @@ const themeFor: Record<ProductSlug, string> = {
 
 const MARKETPLACE_BENEFITS = [
   {
-    title: "Buy through a channel you already use",
-    body: "Find and procure V-Track from the marketplace your IT and procurement teams already work with.",
+    title: "Buy through a channel you trust",
+    body: "Find and procure V-Track from the marketplace your IT and procurement teams trust.",
   },
   {
     title: "One Microsoft invoice",
@@ -158,7 +158,7 @@ export function ProductPage({ product }: Props) {
                 </span>
               </div>
             </div>
-            <h3 className="gv-p-ms-sub">Why buying through Microsoft Marketplace helps</h3>
+            <h3 className="gv-p-ms-sub">Advantages of buying through Microsoft Marketplace</h3>
             <div className="gv-p-grid">
               {MARKETPLACE_BENEFITS.map((item) => (
                 <article key={item.title} className="gv-p-card">

@@ -72,7 +72,7 @@ export function RebrandArticlePage() {
             <div className="gv-a-body">
               <p>FractalHive is now Gravice. The name is new. The team, the products and our purpose are the same.</p>
               <p>
-                We started in 2023, when a banking veteran saw how much of the financial industry still ran on processes
+                We started in 2024, when a banking veteran saw how much of the financial industry still ran on processes
                 that were slow, redundant and costly. Since then we&apos;ve built three products to change that:
                 ElevateRM for relationship managers, V-Track for collateral revaluation, and NICO for documents and
                 processes.

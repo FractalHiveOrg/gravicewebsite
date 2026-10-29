@@ -67,8 +67,8 @@ const STAGES: JourneyStage[] = [
   },
   {
     label: "Audit & report",
-    title: "One audit trail, ready when the regulator asks.",
-    body: "Every action across all three products is recorded in one place, with revaluation status ready for internal audit and regulatory inspections.",
+    title: "One audit trail, ready for regulatory compliance.",
+    body: "Every action across is recorded in one place, with reports ready for internal audit and regulatory compliance.",
     orb: "vtrack",
     tags: ["vtrack", "elevaterm", "nico"],
   },
@@ -138,7 +138,7 @@ export function FinancialServicesPage() {
       <ClarityTags tags={{ industry: "financial-services" }} />
 
       <IndustryHero
-        industry="Financial services"
+        industry="Financial institutions"
         title="Built for the way banks and NBFCs lend."
         lede="Gravice helps banks and NBFCs run relationship management, collateral tracking and loan documents on one platform, with the audit trail regulators expect."
         audiences={["Banks", "NBFCs"]}
@@ -191,8 +191,8 @@ export function FinancialServicesPage() {
       <IndustryInsights title="Reading for lenders." items={INSIGHTS} />
 
       <IndustryClosing
-        title="See how Gravice can work for you."
-        lede="Book a 30-minute demo. Tell us which part of the credit journey you want to fix first."
+        title="Explore what Gravice can do for you."
+        lede="Book a 30-minute demo. Tell us which part of your operations you want to transform first."
         actions={
           <Button href="/demo" clarityEvent="book_demo_click" claritySource="industry_financial_footer">
             Book a demo

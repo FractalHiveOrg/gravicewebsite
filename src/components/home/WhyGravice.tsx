@@ -9,11 +9,11 @@ const pillars = [
   },
   {
     title: "Execution you can count on",
-    body: "We commit to what we can deliver, then deliver it, and stay with you long after go-live.",
+    body: "We commit to what we can deliver, then deliver on it, and stay with you long after go-live.",
   },
   {
     title: "Fair partnership",
-    body: "Every deal has to work for both sides. That is how we build long relationships with the institutions we serve.",
+    body: "Every deal has to work for both partners. That is how we build long relationships with the institutions we serve.",
   },
 ];
 
@@ -27,7 +27,7 @@ export function WhyGravice() {
               Why Gravice
             </p>
             <h2 className="font-serif text-[clamp(2rem,4vw,2.75rem)] font-normal leading-[1.15] tracking-[-0.01em] text-deep-space">
-              A partner that brings order, and keeps its word.
+              A partner that brings order,<br />and keeps their word.
             </h2>
           </div>
        

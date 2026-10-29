@@ -23,27 +23,27 @@ export const HERO = {
 export const STORY = {
   eyebrow: "What Gravice can do for you",
   title: "Intelligence that does the work, so your people can make the call.",
-  body: "The same intelligence runs inside every Gravice product. Here is what each one does for your teams.",
+  body: "Gravice intelligence runs inside every product. Here is what our products do for your teams.",
   steps: [
     {
       product: "erm" as ProductKey,
       orb: "composing" as OrbState,
       title: "Less paperwork, more deals for your relationship managers.",
-      body: "ElevateRM takes the admin off relationship managers' desks. It keeps every client, meeting and follow-up in one place and shows each RM which clients need them today, so deals close faster.",
+      body: "ElevateRM takes the admin work off relationship managers' desks. It keeps every client, meeting, and follow-up in one place and shows each RM which clients need them today, so deals close faster.",
       link: "Explore ElevateRM →",
     },
     {
       product: "vt" as ProductKey,
       orb: "searching" as OrbState,
-      title: "Every collateral revaluation, on time.",
-      body: "V-Track gives banks and NBFCs one view of their collateral book. It tracks each asset's next revaluation date, alerts teams before anything falls due, and keeps reports ready for audit and the RBI.",
+      title: "Collateral compliance. On time, every time.",
+      body: "V-Track gives banks and NBFCs one view of their collateral book. It tracks each asset's next revaluation date, alerts teams before anything falls due, and keeps reports ready for audit and regulatory compliance.",
       link: "Explore V-Track →",
     },
     {
       product: "nico" as ProductKey,
       orb: "solving" as OrbState,
       title: "Documents in, decisions out.",
-      body: "NICO reads invoices, loan files and delivery notes, checks them against your rules, and sends approved entries to Tally or your ERP. Your team only reviews what needs a decision.",
+      body: "NICO reads invoices, loan files, and delivery notes, then checks them against your rules, and sends approved entries to Tally, Zoho, or your ERP. Your team only reviews what needs a decision.",
       link: "Explore NICO →",
     },
   ],

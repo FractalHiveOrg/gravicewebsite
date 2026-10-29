@@ -262,7 +262,7 @@ export function ManufacturingPage() {
       <IndustryInsights title="Reading for manufacturers." items={INSIGHTS} />
 
       <IndustryClosing
-        title="See how Gravice can work for you."
+        title="Explore what Gravice can do for you."
         lede="Try NICO free in the web app, or book a 30-minute demo with our team."
         actions={<Ctas source="industry_manufacturing_footer" />}
         explore={[

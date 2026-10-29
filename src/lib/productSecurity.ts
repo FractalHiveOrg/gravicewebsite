@@ -28,12 +28,12 @@ export const productSecurity: Record<ProductSlug, ProductSecurity> = {
       },
       {
         title: "Connects to what you run",
-        body: "Works alongside your LOS, CMS and core banking systems, so client and exposure data stay in sync.",
+        body: "Plug and plays alongside your LOS, CMS, and core banking systems, resulting in faster, seamless transformations.",
         confirm: TBC,
       },
       {
         title: "Controlled and auditable",
-        body: "Role-based access and a full activity history, part of the assurance layer shared by every Gravice product.",
+        body: "Role-based access and a full activity history, part of the Gravice assurance layer.",
       },
     ],
   },

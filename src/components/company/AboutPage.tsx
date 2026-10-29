@@ -12,32 +12,32 @@ import { PRODUCT_META, ProductMark } from "@/gravice/components/industry/Product
  */
 const TIMELINE = [
   {
-    when: "2023",
+    when: "2024",
     title: "FractalHive is founded",
-    body: "A banking veteran sets out to remove the slow, redundant and costly work from financial operations.",
+    body: "A banking veteran sets out to transform the slow, redundant, and inefficient work from financial operations.",
   },
   {
     when: "Our products",
-    title: "ElevateRM, V-Track and NICO",
+    title: "ElevateRM, V-Track, and NICO",
     body: "Relationship management, collateral revaluation tracking, and document and process automation.",
   },
   {
     when: "2026",
-    title: "FractalHive becomes Gravice",
+    title: "FractalHive rebrands as Gravice",
     body: "A new name for a clear purpose: intelligence at the centre of banking and business operations.",
     now: true,
   },
 ];
 
 const VALUES = [
-  { title: "Be 10× better", body: "We aim for real change in high-stakes processes, not small improvements." },
+  { title: "Be 10 × better", body: "We aim for real change in high-stakes processes." },
   {
     title: "Simplicity over extravagance",
     body: "Every feature earns its place. We build what institutions need, nothing more.",
   },
   {
     title: "Honesty over short-term gain",
-    body: "Trust and transparency come first, because we want relationships that last.",
+    body: "Trust and transparency come first, because we value relationships that last.",
   },
   {
     title: "Innovation through collaboration",
@@ -90,13 +90,13 @@ export function AboutPage() {
             <div className="gv-eyebrow">Our story</div>
             <h2 className="gv-c-big-h">Started by a banker who saw the gap.</h2>
             <p className="gv-c-lead">
-              In 2023, a banking veteran saw how much of the financial industry still ran on processes that were slow,
+              In 2024, a banking veteran saw how much of the financial industry still ran on processes that were slow,
               redundant and costly. Relationship managers chased paperwork instead of clients. Collateral was tracked
               in spreadsheets. Loan files were read and re-keyed by hand.
             </p>
             <p className="gv-c-lead">
-              FractalHive was founded to fix that. Today, as Gravice, we build one intelligent platform that sits
-              underneath the work and keeps it moving.
+              FractalHive was founded to fix that. Today, as Gravice, we build intelligent platforms that sit
+              underneath the work, keeping it moving.
             </p>
           </div>
           <ol className="gv-c-timeline">
@@ -140,7 +140,7 @@ export function AboutPage() {
             <div>
               <span className="gv-eyebrow">Vision</span>
               <h3>Modern AI that every organisation can afford and trust.</h3>
-              <p>Technology that empowers people instead of replacing them, with trust built in from the start.</p>
+              <p>Technology that empowers people, with trust built in from the start.</p>
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ export function AboutPage() {
         <div className="gv-wrap">
           <div className="gv-i-top">
             <div className="gv-eyebrow">What we build</div>
-            <h2>Three products. <br /> One platform underneath.</h2>
+            <h2>Products with intelligence at the centre.</h2>
           </div>
           <div className="gv-c-cards3">
             {PRODUCTS.map((p) => (
