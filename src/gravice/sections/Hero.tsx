@@ -1,3 +1,4 @@
+import { MicrosoftPartnership } from '@/components/microsoftPartnership';
 import { HERO } from '../content';
 
 /** Hero: the globe forms here (data-gv="hero-globe"); text fades in once it has formed. */
@@ -17,6 +18,8 @@ export function Hero() {
           <a className="gv-btn gv-btn-ghost" href={HERO.secondary.href} data-clarity-event="book_demo_click" data-clarity-source="hero">{HERO.secondary.label}</a>
         </div>
       </div>
+            <MicrosoftPartnership/>
+      
     </section>
   );
 }

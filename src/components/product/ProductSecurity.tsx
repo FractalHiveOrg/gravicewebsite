@@ -11,9 +11,7 @@ export function ProductSecurity({ security, band }: { security: Security; band: 
             <div className="gv-eyebrow">Security &amp; deployment</div>
             <h2>{security.heading}</h2>
           </div>
-          <Link className="gv-textlink" href="/trust">
-            Visit the Trust Center →
-          </Link>
+      
         </div>
         <div className="gv-p-grid gv-p-grid-3">
           {security.cards.map((card) => (

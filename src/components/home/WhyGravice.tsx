@@ -30,9 +30,7 @@ export function WhyGravice() {
               A partner that brings order, and keeps its word.
             </h2>
           </div>
-          <Button href="/trust" variant="link-light">
-            Visit the Trust Center →
-          </Button>
+       
         </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

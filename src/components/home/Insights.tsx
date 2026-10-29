@@ -27,7 +27,8 @@ export function Insights() {
         </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {insights.map((a, i) => (
+          {insights.slice(0,3).map((a, i) =>
+           (
             <Reveal key={a.url} delay={i * 70}>
               <a
                 href={a.url}

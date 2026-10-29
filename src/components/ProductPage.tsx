@@ -137,7 +137,8 @@ export function ProductPage({ product }: Props) {
             <div className="gv-p-dark gv-p-ms-head">
               <div>
                 <h3>Official Microsoft Partner</h3>
-                <p>Microsoft AI Cloud Partner Program · ISV Success</p>
+                {/* <p>Microsoft AI Cloud Partner Program · ISV Success</p> */}
+                <p>Gravice is part of Microsoft’s ISV Success program. <br /> Our platform is built on Microsoft Azure and listed on Microsoft Marketplace, <br /> so you can buy and deploy it through the cloud your organisation already trusts.</p>
                 <div className="gv-p-ms-chips">
                   <span>Listed on Microsoft Marketplace</span>
                   <span>Built on Microsoft Azure</span>
