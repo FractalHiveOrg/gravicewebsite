@@ -97,6 +97,10 @@ export const productImages: Record<ProductSlug, Slots> = {
         "https://fractalhiveassets.blob.core.windows.net/assets/VTimg-07-trend.webp?sp=r&st=2026-10-29T12:27:52Z&se=2036-10-29T20:42:52Z&spr=https&sv=2026-02-06&sr=b&sig=%2BEFIa4jmAbul000FOyrVjMWYJmfT1UqdiXmAUhB1eVo%3D",
       "IMG-08":
         "https://fractalhiveassets.blob.core.windows.net/assets/VTimg-08-ltv.webp?sp=r&st=2026-10-29T12:28:10Z&se=2036-10-29T20:43:10Z&spr=https&sv=2026-02-06&sr=b&sig=g5Y3hseL66jZ5uh54WhgA0Zjt10pPKAJjILyymW6uMU%3D",
+      "IMG-09":
+        "https://fractalhiveassets.blob.core.windows.net/assets/VTimg-05-pipeline.webp?sp=r&st=2026-10-29T12:27:17Z&se=2036-10-29T20:42:17Z&spr=https&sv=2026-02-06&sr=b&sig=Ver1R0uisrgKW%2BkrmPy6l38vrbfnDtQ03rHZfAb5FV8%3D",
+      "IMG-10":
+        "https://fractalhiveassets.blob.core.windows.net/assets/VTimg-06-history.webp?sp=r&st=2026-10-29T12:27:32Z&se=2036-10-29T20:42:32Z&spr=https&sv=2026-02-06&sr=b&sig=lkCwpNrE%2FoaMzYYzKnz%2Fj6BArvLWORXMbaWcCW0wvV4%3D",
     },
   ),
   nico: slots(

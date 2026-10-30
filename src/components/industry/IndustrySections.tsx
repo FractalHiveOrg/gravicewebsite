@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import { HeroGlobe } from "@/gravice/components/HeroGlobe";
 import type { GraviceProduct } from "@/gravice/components/ProductOrb";
 import { PRODUCT_META, ProductMark, ProductTag } from "@/gravice/components/industry/ProductMark";
-
+import { insights } from "@/lib/insights";
+import { Reveal } from "../Reveal";
+import Image from "next/image"
 /**
  * Sections shared by the industry pages (prototypes/financial-services.html, manufacturing.html: one template).
  * Each page supplies its copy; page-specific sections (workflow engine, integrations, compliance) live with the page.
@@ -63,7 +65,7 @@ export function IndustryPressure({ eyebrow, title, items }: { eyebrow: string; t
               <ProductMark product={p.product} />
               <h3>{p.title}</h3>
               <p>{p.body}</p>
-              <ProductTag product={p.product} label={`${PRODUCT_META[p.product].name} fixes this →`} />
+              <ProductTag product={p.product} label={`See how ${PRODUCT_META[p.product].name} tackles this →`} hideLogo={true} />
             </article>
           ))}
         </div>
@@ -120,18 +122,43 @@ export function IndustryInsights({ title, items }: { title: string; items: Insig
             All insights →
           </Link>
         </div>
-        <div className="gv-i-ins-grid">
-          {items.map((a) => (
-            <Link key={a.title} className="gv-i-ins" href="/insights">
-              <div className="gv-i-ins-art" />
-              <div className="gv-i-ins-body">
-                <span className="gv-i-ins-k">{a.kind}</span>
-                <h3>{a.title}</h3>
-                <small>{a.meta}</small>
+         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
+        {insights.slice(0, 3).map((a, i) =>
+        (
+          <Reveal key={a.url} delay={i * 70}>
+            <a
+              href={a.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="motion-card group flex h-full flex-col overflow-hidden rounded-[20px] border border-transparent bg-white hover:border-navy-100"
+            >
+              <div className="relative h-[180px] overflow-hidden bg-navy-100">
+                <Image
+                  src={a.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                />
               </div>
-            </Link>
-          ))}
-        </div>
+              <div className="flex min-w-0 flex-1 flex-col gap-3 px-5 pb-5 pt-5 sm:px-6 sm:pb-6">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
+                  LinkedIn
+                </p>
+                <h3 className="font-serif text-[clamp(1.05rem,2.2vw,1.25rem)] font-normal leading-[1.25] text-balance text-deep-space transition-colors group-hover:text-navy">
+                  {a.title}
+                </h3>
+                <p className="text-[14px] leading-relaxed text-pretty text-slate">
+                  {a.blurb}
+                </p>
+                <span className="mt-auto pt-2 text-[14px] font-medium text-pull-orange-deep">
+                  Read on LinkedIn →
+                </span>
+              </div>
+            </a>
+          </Reveal>
+        ))}
+      </div>
       </div>
     </section>
   );

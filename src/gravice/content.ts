@@ -35,7 +35,7 @@ export const STORY = {
     {
       product: "vt" as ProductKey,
       orb: "searching" as OrbState,
-      title: "Collateral compliance. On time, every time.",
+      title: "Collateral compliance.\n On time, every time.",
       body: "V-Track gives banks and NBFCs one view of their collateral book. It tracks each asset's next revaluation date, alerts teams before anything falls due, and keeps reports ready for audit and regulatory compliance.",
       link: "Explore V-Track →",
     },

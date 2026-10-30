@@ -111,7 +111,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section data-cursor-surface="light" className="gv-band gv-light gv-c-sec gv-c-white">
+      {/* <section data-cursor-surface="light" className="gv-band gv-light gv-c-sec gv-c-white">
         <div className="gv-wrap">
           <div className="gv-i-top">
             <div className="gv-eyebrow">The name</div>
@@ -123,7 +123,7 @@ export function AboutPage() {
           </div>
           <AboutLattice />
         </div>
-      </section>
+      </section> */}
 
       <section data-cursor-surface="dark" className="gv-band gv-c-sec gv-c-dark">
         <div className="gv-wrap">
@@ -139,7 +139,7 @@ export function AboutPage() {
             </div>
             <div>
               <span className="gv-eyebrow">Vision</span>
-              <h3>Modern AI that every organisation can afford and trust.</h3>
+              <h3>Modern Intelligence that every organisation can afford and trust.</h3>
               <p>Technology that empowers people, with trust built in from the start.</p>
             </div>
           </div>

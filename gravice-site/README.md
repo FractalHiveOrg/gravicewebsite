@@ -97,7 +97,7 @@ field.current?.skip();   // jump to the end of the intro
 | Product | Orb | What it shows |
 |---|---|---|
 | ElevateRM | `connecting` | A network of relationships |
-| V-track | `searching` | A scan line sweeping a dotted globe |
+| V-Track | `searching` | A scan line sweeping a dotted globe |
 | NICO | `solving` | Scrambled work clicking into order |
 
 Other options are `working`, `listening`, `weaving`, `composing`, `breathing` and `shaping`. Adding or removing a step works too, because the engine handles any number.

@@ -91,7 +91,7 @@ const ROLES: Role[] = [
     lede: "Fewer documents to type, a faster month end.",
     points: [
       "Invoices, receipts and GRNs read automatically",
-      "Only exceptions sent to a person for review",
+      "Only exceptions sent to the decision maker for review",
       "Approved entries exported to Tally / Zoho / ERP",
     ],
     products: ["nico"],
@@ -101,8 +101,8 @@ const ROLES: Role[] = [
     lede: "Orders and receipts captured as they arrive.",
     points: [
       "Purchase orders and delivery notes read on arrival",
-      "Approvals routed to the right person automatically",
-      "Every step recorded for audit",
+      "Approvals routed to the right decision maker automatically",
+      "Every action recorded for audit",
     ],
     products: ["nico"],
   },
@@ -196,7 +196,7 @@ export function ManufacturingPage() {
       <IndustryJourney
         eyebrow="From order to ledger"
         title="One platform, from the first order to the books."
-        lede="NICO handles the documents and ElevateRM handles the accounts, with the same audit trail underneath both."
+        lede="NICO handles the documents and ElevateRM handles the deals, with the same audit trail underneath both."
         stages={STAGES}
       />
 
@@ -232,7 +232,7 @@ export function ManufacturingPage() {
         <div className="gv-wrap">
           <div className="gv-i-top">
             <div className="gv-eyebrow">Platform integrations</div>
-            <h2>Works with the software you already use.</h2>
+            <h2>Works with the software you already run.</h2>
           </div>
           <div className="gv-i-int-grid">
             {INTEGRATIONS.map((g) => (

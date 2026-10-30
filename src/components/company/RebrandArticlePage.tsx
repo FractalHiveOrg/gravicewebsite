@@ -3,6 +3,7 @@ import { ClarityTags } from "@/components/ClarityTags";
 import { CopyLinkButton } from "@/components/company/CopyLinkButton";
 import { ProductImage } from "@/components/product/ProductImage";
 import type { ImageSlot } from "@/lib/productImages";
+import { Insights } from "../home/Insights";
 
 /**
  * Newsroom article (prototypes/newsroom-article.html): the FractalHive → Gravice announcement, then
@@ -18,6 +19,7 @@ const HERO_IMAGE: ImageSlot = {
   label: "Announcement image",
   size: "1600 × 900",
   note: "the new Gravice logo",
+  src:"/fractalhive-to-gravice-rebrand_1.png"
 };
 
 const MORE = [
@@ -82,55 +84,26 @@ export function RebrandArticlePage() {
               <blockquote>
                 Gravity is the pull of a strong centre. A lattice is order that holds. Gravice is both.
               </blockquote>
-              <p>One core pulls scattered, manual work into a structure that teams and auditors can rely on.</p>
+             
               <h2>What changes for customers</h2>
               <ul>
                 <li>Our name, logo and website change to Gravice.</li>
                 <li>Your products, your contacts and the way you work with us stay the same.</li>
                 <li>Product names stay the same: ElevateRM, V-Track and NICO.</li>
               </ul>
-              <p>If you have questions, your usual Gravice contact will help.</p>
-            </div>
-
-
-            <div className="gv-a-share">
-              <span>Share</span>
-              {shareLinks().map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              ))}
-              <CopyLinkButton />
+              <p>If you have questions, reach out to us at  <Link
+                  href="mailto:contact@gravicesolutions.com"
+                  className="font-medium text-pull-orange-deep! underline-offset-4! hover:underline"
+                >
+                  contact@gravicesolutions.com
+                </Link></p>
             </div>
           </article>
         </div>
       </section>
 
-      <section data-cursor-surface="light" className="gv-band gv-light gv-c-sec gv-c-cream">
-        <div className="gv-wrap">
-          <div className="gv-i-top gv-p-top-between">
-            <div className="gv-stack">
-              <div className="gv-eyebrow">Keep reading</div>
-              <h2>More from the newsroom.</h2>
-            </div>
-            <Link className="gv-textlink" href={NEWSROOM_HREF}>
-              All posts →
-            </Link>
-          </div>
-          <div className="gv-i-ins-grid">
-            {MORE.map((a) => (
-              <a key={a.href} className="gv-i-ins" href={a.href} target="_blank" rel="noopener noreferrer">
-                <div className="gv-i-ins-art" />
-                <div className="gv-i-ins-body">
-                  <span className="gv-i-ins-k">Article</span>
-                  <h3>{a.title}</h3>
-                  <small className="gv-a-ext">On LinkedIn ↗</small>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+            <Insights />
+    
     </div>
   );
 }

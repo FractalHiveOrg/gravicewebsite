@@ -10,14 +10,14 @@ import { NicoSymbol } from '@/components/NicoSymbol';
  */
 export const PRODUCT_META: Record<GraviceProduct, { name: string; letter: string; color: string; href: string }> = {
   elevaterm: { name: 'ElevateRM', letter: 'E', color: '#5B3E9E', href: '/products/elevaterm' },
-  vtrack: { name: 'V-track', letter: 'V', color: '#24467A', href: '/products/v-track' },
+  vtrack: { name: 'V-Track', letter: 'V', color: '#24467A', href: '/products/v-track' },
   nico: { name: 'NICO', letter: 'N', color: '#B4501F', href: 'https://nico.gravicesolutions.com' },
 };
 
 export function ProductMark({ product, size = 48, className }: { product: GraviceProduct; size?: number; className?: string }) {
   const m = PRODUCT_META[product];
   // console.log(m.name)
-  if (m?.name === 'V-track') {
+  if (m?.name === 'V-Track') {
     return <VtrackSymbol size={30} />
   } else if (m?.name === "NICO") {
     return <NicoSymbol size={30} />
@@ -36,11 +36,11 @@ export function ProductMark({ product, size = 48, className }: { product: Gravic
 }
 
 /** Pill linking to a product, e.g. "ElevateRM fixes this →" or a plain product tag in the journey. */
-export function ProductTag({ product, label, href = PRODUCT_META[product].href }: { product: GraviceProduct; label?: string; href?: string }) {
+export function ProductTag({hideLogo=false, product, label, href = PRODUCT_META[product].href }: { product: GraviceProduct; label?: string; href?: string,hideLogo?:boolean }) {
   const m = PRODUCT_META[product];
   return (
     <a className="gv-ptag" href={href} data-clarity-event="product_link_click" data-clarity-source={`industry_${product}`}>
-      <ProductMark product={product} />
+     {!hideLogo && <ProductMark product={product} />}
       {label ?? m.name}
     </a>
   );

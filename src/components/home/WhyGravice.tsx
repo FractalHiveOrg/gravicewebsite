@@ -4,14 +4,17 @@ import { Reveal } from "@/components/Reveal";
 
 const pillars = [
   {
+    icon: "/brand/icon-structure.svg",
     title: "Structure by design",
     body: "We turn slow, manual processes into clear, trackable workflows that your teams and auditors can rely on.",
   },
   {
+    icon: "/brand/icon-execution.svg",
     title: "Execution you can count on",
     body: "We commit to what we can deliver, then deliver on it, and stay with you long after go-live.",
   },
   {
+    icon: "/brand/icon-partnership.svg",
     title: "Fair partnership",
     body: "Every deal has to work for both partners. That is how we build long relationships with the institutions we serve.",
   },
@@ -20,9 +23,9 @@ const pillars = [
 export function WhyGravice() {
   return (
     <section id="why" className="section-pad bg-white" data-cursor-surface="light">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-300">
         <Reveal className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="flex max-w-[40rem] flex-col gap-4">
+          <div className="flex max-w-160 flex-col gap-4">
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-pull-orange-deep">
               Why Gravice
             </p>
@@ -38,11 +41,11 @@ export function WhyGravice() {
             <Reveal key={p.title} delay={i * 90}>
               <article className="motion-card flex h-full min-w-0 flex-col gap-4 rounded-[20px] border border-transparent bg-paper p-6 sm:p-8 hover:border-navy-100">
                 <Image
-                  src="/brand/symbol-small.svg"
+                  src={p.icon}
                   alt=""
-                  width={40}
-                  height={40}
-                  className="size-10 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  width={44}
+                  height={44}
+                  className="size-11 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                   unoptimized
                 />
                 <h3 className="font-serif text-[clamp(1.25rem,2.5vw,1.5rem)] font-normal leading-[1.15] text-deep-space">

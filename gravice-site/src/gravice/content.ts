@@ -5,14 +5,14 @@ export type ProductKey = 'erm' | 'vt' | 'nico';
 
 export const PRODUCTS: Record<ProductKey, { name: string; letter: string; href: string; external?: boolean }> = {
   erm: { name: 'ElevateRM', letter: 'E', href: '#products' },
-  vt: { name: 'V-track', letter: 'V', href: '#products' },
+  vt: { name: 'V-Track', letter: 'V', href: '#products' },
   nico: { name: 'NICO', letter: 'N', href: 'https://nico.gravicesolutions.com', external: true },
 };
 
 export const HERO = {
   eyebrow: 'Fintech for banks and growing businesses',
   title: 'Intelligence, at the centre.',
-  lede: 'One intelligence platform sits at the centre of ElevateRM, V-track and NICO. It reads, checks and organises the slow, manual work, so banks and growing businesses move faster with less risk.',
+  lede: 'One intelligence platform sits at the centre of ElevateRM, V-Track and NICO. It reads, checks and organises the slow, manual work, so banks and growing businesses move faster with less risk.',
   primary: { label: 'Explore products', href: '#products' },
   secondary: { label: 'Book a demo', href: '#cta' },
 };
@@ -33,8 +33,8 @@ export const STORY = {
       product: 'vt' as ProductKey,
       orb: 'searching' as OrbState, // a scan line sweeping a dotted globe: the collateral book
       title: 'Collateral compliance. On time, every time.',
-      body: "V-track gives banks and NBFCs one view of their collateral book. It tracks each asset's next revaluation date, alerts teams before anything falls due, and keeps reports ready for audit and the RBI.",
-      link: 'Explore V-track →',
+      body: "V-Track gives banks and NBFCs one view of their collateral book. It tracks each asset's next revaluation date, alerts teams before anything falls due, and keeps reports ready for audit and the RBI.",
+      link: 'Explore V-Track →',
     },
     {
       product: 'nico' as ProductKey,

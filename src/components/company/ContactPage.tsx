@@ -13,17 +13,17 @@ const LINKEDIN_URL = "https://www.linkedin.com/company/fractalhive/";
 const CHANNELS = [
   {
     title: "Sales and demos",
-    body: "See ElevateRM, V-Track or NICO on your own workflows. Pick a 30-minute slot and we bring the right people.",
+    body: "See how ElevateRM, V-Track or NICO works. Pick a 30-minute slot and we bring the right people.",
     link: { label: "Book a demo →", href: "/demo" },
   },
   {
     title: "General enquiries",
-    body: "Partnerships, press, security questions or anything else. We reply within one business day.",
+    body: "Partnerships, press, security questions or anything else.",
     link: { label: `${EMAIL} →`, href: `mailto:${EMAIL}` },
   },
   {
     title: "Careers",
-    body: "Want to build with us? See how we hire and where open roles are posted.",
+    body: "Want to build with us? See how we hire and roles we are hiring for.",
     link: { label: "Visit careers →", href: "/company/careers" },
   },
 ];
@@ -120,8 +120,8 @@ export function ContactPage() {
       </section>
 
       <CompanyClosing
-        title="See it on your own workflows."
-        lede="A 30-minute demo, tailored to the product that fits your team."
+        title="See how Gravice can enhance your business process"
+        lede="A 30-minute demo, tailored to the product that fits your needs."
         actions={
           <>
             <Button href="/demo" clarityEvent="demo_click" claritySource="contact_closing">

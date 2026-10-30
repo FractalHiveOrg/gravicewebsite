@@ -20,8 +20,18 @@ export function ProductHowItWorks({ name, steps, screens }: Props) {
   return (
     <section data-cursor-surface="light" className="gv-band gv-light gv-p-how">
       <div className="gv-wrap gv-p-how-grid">
-        <div className="gv-p-how-left">
-          <h2>How {name} works</h2>
+        <div className="gv-p-how-left ">
+          <h2 className="text-[48px]!">
+            How <span className="whitespace-nowrap">{name}</span> works
+          </h2>
+          <ol className="gv-p-how-index" aria-hidden="true">
+            {steps.map((step, i) => (
+              <li key={step.title} className={i === active ? "gv-on" : undefined}>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                {step.title}
+              </li>
+            ))}
+          </ol>
         </div>
         <div className="gv-p-how-stage" aria-hidden="true">
           {screens.map((slot, i) => (
@@ -39,8 +49,8 @@ export function ProductHowItWorks({ name, steps, screens }: Props) {
               ref={register(i)}
               className={`gv-p-how-step${i === active ? " gv-on" : ""}`}
             >
-              <span className="gv-p-n">Step {i + 1}</span>
-              <h3>{step.title}</h3>
+              <span className="gv-p-n text-[13px]!">Step {i + 1}</span>
+              <h3 className="text-[40px]!">{step.title}</h3>
               <p>{step.body}</p>
             </li>
           ))}

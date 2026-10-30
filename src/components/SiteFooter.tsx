@@ -22,7 +22,7 @@ const columns = [
     links: [
       { label: "About", href: "/company/about" },
       { label: "Careers", href: "/company/careers" },
-      { label: "Life at Gravice", href: "/company/life-at-gravice" },
+      // { label: "Life at Gravice", href: "/company/life-at-gravice" },
       { label: "Contact", href: "/company/contact" },
     ],
   },
@@ -30,8 +30,6 @@ const columns = [
     title: "Resources",
     links: [
       { label: "Insights", href: "/insights" },
-      { label: "Glossary", href: "/resources/glossary" },
-      { label: "Trust Center", href: "/trust" },
     ],
   },
 ];
@@ -92,9 +90,7 @@ export function SiteFooter() {
               Terms
             </Link>
             <span aria-hidden>·</span>
-            <Link href="/legal/cookies" className="hover:text-paper">
-              Cookies
-            </Link>
+           
           </p>
         </div>
       </div>

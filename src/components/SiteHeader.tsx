@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/Button";
@@ -33,7 +34,7 @@ const nav: NavItem[] = [
       {
         label: "V-Track",
         href: "/products/v-track",
-        description: "Continuous valuation, LTV and insurance tracking for collateral.",
+        description: "Continuous valuation, LTV, and insurance tracking for collateral.",
       },
       {
         label: "NICO",
@@ -69,18 +70,18 @@ const nav: NavItem[] = [
       {
         label: "Careers",
         href: "/company/careers",
-        description: "Join a small team shipping high-stakes software.",
+        description: "Join our team shipping high-stakes software.",
       },
       {
         label: "Contact",
         href: "/company/contact",
         description: "Book a call and we will route you to the right team.",
       },
-      {
-        label: "Life at Gravice",
-        href: "/company/life-at-gravice",
-        description: "How we work, learn and celebrate together.",
-      },
+      // {
+      //   label: "Life at Gravice",
+      //   href: "/company/life-at-gravice",
+      //   description: "How we work, learn and celebrate together.",
+      // },
     ],
   },
   { label: "Insights", href: "/insights" },
@@ -138,6 +139,14 @@ export function SiteHeader() {
         </NavigationMenu>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <Image
+            src="/brand/microsoft-solutions-partner-isv.png"
+            alt="Microsoft Solutions Partner, ISV Success Program"
+            width={142}
+            height={89}
+            className="hidden h-11 w-auto sm:block md:h-13"
+            unoptimized
+          />
           <Button
             href="/demo"
             size="sm"

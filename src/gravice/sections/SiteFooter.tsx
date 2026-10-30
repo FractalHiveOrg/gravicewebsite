@@ -68,9 +68,9 @@ export function SiteFooter() {
               <li>
                 <a href="/company/careers">Careers</a>
               </li>
-              <li>
+              {/* <li>
                 <a href="/company/life-at-gravice">Life at Gravice</a>
-              </li>
+              </li> */}
               <li>
                 <a href="/company/contact">Contact</a>
               </li>
@@ -82,21 +82,15 @@ export function SiteFooter() {
               <li>
                 <a href="/insights">Insights</a>
               </li>
-              <li>
-                <a href="/resources/glossary">Glossary</a>
-              </li>
-              <li>
-                <a href="/trust">Trust Center</a>
-              </li>
+             
+            
               <li>
                 <a href="/legal/privacy">Privacy</a>
               </li>
               <li>
                 <a href="/legal/terms">Terms</a>
               </li>
-              <li>
-                <a href="/legal/cookies">Cookies</a>
-              </li>
+            
             </ul>
           </div>
         </div>
@@ -108,7 +102,7 @@ export function SiteFooter() {
           {" · "}
           <a href="/legal/terms">Terms</a>
           {" · "}
-          <a href="/legal/cookies">Cookies</a>
+  
         </span>
       </div>
     </footer>

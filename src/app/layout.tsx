@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import Script from "next/script";
 import { ClarityAnalytics } from "@/components/ClarityAnalytics";
+import { ExternalLinks } from "@/components/ExternalLinks";
 import { GravityCursor } from "@/components/GravityCursor";
 import { HeroMotionProvider } from "@/components/HeroMotionGate";
 import { RebrandIntro } from "@/components/RebrandIntro";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           strategy="beforeInteractive"
         >{`try{if("scrollRestoration"in history)history.scrollRestoration="manual";window.scrollTo(0,0);}catch(e){}`}</Script>
         <ClarityAnalytics />
+        <ExternalLinks />
         <HeroMotionProvider>
           <RebrandIntro />
           <GravityCursor />

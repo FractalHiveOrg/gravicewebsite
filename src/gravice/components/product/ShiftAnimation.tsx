@@ -16,7 +16,7 @@ export interface ShiftAnimationProps {
   variant: ShiftVariant;
   /** Left label. Default "Today" */
   beforeLabel?: string;
-  /** Right label. Default "With ElevateRM" / "With V-track" / "With NICO" */
+  /** Right label. Default "With ElevateRM" / "With V-Track" / "With NICO" */
   afterLabel?: string;
   /** Card height in px. Default 220 */
   height?: number;
@@ -24,7 +24,7 @@ export interface ShiftAnimationProps {
   style?: React.CSSProperties;
 }
 
-const AFTER: Record<ShiftVariant, string> = { elevaterm: 'With ElevateRM', vtrack: 'With V-track', nico: 'With NICO' };
+const AFTER: Record<ShiftVariant, string> = { elevaterm: 'With ElevateRM', vtrack: 'With V-Track', nico: 'With NICO' };
 
 export function ShiftAnimation({ variant, beforeLabel = 'Today', afterLabel, height = 220, className, style }: ShiftAnimationProps) {
   const ref = useRef<HTMLCanvasElement>(null);

@@ -31,7 +31,16 @@ export default function InsightsPage() {
           href="/insights/fractalhive-is-now-gravice"
           className="motion-card group mb-10 grid overflow-hidden rounded-[22px] border border-navy-100/60 bg-white hover:border-navy-100 lg:grid-cols-[1.2fr_1fr]"
         >
-          <div className="gv-a-feature-art" aria-hidden />
+          <div className="relative aspect-video overflow-hidden bg-navy lg:aspect-auto lg:min-h-[320px]">
+            <Image
+              src="/fractalhive-to-gravice-rebrand_1.png"
+              alt="FractalHive is now Gravice"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 660px"
+              className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+            />
+          </div>
           <div className="flex flex-col justify-center gap-3.5 px-6 py-8 sm:px-9 sm:py-9">
             <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
               Company news · Featured

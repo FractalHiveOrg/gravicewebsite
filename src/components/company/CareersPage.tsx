@@ -7,11 +7,17 @@ import type { ImageSlot } from "@/lib/productImages";
 /**
  * Careers page (prototypes/careers.html): hero globe → why Gravice → benefits → how we hire →
  * open roles → life at Gravice teaser → closing.
- * Benefits and hiring steps are drafts until HR confirms them; the jobs link is a placeholder.
+ * Benefits, hiring steps and role copy are drafts until HR confirms them; the jobs link is a placeholder.
  */
 const JOBS_URL = "https://www.linkedin.com/company/fractalhive/jobs/";
 const LINKEDIN_URL = "https://www.linkedin.com/company/fractalhive/";
-const LIFE_HREF = "/company/life-at-gravice";
+const CAREERS_EMAIL = "contact@gravicesolutions.com";
+
+const applyHref = (role: string) =>
+  `mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent(`Application: ${role}`)}&body=${encodeURIComponent(
+    "Hi Gravice team,\n\nI'd like to apply for this role. My CV is attached.\n\n",
+  )}`;
+// const LIFE_HREF = "/company/life-at-gravice";
 
 const WHY = [
   {
@@ -19,7 +25,7 @@ const WHY = [
     body: "Loans, collateral and money. What you build has to be right, and it makes a difference when it is.",
   },
   {
-    title: "Small team, real ownership",
+    title: "Real ownership",
     body: "You own problems from the first conversation to the release, not one ticket at a time.",
   },
   {
@@ -27,7 +33,7 @@ const WHY = [
     body: "Banking from veterans, technology from builders, and time set aside to learn both.",
   },
   {
-    title: "Honest by default",
+    title: "Honest by nature",
     body: "We say what we think, admit what we don't know, and keep our word to customers and to each other.",
   },
 ];
@@ -62,10 +68,27 @@ const BENEFITS = [
 ];
 
 const HIRING = [
-  { title: "Apply", body: "Send your application through the role's page. We read every one." },
+  { title: "Apply", body: "Email your CV for the role you want. We read every one." },
   { title: "Intro call", body: "A 30-minute conversation about you, the role and what we're building." },
   { title: "Skills conversation", body: "A practical exercise close to the real work, discussed with the team." },
   { title: "Meet the team", body: "Meet the people you'll work with, then we make a decision quickly." },
+];
+
+const ROLES = [
+  {
+    title: "Full Stack Developer",
+    team: "Engineering",
+    experience: "2+ years",
+    type: "Full-time",
+    body: "Build product features end to end, from APIs and data models to the screens bankers and finance teams use every day.",
+  },
+  {
+    title: "Sales Executive",
+    team: "Sales",
+    experience: "2+ years",
+    type: "Full-time",
+    body: "Open conversations with banks, NBFCs and growing businesses, run demos and take deals from first call to signed contract.",
+  },
 ];
 
 const LIFE_PHOTOS: ImageSlot[] = [
@@ -105,13 +128,13 @@ export function CareersPage() {
       <CompanyHero
         page="Careers"
         title="Build the tools banks and businesses rely on."
-        lede="Join a small team building control, visibility and automation for financial institutions and growing businesses. The work is high-stakes, and it ships."
+        lede="Join a growing team building control, visibility and automation for financial institutions and growing businesses. The work is high-stakes, and rewarding."
         actions={
           <>
             <OpenRolesButton source="careers_hero" />
-            <Button href={LIFE_HREF} variant="secondary-dark">
+            {/* <Button href={LIFE_HREF} variant="secondary-dark">
               Life at Gravice
-            </Button>
+            </Button> */}
           </>
         }
       />
@@ -138,7 +161,7 @@ export function CareersPage() {
         <div className="gv-wrap">
           <div className="gv-i-top">
             <div className="gv-eyebrow">Benefits</div>
-            <h2>We look after the people doing the work.</h2>
+            <h2>We look after our people.</h2>
           </div>
           <div className="gv-c-cards3">
             {BENEFITS.map((b) => (
@@ -174,21 +197,41 @@ export function CareersPage() {
 
       <section id="roles" data-cursor-surface="light" className="gv-band gv-light gv-c-sec gv-c-white">
         <div className="gv-wrap">
-          <div className="gv-c-roles">
-            <div>
-              <div className="gv-eyebrow">Open roles</div>
-              <h3>No open roles right now.</h3>
-              <p>
-                We hire as we grow. When roles open, you&apos;ll find them on our jobs page, and we&apos;ll post them
-                on LinkedIn.
-              </p>
-            </div>
-            <div className="gv-row">
-              <OpenRolesButton source="careers_roles" />
-              <Button href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" variant="secondary-light">
-                Follow on LinkedIn ↗
-              </Button>
-            </div>
+          <div className="gv-i-top">
+            <div className="gv-eyebrow">Open roles</div>
+            <h2>Come build with us.</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {ROLES.map((r) => (
+              <article key={r.title} className="gv-c-vcard">
+                <span className="gv-c-n">{r.team}</span>
+                <h3>{r.title}</h3>
+                <ul className="flex flex-wrap gap-2 text-[13px] text-(--gv-muted-ink)">
+                  {[r.experience, r.type].map((tag) => (
+                    <li key={tag} className="rounded-full border border-(--gv-line) px-3 py-1">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+                <p>{r.body}</p>
+                <div className="mt-auto pt-3">
+                  <Button
+                    href={applyHref(r.title)}
+                    size="sm"
+                    clarityEvent="careers_role_apply"
+                    claritySource={r.title}
+                  >
+                    Apply by email →
+                  </Button>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="gv-row mt-8">
+            <OpenRolesButton source="careers_roles" />
+            <Button href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" variant="secondary-light">
+              Follow on LinkedIn ↗
+            </Button>
           </div>
         </div>
       </section>
@@ -201,9 +244,9 @@ export function CareersPage() {
             <p className="gv-c-lead">
               Serious work, with room to be curious. See how the team works, learns and celebrates.
             </p>
-            <a className="gv-textlink" href={LIFE_HREF}>
+            {/* <a className="gv-textlink" href={LIFE_HREF}>
               See life at Gravice →
-            </a>
+            </a> */}
           </div>
           <div className="gv-c-collage">
             {LIFE_PHOTOS.map((slot) => (

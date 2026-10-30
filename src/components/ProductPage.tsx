@@ -2,20 +2,18 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Button } from "@/components/Button";
 import { ClarityTags } from "@/components/ClarityTags";
-import { NicoMark } from "@/components/NicoMark";
+import { MicrosoftPartnerBanner } from "@/components/microsoftPartnership";
 import { ProductFaq } from "@/components/product/ProductFaq";
 import { ProductHowItWorks } from "@/components/product/ProductHowItWorks";
 import { ProductSecurity } from "@/components/product/ProductSecurity";
 import { ProductImage } from "@/components/product/ProductImage";
 import { ProductOrb, type GraviceProduct } from "@/gravice/components/ProductOrb";
 import { ProductHeroVisual } from "@/gravice/components/product/ProductHeroVisual";
-import { ShiftAnimation } from "@/gravice/components/product/ShiftAnimation";
 import { productFaqs } from "@/lib/productFaqs";
 import { productImages } from "@/lib/productImages";
 import { productSecurity } from "@/lib/productSecurity";
 import type { Product, ProductSlug } from "@/lib/products";
 import { productList } from "@/lib/products";
-import { CompanyLogo } from "./companyLogo";
 import { ElevateRMLogo } from "./ElevateRMLogo";
 import { VtrackLogo } from "./vtrack";
 import { NicoLogo } from "./NicoLogo";
@@ -131,33 +129,10 @@ export function ProductPage({ product }: Props) {
           <div className="gv-wrap gv-p-ms">
             <div className="gv-p-top" style={{ marginBottom: 20 }}>
               <div className="gv-eyebrow">Our partnership</div>
-              <h2>{ms.headline}</h2>
+              <h2 className="whitespace-pre-line">{ms.headline}</h2>
               <p style={{ color: "var(--gv-muted-ink)", fontSize: 17, lineHeight: 1.6 }}>{ms.summary}</p>
             </div>
-            <div className="gv-p-dark gv-p-ms-head p-6">
-              <div>
-                <h3>Official Microsoft Partner</h3>
-                {/* <p>Microsoft AI Cloud Partner Program · ISV Success</p> */}
-                <p>Gravice is part of Microsoft’s ISV Success program. <br /> Our platform is built on Microsoft Azure and listed on Microsoft Marketplace, <br /> so you can buy and deploy it through the cloud your organisation already trusts.</p>
-                <div className="gv-p-ms-chips">
-                  <span>Listed on Microsoft Marketplace</span>
-                  <span>Built on Microsoft Azure</span>
-                </div>
-              </div>
-              <div className="gv-p-ms-badge">
-                <i aria-hidden>
-                  <b style={{ background: "#F25022" }} />
-                  <b style={{ background: "#7FBA00" }} />
-                  <b style={{ background: "#00A4EF" }} />
-                  <b style={{ background: "#FFB900" }} />
-                </i>
-                <span>
-                  Available on
-                  <br />
-                  Microsoft Marketplace
-                </span>
-              </div>
-            </div>
+            <MicrosoftPartnerBanner />
             <h3 className="gv-p-ms-sub">Advantages of buying through Microsoft Marketplace</h3>
             <div className="gv-p-grid">
               {MARKETPLACE_BENEFITS.map((item) => (
@@ -227,10 +202,10 @@ export function ProductPage({ product }: Props) {
               {/* <CompanyLogo size={40} /> */}
               {/* <span className="gv-p-sep" /> */}
               <b>
-                {product.slug==="elevaterm"&&<ElevateRMLogo size={200} />}
-                {product.slug==="v-track"&&<VtrackLogo size={150} />}
-                {product.slug==="nico"&&<NicoLogo size={110} />}
-              </b>  
+                {product.slug === "elevaterm" && <ElevateRMLogo size={200} />}
+                {product.slug === "v-track" && <VtrackLogo size={150} />}
+                {product.slug === "nico" && <NicoLogo size={110} />}
+              </b>
             </div>
             <div className="gv-p-eyebrow-row">
               <div className="gv-eyebrow">{product.tagline}</div>
@@ -241,26 +216,26 @@ export function ProductPage({ product }: Props) {
             <div className="gv-row">
               {product.slug === "nico" ? (
                 <>
-                
-                <Button
-                  href="https://nico.fractalhive.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gap-2.5"
-                  clarityEvent="nico_explore_click"
-                  claritySource="product_hero"
+
+                  <Button
+                    href="https://nico.fractalhive.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2.5"
+                    clarityEvent="nico_explore_click"
+                    claritySource="product_hero"
                   >
-                  Try Nico for Free
-                </Button>
-                 <Button
-                  href={`/demo?product=${product.slug}`}
-                  clarityEvent="book_demo_click"
-                  claritySource="product_hero"
-                  variant="secondary-dark"
-                >
-                  Book a demo
-                </Button>
-                  </>
+                    Try Nico for Free
+                  </Button>
+                  <Button
+                    href={`/demo?product=${product.slug}`}
+                    clarityEvent="book_demo_click"
+                    claritySource="product_hero"
+                    variant="secondary-dark"
+                  >
+                    Book a demo
+                  </Button>
+                </>
               ) : (
                 <Button
                   href={`/demo?product=${product.slug}`}
@@ -270,14 +245,14 @@ export function ProductPage({ product }: Props) {
                   Book a demo
                 </Button>
               )}
-             
+
             </div>
             <div className="gv-p-built-for">
               <em>{product.audience}</em>
             </div>
           </div>
-          <ProductHeroVisual product={orb}/>
-          
+          <ProductHeroVisual product={orb} />
+
         </div>
       </section>
 
@@ -336,11 +311,11 @@ export function ProductPage({ product }: Props) {
             >
               Book a demo
             </Button>
-            <Button href="/#products" variant="secondary-dark">
-              Explore other products →
+            <Button href={product.slug === "elevaterm" ? "/products/v-track" : product.slug === "v-track" ? "/products/elevaterm" : "/#product"} variant="secondary-dark">
+              {product.slug === "elevaterm" ? "Explore V-Track" : product.slug === "v-track" ? "Explore ElevateRM" : "Explore other products →"}
             </Button>
           </div>
-        
+
         </div>
       </section>
     </div>

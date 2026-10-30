@@ -38,7 +38,7 @@ export const products: Record<ProductSlug, Product> = {
     headline: "Every deal, every customer, one workspace.",
     summary:
       "ElevateRM gives relationship managers everything they need, from deal creation to closure, on one platform. Less time on admin tasks. More time with customers.",
-    audience: "For banks and NBFCswith a commercial banking footprint",
+    audience: "For banks and NBFCs with a commercial banking footprint",
     accent: "purple",
     problem:
       "Relationship pipelines are scattered. Deals, follow-ups, and upsell opportunities sit across email, Excel, and notebooks.",
@@ -107,7 +107,7 @@ export const products: Record<ProductSlug, Product> = {
   },
   "v-track": {
     slug: "v-track",
-    name: "V-Track",
+    name: "V\u2011Track",
     tagline: "Valuation assurance",
     headline: "An eagle-eye view of your collateral portfolio.",
     summary:
@@ -120,28 +120,35 @@ export const products: Record<ProductSlug, Product> = {
     outcome:
       "Every revaluation enforced on time, in one place. One digital register with time- and event-based alerts and an audit-ready history.",
     steps: [
-      { title: "Digitise", body: "Bring every collateral into one digital register." },
-      { title: "Schedule", body: "Set time and event-based valuation cadence." },
-      { title: "Alert", body: "Surface what is overdue or approaching LTV breach." },
-      { title: "Revalue", body: "Drive market-linked, model-driven asset updates." },
-      { title: "Audit", body: "Keep a complete history of every action." },
+      {
+        title: "Bring in your portfolio",
+        body: "Load collateral records from your loan systems or spreadsheets, so every asset starts in one place.",
+      },
+      {
+        title: "Track every due date",
+        body: "V-Track schedules each revaluation and flags what is coming due, before it becomes overdue.",
+      },
+      {
+        title: "Revalue and report",
+        body: "Record new valuations as reports arrive, and share the status with audit, the board and the regulator.",
+      },
     ],
     features: [
       {
-        title: "Dynamic valuation",
-        body: "Market-linked, model-driven asset values updated at a defined cadence.",
+        title: "Valuation trend",
+        body: "How an asset's value has moved since its first valuation, with the peak and the trough.",
       },
       {
-        title: "Real-time LTV",
-        body: "Live loan-to-value computation with breach alerts.",
+        title: "LTV against policy",
+        body: "Average loan-to-value across the portfolio, measured against your own policy limit.",
       },
       {
-        title: "Automated triggers",
-        body: "Rule-based margin calls, top-ups, and escalations.",
+        title: "Revaluation pipeline",
+        body: "What is overdue, and what falls due in the next 7, 14 and 30 days, across the whole book.",
       },
       {
-        title: "Portfolio dashboard",
-        body: "Concentration, stress, and recovery views at portfolio level.",
+        title: "Valuation history",
+        body: "Every valuation recorded for an asset, with its date, the next due date and who recorded it.",
       },
     ],
     comparison: {
@@ -163,14 +170,6 @@ export const products: Record<ProductSlug, Product> = {
       "Enterprise deployment. Works alongside your existing core systems.",
     coverage: [
       {
-        stage: "Originate & sanction",
-        capability: "Collateral details captured at sanction",
-      },
-      {
-        stage: "Disburse & enable",
-        capability: "One digital register for every collateral",
-      },
-      {
         stage: "Monitor & review",
         capability: "Time and event based valuation alerts",
       },
@@ -184,7 +183,7 @@ export const products: Record<ProductSlug, Product> = {
       },
     ],
     microsoftPartnership: {
-      headline: "Built with Microsoft. Available on Microsoft Marketplace.",
+      headline: "Built with Microsoft. \nAvailable on Microsoft Marketplace.",
       summary:
         "Gravice is an official Microsoft partner, part of the Microsoft AI Cloud Partner Program and the ISV Success program. V-Track is listed on Microsoft Marketplace, so your teams can find, procure, and deploy through a channel you already trust.",
       marketplaceUrl:

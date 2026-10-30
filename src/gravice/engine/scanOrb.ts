@@ -1,9 +1,9 @@
 /**
- * V-track "searching" orb, recreated.
+ * V-Track "searching" orb, recreated.
  * Based on the thinking-orbs `searching` state (MIT © Jakub Antalik), rebuilt for large sizes:
  * a dotted globe of latitude rings turns slowly while a scan line sweeps across it.
  * Dots light up as the line passes and stay a little brighter for a moment afterwards,
- * so you can see what has just been checked, like V-track going through the collateral book.
+ * so you can see what has just been checked, like V-Track going through the collateral book.
  *
  * Draws in the same 64 × 64 unit space as the thinking-orbs painters. Ink colour is
  * whatever the caller tints with afterwards (or pass `color`).

@@ -2,7 +2,7 @@
  * Story orb dispatcher: Gravice's own painters for the three product states, the
  * thinking-orbs engine (MIT © Jakub Antalik) for anything else.
  *   composing → ElevateRM belt (./beltOrb)
- *   searching → V-track scan   (./scanOrb)
+ *   searching → V-Track scan   (./scanOrb)
  *   solving   → NICO solve     (./solvingOrb)
  */
 import { MODE_DRAWS, resolvePreset } from 'thinking-orbs/engine';

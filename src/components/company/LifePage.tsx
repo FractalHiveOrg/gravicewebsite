@@ -89,6 +89,13 @@ const GALLERY: ImageSlot[] = [
 ];
 
 export function LifePage() {
+
+  return (
+
+    <>
+    404
+    </>
+  )
   return (
     <div>
       <ClarityTags tags={{ company: "life" }} />

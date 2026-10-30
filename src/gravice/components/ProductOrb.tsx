@@ -10,18 +10,18 @@ import { drawCore, prefersReducedMotion, startLoop } from '../engine/core';
  * Gravice product orbs, as used on the homepage story and on each product page
  * (hero, closing, "Also from Gravice" cards).
  *   ElevateRM → belt orb   (engine/beltOrb.ts): a belt of dots around the core; the wave moves them up and down
- *   V-track   → scan orb   (engine/scanOrb.ts): a scan line sweeps the globe and leaves an afterglow
+ *   V-Track   → scan orb   (engine/scanOrb.ts): a scan line sweeps the globe and leaves an afterglow
  *   NICO      → solving orb (engine/solvingOrb.ts): scramble, pause, click back into order, hold
  * The orange core sits at the centre and breathes.
  *
  * The orbs build on thinking-orbs by Jakub Antalik (MIT).
  */
-export type GraviceProduct = 'elevaterm' | 'vtrack' | 'nico' 
+export type GraviceProduct = 'elevaterm' | 'vtrack' | 'nico'
 
 /** Belt settings tuned for large sizes (do not change without checking ElevateRM visually). */
 export const BELT_OPTS = { lanes: 3, segs: 44, ghostN: 38, rBase: 0.935, rDepth: 1.445, rsPow: 0.6, rMin: 0.3, bandMul: 3.9, wobMul: 1 };
 
-const LABEL: Record<GraviceProduct, string> = { elevaterm: 'ElevateRM', vtrack: 'V-track', nico: 'NICO' };
+const LABEL: Record<GraviceProduct, string> = { elevaterm: 'ElevateRM', vtrack: 'V-Track', nico: 'NICO' };
 
 export interface ProductOrbProps {
   product: GraviceProduct;

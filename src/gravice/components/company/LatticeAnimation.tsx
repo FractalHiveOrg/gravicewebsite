@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useRef } from 'react';
-import { clamp, ease, prefersReducedMotion, startLoop } from '../../engine/core';
+import { prefersReducedMotion, startLoop } from '../../engine/core';
 import { drawLattice, makeLatticePoints } from '../../engine/lattice';
 
 /**
- * About page, "The name": the gravity + lattice card. Scroll-linked, so it reverses on scroll up.
+ * About page, "The name": the gravity + lattice card, drawn as the settled lattice (not scroll-linked).
  * Desktop uses 19 × 7 points; pass cols/rows (e.g. 9 × 6) for small screens.
  */
 export function LatticeAnimation({ height = 300, cols = 19, rows = 7, beforeLabel = 'Manual work', afterLabel = 'With Gravice', className }: {
@@ -23,8 +23,7 @@ export function LatticeAnimation({ height = 300, cols = 19, rows = 7, beforeLabe
       const d = Math.min(2, devicePixelRatio || 1);
       if (cv.width !== Math.round(r.width * d)) { cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); }
       ctx.setTransform(d, 0, 0, d, 0, 0);
-      const p = reduce ? 1 : ease(clamp((innerHeight * 0.85 - r.top) / (innerHeight * 0.55)));
-      drawLattice(ctx, pts, cols, rows, r.width, r.height, p, t, reduce);
+      drawLattice(ctx, pts, cols, rows, r.width, r.height, 1, t, reduce);
     };
     if (reduce) { paint(2); const on = () => paint(2); addEventListener('resize', on); return () => removeEventListener('resize', on); }
     return startLoop(paint);

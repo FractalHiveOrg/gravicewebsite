@@ -15,7 +15,7 @@ export type Workflow = { name: string; steps: WorkflowStep[] };
 export const MANUFACTURING_WORKFLOWS: Workflow[] = [
   { name: 'Supplier invoice approval', steps: [
     { kind: 'Trigger', title: 'Invoice arrives', detail: 'WhatsApp, email or upload' },
-    { kind: 'Read', title: 'NICO extracts and checks', detail: 'Details, line items, your rules' },
+    { kind: 'Extract', title: 'NICO reads and checks', detail: 'Details, line items, your rules' },
     { kind: 'Rule', title: 'Above your limit?', detail: 'Route it for approval' },
     { kind: 'Notify', title: 'Approver alerted', detail: 'On WhatsApp or email' },
     { kind: 'Action', title: 'Entry posted', detail: 'To Tally / Zoho / ERP' },
@@ -24,7 +24,7 @@ export const MANUFACTURING_WORKFLOWS: Workflow[] = [
     { kind: 'Trigger', title: 'New order placed', detail: 'Website, email or WhatsApp' },
     { kind: 'Rule', title: 'Order checked', detail: 'Stock, value and customer type' },
     { kind: 'Notify', title: 'Confirmation sent', detail: 'Email to the customer' },
-    { kind: 'Notify', title: 'Dispatch alerted', detail: 'WhatsApp to the warehouse team' },
+    { kind: 'Notify', title: 'Dispatch alerted', detail: 'WhatsApp or email to the warehouse team' },
     { kind: 'Action', title: 'Order recorded', detail: 'In Tally / Zoho / ERP' },
   ] },
   { name: 'Abandoned cart follow-up', steps: [
@@ -32,7 +32,7 @@ export const MANUFACTURING_WORKFLOWS: Workflow[] = [
     { kind: 'Wait', title: '2 hours later', detail: 'Still no order' },
     { kind: 'Rule', title: 'High-value cart?', detail: 'Above your threshold' },
     { kind: 'Notify', title: 'Sales team alerted', detail: 'WhatsApp or email, with cart details' },
-    { kind: 'Action', title: 'Follow-up created', detail: 'A call task for the rep' },
+    { kind: 'Action', title: 'Follow-up created', detail: 'A call task for the business development team' },
   ] },
 ];
 

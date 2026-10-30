@@ -54,14 +54,14 @@ const STAGES: JourneyStage[] = [
   {
     label: "Monitor & review",
     title: "Every asset, every due date, in one view.",
-    body: "V-track tracks the next revaluation date for every asset and alerts teams before anything falls due.",
+    body: "V-Track tracks the next revaluation date for every asset and alerts teams before anything falls due.",
     orb: "vtrack",
     tags: ["vtrack"],
   },
   {
     label: "Renew & grow",
     title: "Renewals with current values and the next opportunity.",
-    body: "Current collateral values from V-track, and cross-sell and upsell opportunities surfaced in ElevateRM for each RM.",
+    body: "Current collateral values from V-Track, and cross-sell and upsell opportunities surfaced in ElevateRM for each RM.",
     orb: "elevaterm",
     tags: ["elevaterm", "vtrack"],
   },
@@ -100,8 +100,8 @@ const ROLES: Role[] = [
     lede: "Fewer documents to read, nothing to re-key.",
     points: [
       "Loan files read and checked against your rules",
-      "Only exceptions sent to a person for review",
-      "Every step recorded for audit",
+      "Only exceptions sent to the decision maker for review",
+      "Every action recorded for audit",
     ],
     products: ["nico", "vtrack"],
   },
@@ -110,10 +110,10 @@ const ROLES: Role[] = [
 const COMPLIANCE = [
   {
     title: "One audit trail",
-    body: "Every action across ElevateRM, V-track and NICO is recorded, so audits start from one place.",
+    body: "Every action across ElevateRM, V-Track and NICO is recorded, so audits start from one place.",
   },
   {
-    title: "Revaluations on schedule",
+    title: "Valuation compliance on schedule",
     body: "Due dates tracked for every asset, with a dated record of each revaluation for inspections.",
   },
   {
@@ -188,7 +188,7 @@ export function FinancialServicesPage() {
         </div>
       </section>
 
-      <IndustryInsights title="Reading for lenders." items={INSIGHTS} />
+      <IndustryInsights title="Article for lenders." items={INSIGHTS} />
 
       <IndustryClosing
         title="Explore what Gravice can do for you."

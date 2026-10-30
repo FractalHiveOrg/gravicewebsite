@@ -8,7 +8,7 @@ import { MODE_DRAWS, resolvePreset } from 'thinking-orbs/engine';
  * Each product has its own orb, drawn large, tinted Gravice blue, slowed to one
  * calm shared speed, with the orange Gravice core showing through the centre.
  *   ElevateRM → "connecting": a network of relationships wiring itself
- *   V-track   → "searching":  a scan line sweeping a dotted globe (the collateral book)
+ *   V-Track   → "searching":  a scan line sweeping a dotted globe (the collateral book)
  *   NICO      → "solving":    scrambled bands clicking back into order
  */
 export type GraviceProduct = 'elevaterm' | 'vtrack' | 'nico';
@@ -21,7 +21,7 @@ const PRODUCT_STATE = {
 
 const LABEL: Record<GraviceProduct, string> = {
   elevaterm: 'ElevateRM',
-  vtrack: 'V-track',
+  vtrack: 'V-Track',
   nico: 'NICO',
 };
 
