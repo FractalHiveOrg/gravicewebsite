@@ -128,7 +128,7 @@ export function ProductPage({ product }: Props) {
       key: "microsoft",
       render: (band) => (
         <section key="microsoft" data-cursor-surface="light" className={`gv-band gv-light ${band}`}>
-          <div className="gv-wrap gv-p-ms p-">
+          <div className="gv-wrap gv-p-ms">
             <div className="gv-p-top" style={{ marginBottom: 20 }}>
               <div className="gv-eyebrow">Our partnership</div>
               <h2>{ms.headline}</h2>
@@ -168,7 +168,7 @@ export function ProductPage({ product }: Props) {
                 </article>
               ))}
             </div>
-            <div className="gv-p-dark gv-p-ms-cta">
+            <div className="gv-p-dark gv-p-ms-cta p-6">
               <h3>Find {product.name} on Microsoft Marketplace.</h3>
               <Button
                 href={ms.marketplaceUrl}
@@ -270,9 +270,7 @@ export function ProductPage({ product }: Props) {
                   Book a demo
                 </Button>
               )}
-              {/* <Button href="/#products" variant="secondary-dark">
-                All products
-              </Button> */}
+             
             </div>
             <div className="gv-p-built-for">
               <em>{product.audience}</em>
@@ -284,7 +282,7 @@ export function ProductPage({ product }: Props) {
       </section>
 
       {/* 2 · where it breaks → what changes */}
-      <section data-cursor-surface="light" className="gv-band gv-light gv-p-shift">
+      {/* <section data-cursor-surface="light" className="gv-band gv-light gv-p-shift">
         <div className="gv-wrap">
           <ShiftAnimation variant={orb} afterLabel={`With ${product.name}`} />
           <div className="gv-p-shift-grid">
@@ -298,7 +296,7 @@ export function ProductPage({ product }: Props) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 3 · how it works */}
       <ProductHowItWorks name={product.name} steps={product.steps} screens={images.steps} />
@@ -342,28 +340,7 @@ export function ProductPage({ product }: Props) {
               Explore other products →
             </Button>
           </div>
-          <div className="gv-p-also">
-            <span className="gv-p-also-label">Also from Gravice</span>
-            <div className="gv-p-also-grid">
-              {others.map((p) => (
-                <Link
-                  key={p.slug}
-                  href={`/products/${p.slug}`}
-                  data-magnetic
-                  data-clarity-event="product_link_click"
-                  data-clarity-source={`related_${p.slug}`}
-                  className="gv-p-also-card"
-                >
-                  <ProductOrb product={orbFor[p.slug]} size={76} style={{ flex: "none" }} />
-                  <div>
-                    <b>{p.name}</b>
-                    <span>{p.tagline}</span>
-                  </div>
-                  <em aria-hidden>→</em>
-                </Link>
-              ))}
-            </div>
-          </div>
+        
         </div>
       </section>
     </div>

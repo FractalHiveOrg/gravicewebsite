@@ -85,6 +85,8 @@
 .gv-ticks span::before{content:"";width:22px;height:2px;background:#D8D2C4;transition:background .3s,width .3s}
 .gv-ticks span.gv-on{color:var(--gv-ink);font-weight:600}
 .gv-ticks span.gv-on::before{background:var(--gv-orange);width:36px}
+.gv-ticks span > *{transition:opacity .3s}
+.gv-ticks:has(.gv-on) span:not(.gv-on) > *{opacity:.35}
 .gv-s-right{display:flex;flex-direction:column}
 .gv-step{min-height:calc(100vh - var(--gv-header-h));display:flex;flex-direction:column;justify-content:center;gap:14px;opacity:.28;transition:opacity .5s}
 .gv-step.gv-on{opacity:1}
@@ -279,8 +281,8 @@
 
 /* 5 journey */
 .gv-p-journey{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n,5),1fr);position:relative}
-.gv-p-journey::before{content:"";position:absolute;left:0;right:0;top:15px;border-top:2px dotted #C8C0AF}
-.gv-p-journey li{position:relative;display:flex;flex-direction:column;gap:10px;padding:0 18px 0 0;min-width:0}
+.gv-p-journey::before{content:"";position:absolute;left:calc(50% / var(--n,5));right:calc(50% / var(--n,5));top:15px;border-top:2px dotted #C8C0AF}
+.gv-p-journey li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:0 12px;min-width:0}
 .gv-p-jn{position:relative;width:32px;height:32px;border-radius:50%;background:var(--gv-pc);color:var(--gv-on-navy);font:600 12px/32px var(--gv-sans);text-align:center;box-shadow:0 0 0 6px var(--gv-cream),0 0 0 7px var(--gv-pc-ring)}
 .gv-p-paper .gv-p-jn{box-shadow:0 0 0 6px var(--gv-paper),0 0 0 7px var(--gv-pc-ring)}
 .gv-p-journey h3{font-size:20px;line-height:1.2;margin-top:6px}
@@ -288,7 +290,7 @@
 @media (max-width:900px){
   .gv-p-journey{grid-template-columns:1fr;gap:26px}
   .gv-p-journey::before{left:15px;right:auto;top:0;bottom:0;border-top:0;border-left:2px dotted #C8C0AF}
-  .gv-p-journey li{padding-left:48px}
+  .gv-p-journey li{padding-left:48px;align-items:flex-start;text-align:left}
   .gv-p-jn{position:absolute;left:0;top:-4px}
   .gv-p-journey h3{margin-top:0}
 }

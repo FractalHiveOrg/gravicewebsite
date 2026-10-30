@@ -24,8 +24,6 @@ type NavItem = {
 const nav: NavItem[] = [
   {
     label: "Products",
-    href: "/#products",
-    description: "Three platforms. One layer of assurance.",
     children: [
       {
         label: "ElevateRM",
@@ -39,7 +37,7 @@ const nav: NavItem[] = [
       },
       {
         label: "NICO",
-        href: "https://app.nico.fractalhive.com/",
+        href: "https://nico.gravicesolutions.com/",
         description: "Agentic automation for document-heavy processes.",
       },
     ],

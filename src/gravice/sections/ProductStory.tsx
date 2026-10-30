@@ -21,17 +21,13 @@ export function ProductStory() {
           <h2>{STORY.title}</h2>
           <p>{STORY.body}</p>
           <div className="gv-ticks" aria-hidden="true">
-            {STORY.steps.map((s) => {
-
-              return <>
-                <span key={s.product} data-gv="tick">
-                  {PRODUCTS[s.product].name == "NICO" && <NicoLogo variant="black" size={60} />}
-                  {PRODUCTS[s.product].name == "V-Track" && <VtrackLogo variant="black" size={80} />}
-                  {PRODUCTS[s.product].name == "ElevateRM" && <ElevateRMLogo variant="black" size={80} />}
-                </span>
-              </>
-
-            })}
+            {STORY.steps.map((s) => (
+              <span key={s.product} data-gv="tick">
+                {PRODUCTS[s.product].name == "NICO" && <NicoLogo variant="black" size={60} />}
+                {PRODUCTS[s.product].name == "V-Track" && <VtrackLogo variant="black" size={80} />}
+                {PRODUCTS[s.product].name == "ElevateRM" && <ElevateRMLogo variant="black" size={80} />}
+              </span>
+            ))}
 
           </div>
         </div>

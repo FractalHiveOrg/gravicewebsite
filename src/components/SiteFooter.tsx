@@ -7,7 +7,7 @@ const columns = [
     links: [
       { label: "ElevateRM", href: "/products/elevaterm" },
       { label: "V-Track", href: "/products/v-track" },
-      { label: "NICO", href: "https://app.nico.fractalhive.com/" },
+      { label: "NICO", href: "https://nico.gravicesolutions.com/" },
     ],
   },
   {

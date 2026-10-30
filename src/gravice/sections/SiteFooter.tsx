@@ -12,11 +12,11 @@ export function SiteFooter() {
         <Logo theme="dark" />
         {(Object.keys(PRODUCTS) as (keyof typeof PRODUCTS)[]).map((k) => (
           <a key={k} href={PRODUCTS[k].href}>
-                {PRODUCTS[k].name == "NICO" && <NicoLogo  size={60} />}
-                {PRODUCTS[k].name == "V-Track" && <VtrackLogo  size={100} />}
-                  {PRODUCTS[k].name == "ElevateRM" && <ElevateRMLogo  size={130} />}
+            {PRODUCTS[k].name == "NICO" && <NicoLogo size={60} />}
+            {PRODUCTS[k].name == "V-Track" && <VtrackLogo size={100} />}
+            {PRODUCTS[k].name == "ElevateRM" && <ElevateRMLogo size={130} />}
             {PRODUCTS[k].external ? " ↗" : ""}
-          </a>  
+          </a>
         ))}
       </div>
       <div className="gv-wrap gv-fwrap">
@@ -44,7 +44,7 @@ export function SiteFooter() {
                 <a href="/products/v-track">V-Track</a>
               </li>
               <li>
-                <a href="https://app.nico.fractalhive.com/">NICO</a>
+                <a href="https://nico.gravicesolutions.com/">NICO</a>
               </li>
             </ul>
           </div>
