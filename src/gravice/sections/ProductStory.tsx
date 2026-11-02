@@ -24,8 +24,8 @@ export function ProductStory() {
             {STORY.steps.map((s) => (
               <span key={s.product} data-gv="tick">
                 {PRODUCTS[s.product].name == "NICO" && <NicoLogo variant="black" size={60} />}
-                {PRODUCTS[s.product].name == "V-Track" && <VtrackLogo variant="black" size={80} />}
-                {PRODUCTS[s.product].name == "ElevateRM" && <ElevateRMLogo variant="black" size={80} />}
+                {PRODUCTS[s.product].name == "V-Track" && <VtrackLogo variant="black" size={105} />}
+                {PRODUCTS[s.product].name == "ElevateRM" && <ElevateRMLogo variant="black" size={120} />}
               </span>
             ))}
 
