@@ -20,7 +20,7 @@ import { ArrowUpRight } from "lucide-react";
  * integrations → insights → closing with "Explore the products".
  * The results band (template slot) stays off the live page until the figures are approved.
  */
-const NICO_APP = "https://nico.fractalhive.com";
+const NICO_APP = "https://nico.gravicesolutions.com";
 
 const PRESSURE: Pressure[] = [
   {

@@ -26,7 +26,7 @@ export function SiteFooter() {
             growing businesses. Its products are ElevateRM, V-Track, and NICO.
           </p>
           <a
-            href="https://www.linkedin.com/company/fractalhive/posts/"
+            href="https://www.linkedin.com/company/graviceposts/"
             target="_blank"
             rel="noreferrer"
           >
@@ -82,15 +82,15 @@ export function SiteFooter() {
               <li>
                 <a href="/insights">Insights</a>
               </li>
-             
-            
+
+
               <li>
                 <a href="/legal/privacy">Privacy</a>
               </li>
               <li>
                 <a href="/legal/terms">Terms</a>
               </li>
-            
+
             </ul>
           </div>
         </div>
@@ -102,7 +102,7 @@ export function SiteFooter() {
           {" · "}
           <a href="/legal/terms">Terms</a>
           {" · "}
-  
+
         </span>
       </div>
     </footer>

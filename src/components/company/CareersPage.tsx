@@ -9,8 +9,8 @@ import type { ImageSlot } from "@/lib/productImages";
  * open roles → life at Gravice teaser → closing.
  * Benefits, hiring steps and role copy are drafts until HR confirms them; the jobs link is a placeholder.
  */
-const JOBS_URL = "https://www.linkedin.com/company/fractalhive/jobs/";
-const LINKEDIN_URL = "https://www.linkedin.com/company/fractalhive/";
+const JOBS_URL = "https://www.linkedin.com/company/gravicejobs/";
+const LINKEDIN_URL = "https://www.linkedin.com/company/gravice";
 const CAREERS_EMAIL = "contact@gravicesolutions.com";
 
 const applyHref = (role: string) =>

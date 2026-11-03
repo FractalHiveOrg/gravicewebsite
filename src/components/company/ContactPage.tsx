@@ -8,7 +8,7 @@ import { ContactForm } from "@/components/company/ContactForm";
  * The form has no backend yet; it opens the visitor's mail app with the message filled in.
  */
 const EMAIL = "contact@gravicesolutions.com";
-const LINKEDIN_URL = "https://www.linkedin.com/company/fractalhive/";
+const LINKEDIN_URL = "https://www.linkedin.com/company/gravice";
 
 const CHANNELS = [
   {

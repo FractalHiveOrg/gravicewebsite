@@ -61,7 +61,7 @@ export function RebrandArticlePage() {
               </div>
               <h1>{TITLE}</h1>
               <div className="gv-a-meta">
-                <span>October 29, 2026</span>
+                <span>November 2, 2026</span>
                 <i aria-hidden="true" />
                 <span>3 min read</span>
                 <i aria-hidden="true" />

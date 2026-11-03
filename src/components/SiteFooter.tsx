@@ -47,7 +47,7 @@ export function SiteFooter() {
               ElevateRM, V-Track, and NICO.
             </p>
             <a
-              href="https://www.linkedin.com/company/fractalhive/posts/"
+              href="https://www.linkedin.com/company/gravice/posts"
               className="text-[14px] font-medium text-paper hover:text-pull-orange"
               target="_blank"
               rel="noreferrer"
@@ -89,8 +89,6 @@ export function SiteFooter() {
             <Link href="/legal/terms" className="hover:text-paper">
               Terms
             </Link>
-            <span aria-hidden>·</span>
-           
           </p>
         </div>
       </div>

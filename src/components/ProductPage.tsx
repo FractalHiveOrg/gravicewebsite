@@ -218,7 +218,7 @@ export function ProductPage({ product }: Props) {
                 <>
 
                   <Button
-                    href="https://nico.fractalhive.com"
+                    href="https://nico.gravicesolutions.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="gap-2.5"
