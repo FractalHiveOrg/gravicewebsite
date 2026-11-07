@@ -51,7 +51,7 @@ export function VTrackMarketplaceArticlePage() {
                 collateral monitoring, operational visibility, and auditability throughout the lending lifecycle.
               </p>
               <div className="gv-a-meta">
-                <span>November 2026</span>
+                <span>October 20, 2026</span>
                 <i aria-hidden="true" />
                 <span>5 min read</span>
                 <i aria-hidden="true" />
