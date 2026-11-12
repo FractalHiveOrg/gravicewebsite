@@ -23,7 +23,7 @@ export function SiteFooter() {
           <div><h4>Resources</h4><ul><li><a href="#news">Insights</a></li></ul></div>
         </div>
       </div>
-      <div className="gv-wrap gv-fbottom"><span>© 2026 Gravice. All rights reserved.</span><span>Privacy · Terms </span></div>
+      <div className="gv-wrap gv-fbottom"><span>© 2026 Gravice. All rights reserved.</span><span> · · </span></div>
     </footer>
   );
 }

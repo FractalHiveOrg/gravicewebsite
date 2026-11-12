@@ -7,11 +7,11 @@ import { Insights } from "../home/Insights";
  * Newsroom article: V-Track on Microsoft Marketplace press release, then "Keep reading" cards.
  * Same layout as RebrandArticlePage. The date is "November 2026" until the exact release date is confirmed.
  */
-export const VTRACK_MARKETPLACE_PATH = "/insights/v-track-on-microsoft-marketplace";
-const NEWSROOM_HREF = "/insights";
+export const VTRACK_MARKETPLACE_PATH = "/news/v-track-on-microsoft-marketplace";
+const NEWSROOM_HREF = "/news";
 const MARKETPLACE_URL = "https://marketplace.microsoft.com/en-us/product/fractalhive01.v-track";
 
-/** V-Track logo beside the "Available on Microsoft Marketplace" badge; also used on the Insights featured card. */
+/** V-Track logo beside the "Available on Microsoft Marketplace" badge; also used on the Newsroom featured card. */
 export function VTrackMarketplaceArt({ className = "" }: { className?: string }) {
   return (
     <div

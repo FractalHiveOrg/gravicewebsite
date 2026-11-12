@@ -85,6 +85,7 @@ const nav: NavItem[] = [
     ],
   },
   { label: "Insights", href: "/insights" },
+  { label: "Newsroom", href: "/news" },
 ];
 
 export function SiteHeader() {

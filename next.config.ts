@@ -25,6 +25,17 @@ const nextConfig: NextConfig = {
       },
       { source: "/industries", destination: "/industries/financial-institutions", permanent: false },
       { source: "/company", destination: "/company/about", permanent: false },
+      // press releases and company news moved from /insights to /news
+      {
+        source: "/insights/fractalhive-is-now-gravice",
+        destination: "/news/fractalhive-is-now-gravice",
+        permanent: true,
+      },
+      {
+        source: "/insights/v-track-on-microsoft-marketplace",
+        destination: "/news/v-track-on-microsoft-marketplace",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

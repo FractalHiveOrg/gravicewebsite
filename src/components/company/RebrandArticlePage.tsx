@@ -8,10 +8,9 @@ import { Insights } from "../home/Insights";
 /**
  * Newsroom article (prototypes/newsroom-article.html): the FractalHive → Gravice announcement, then
  * "Keep reading" cards. Draft copy until the date, customer details and legal wording are confirmed.
- * "Newsroom" links point at /insights until the newsroom index page exists.
  */
-const ARTICLE_PATH = "/insights/fractalhive-is-now-gravice";
-const NEWSROOM_HREF = "/insights";
+const ARTICLE_PATH = "/news/fractalhive-is-now-gravice";
+const NEWSROOM_HREF = "/news";
 const TITLE = "FractalHive is now Gravice.";
 
 const HERO_IMAGE: ImageSlot = {

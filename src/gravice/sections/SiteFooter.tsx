@@ -82,6 +82,9 @@ export function SiteFooter() {
               <li>
                 <a href="/insights">Insights</a>
               </li>
+              <li>
+                <a href="/news">Newsroom</a>
+              </li>
 
 
               <li>

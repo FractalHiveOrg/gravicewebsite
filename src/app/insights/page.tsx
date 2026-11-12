@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/Button";
-import {
-  VTRACK_MARKETPLACE_PATH,
-  VTrackMarketplaceArt,
-} from "@/components/company/VTrackMarketplaceArticlePage";
 import { insights } from "@/lib/insights";
 
 export const metadata: Metadata = {
@@ -30,63 +25,6 @@ export default function InsightsPage() {
             productivity, and assurance-first banking.
           </p>
         </div>
-
-        <Link
-          href={VTRACK_MARKETPLACE_PATH}
-          className="motion-card group mb-6 grid overflow-hidden rounded-[22px] border border-navy-100/60 bg-white hover:border-navy-100 lg:grid-cols-[1.2fr_1fr]"
-        >
-          <div className="relative overflow-hidden border-b border-navy-100/60 lg:border-r lg:border-b-0">
-            <VTrackMarketplaceArt className="h-full min-h-[240px] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] lg:min-h-[320px]" />
-          </div>
-          <div className="flex flex-col justify-center gap-3.5 px-6 py-8 sm:px-9 sm:py-9">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
-              Press release · Featured
-            </p>
-            <h2 className="font-serif text-[clamp(1.75rem,2.8vw,2.375rem)] font-normal leading-[1.12] text-deep-space transition-colors group-hover:text-navy">
-              V-Track is now available on Microsoft Marketplace.
-            </h2>
-            <p className="text-[16px] leading-relaxed text-slate">
-              Banks and NBFCs can now discover and deploy V-Track, our
-              collateral valuation governance platform, through Microsoft
-              Marketplace.
-            </p>
-            <span className="pt-1 text-[14px] font-medium text-pull-orange-deep">
-              Read the press release →
-            </span>
-          </div>
-        </Link>
-
-        <Link
-          href="/insights/fractalhive-is-now-gravice"
-          className="motion-card group mb-10 grid overflow-hidden rounded-[22px] border border-navy-100/60 bg-white hover:border-navy-100 lg:grid-cols-[1.2fr_1fr]"
-        >
-          <div className="relative aspect-video overflow-hidden bg-navy lg:aspect-auto lg:min-h-[320px]">
-            <Image
-              src="/fractalhive-to-gravice-rebrand_1.png"
-              alt="FractalHive is now Gravice"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 660px"
-              className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-            />
-          </div>
-          <div className="flex flex-col justify-center gap-3.5 px-6 py-8 sm:px-9 sm:py-9">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
-              Company news
-            </p>
-            <h2 className="font-serif text-[clamp(1.75rem,2.8vw,2.375rem)] font-normal leading-[1.12] text-deep-space transition-colors group-hover:text-navy">
-              FractalHive is now Gravice.
-            </h2>
-            <p className="text-[16px] leading-relaxed text-slate">
-              A new name for a clear purpose: intelligence at the centre of
-              banking and business operations. Here&apos;s what changes, and
-              what doesn&apos;t.
-            </p>
-            <span className="pt-1 text-[14px] font-medium text-pull-orange-deep">
-              Read the announcement →
-            </span>
-          </div>
-        </Link>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {insights.map((a) => (
