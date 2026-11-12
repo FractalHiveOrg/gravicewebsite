@@ -104,8 +104,6 @@ export function SiteFooter() {
           <a href="/legal/privacy">Privacy</a>
           {" · "}
           <a href="/legal/terms">Terms</a>
-          {" · "}
-
         </span>
       </div>
     </footer>
