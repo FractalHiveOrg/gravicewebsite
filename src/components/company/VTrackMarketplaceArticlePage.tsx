@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ClarityTags } from "@/components/ClarityTags";
-import { Insights } from "../home/Insights";
+import { MoreNews } from "@/components/news/MoreNews";
 
 /**
  * Newsroom article: V-Track on Microsoft Marketplace press release, then "Keep reading" cards.
@@ -224,7 +224,7 @@ export function VTrackMarketplaceArticlePage() {
         </div>
       </section>
 
-      <Insights />
+      <MoreNews currentHref={VTRACK_MARKETPLACE_PATH} />
     </div>
   );
 }

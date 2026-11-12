@@ -6,16 +6,8 @@ import {
   VTRACK_MARKETPLACE_PATH,
   VTrackMarketplaceArt,
 } from "@/components/company/VTrackMarketplaceArticlePage";
+import { MediaCarousel } from "@/components/news/MediaCarousel";
 import { mediaCoverage } from "@/lib/news";
-
-function formatDate(iso: string) {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
 
 export const metadata: Metadata = {
   title: "Newsroom | Gravice",
@@ -108,28 +100,7 @@ export default function NewsPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {mediaCoverage.map((item) => (
-              <a
-                key={item.url}
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="motion-card group flex h-full flex-col gap-3 rounded-[20px] border border-navy-100/60 bg-white px-6 pb-6 pt-5 hover:border-navy-100"
-              >
-                <p className="text-[12px] font-semibold uppercase tracking-[0.96px] text-slate">
-                  {item.publication} ·{" "}
-                  <time dateTime={item.date}>{formatDate(item.date)}</time>
-                </p>
-                <h3 className="font-serif text-[20px] font-normal leading-[1.2] text-deep-space transition-colors group-hover:text-navy">
-                  {item.title}
-                </h3>
-                <span className="mt-auto pt-2 text-[14px] font-medium text-pull-orange-deep">
-                  Read on {item.publication} ↗
-                </span>
-              </a>
-            ))}
-          </div>
+          <MediaCarousel items={mediaCoverage} />
         </div>
 
         <div className="mt-16">

@@ -3,7 +3,7 @@ import { ClarityTags } from "@/components/ClarityTags";
 import { CopyLinkButton } from "@/components/company/CopyLinkButton";
 import { ProductImage } from "@/components/product/ProductImage";
 import type { ImageSlot } from "@/lib/productImages";
-import { Insights } from "../home/Insights";
+import { MoreNews } from "@/components/news/MoreNews";
 
 /**
  * Newsroom article (prototypes/newsroom-article.html): the FractalHive → Gravice announcement, then
@@ -101,8 +101,7 @@ export function RebrandArticlePage() {
         </div>
       </section>
 
-            <Insights />
-    
+      <MoreNews currentHref={ARTICLE_PATH} />
     </div>
   );
 }
