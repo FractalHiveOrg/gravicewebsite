@@ -1,4 +1,4 @@
-/** Third-party coverage of Gravice, shown under "In the media" on /news. Newest first. */
+/** Third-party coverage of Gravice, shown under "In the media" on /news. AP News pinned first, then newest first. */
 export type MediaCoverage = {
   publication: string;
   title: string;
@@ -8,6 +8,12 @@ export type MediaCoverage = {
 };
 
 export const mediaCoverage: MediaCoverage[] = [
+  {
+    publication: "AP News",
+    title: "Gravice Solutions’s V-Track Now Available on Microsoft Marketplace",
+    url: "https://apnews.com/press-release/ein-presswire-newsmatics/press-release-5392f81ad8c076f4609a74ebed170e59",
+    date: "2026-11-09",
+  },
   {
     publication: "PressRelease.in",
     title: "Gravice Solutions’ V-Track Now Available on Microsoft Marketplace",
