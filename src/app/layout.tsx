@@ -8,6 +8,7 @@ import { HeroMotionProvider } from "@/components/HeroMotionGate";
 import { RebrandIntro } from "@/components/RebrandIntro";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/gravice/sections/SiteFooter";
+import { SITE_URL } from "@/lib/site";
 import "@/gravice/gravice.css";
 import "./globals.css";
 
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   },
   description:
     "Gravice builds software that brings order to slow, manual, high-stakes work for enterprises and growing businesses.",
-  metadataBase: new URL("https://gravicesolutions.com"),
+  metadataBase: new URL(SITE_URL),
 };
 
 export const viewport: Viewport = {
