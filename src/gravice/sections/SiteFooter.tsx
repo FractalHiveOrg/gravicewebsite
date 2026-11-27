@@ -1,8 +1,35 @@
+import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { PRODUCTS } from "../content";
 import { NicoLogo } from "@/components/NicoLogo";
 import { VtrackLogo } from "@/components/vtrack";
 import { ElevateRMLogo } from "@/components/ElevateRMLogo";
+import { companyLinks, industries, kits, PLATFORM_HREF, products } from "@/lib/navigation";
+
+type FooterLink = { label: string; href: string; external?: boolean };
+
+/* Same pages, in the same order, as the header nav (see @/lib/navigation). */
+const columns: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Products",
+    links: products.map(({ label, href, external }) => ({ label, href, external })),
+  },
+  {
+    title: "Platform",
+    links: [
+      { label: "GraviceOS", href: PLATFORM_HREF },
+      ...kits.map(({ label }) => ({ label, href: `${PLATFORM_HREF}#kits` })),
+    ],
+  },
+  {
+    title: "Industries",
+    links: industries.map(({ label, href }) => ({ label, href })),
+  },
+  {
+    title: "Company",
+    links: companyLinks.map(({ label, href }) => ({ label, href })),
+  },
+];
 
 /** Footer with the product logo row. */
 export function SiteFooter() {
@@ -34,76 +61,32 @@ export function SiteFooter() {
           </a>
         </div>
         <div className="gv-fcols">
-          <div>
-            <h4>Products</h4>
-            <ul>
-              <li>
-                <a href="/products/elevaterm">ElevateRM</a>
-              </li>
-              <li>
-                <a href="/products/v-track">V-Track</a>
-              </li>
-              <li>
-                <a href="https://nico.gravicesolutions.com/">NICO</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Industries</h4>
-            <ul>
-              <li>
-                <a href="/industries/financial-institutions">Financial Institutions</a>
-              </li>
-              <li>
-                <a href="/industries/manufacturing">Manufacturing</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Company</h4>
-            <ul>
-              <li>
-                <a href="/company/about">About</a>
-              </li>
-              <li>
-                <a href="/company/careers">Careers</a>
-              </li>
-              {/* <li>
-                <a href="/company/life-at-gravice">Life at Gravice</a>
-              </li> */}
-              <li>
-                <a href="/company/contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Resources</h4>
-            <ul>
-              <li>
-                <a href="/insights">Insights</a>
-              </li>
-              <li>
-                <a href="/news">Newsroom</a>
-              </li>
-
-
-              <li>
-                <a href="/legal/privacy">Privacy</a>
-              </li>
-              <li>
-                <a href="/legal/terms">Terms</a>
-              </li>
-
-            </ul>
-          </div>
+          {columns.map((col) => (
+            <div key={col.title}>
+              <h4>{col.title}</h4>
+              <ul>
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    {link.external ? (
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.label} ↗
+                      </a>
+                    ) : (
+                      <Link href={link.href}>{link.label}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
       <div className="gv-wrap gv-fbottom">
         <span>© 2026 Gravice. All rights reserved. Formerly FractalHive Solutions Private Limited.</span>
         <span>
-          <a href="/legal/privacy">Privacy</a>
+          <Link href="/legal/privacy">Privacy</Link>
           {" · "}
-          <a href="/legal/terms">Terms</a>
+          <Link href="/legal/terms">Terms</Link>
         </span>
       </div>
     </footer>

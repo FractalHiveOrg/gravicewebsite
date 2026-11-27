@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProduct(slug);
   if (!product) return {};
   return {
-    title: product.name,
-    description: product.summary,
+    title: product.seoTitle ? { absolute: product.seoTitle } : product.name,
+    description: product.seoDescription ?? product.summary,
   };
 }
 

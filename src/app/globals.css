@@ -31,6 +31,41 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Header mega menu motion: exposed as animate-nav-* / ease-nav-* utilities. */
+@theme {
+  --ease-nav: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-nav-popup: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  --ease-nav-chevron: cubic-bezier(0.6, 0, 0.2, 0.5);
+
+  --animate-nav-in: nav-fade-in 0.25s var(--ease-nav) both, nav-rise-in 0.5s var(--ease-nav) both;
+  --animate-nav-from-start: nav-fade-in 0.25s var(--ease-nav) both, nav-from-start 0.5s var(--ease-nav) both;
+  --animate-nav-from-end: nav-fade-in 0.25s var(--ease-nav) both, nav-from-end 0.5s var(--ease-nav) both;
+  --animate-nav-to-start: nav-fade-out 0.25s var(--ease-nav) both, nav-to-start 0.5s var(--ease-nav) both;
+  --animate-nav-to-end: nav-fade-out 0.25s var(--ease-nav) both, nav-to-end 0.5s var(--ease-nav) both;
+
+  @keyframes nav-fade-in {
+    from { opacity: 0; }
+  }
+  @keyframes nav-fade-out {
+    to { opacity: 0; }
+  }
+  @keyframes nav-rise-in {
+    from { transform: translateY(8px); }
+  }
+  @keyframes nav-from-start {
+    from { transform: translateX(-20%); }
+  }
+  @keyframes nav-from-end {
+    from { transform: translateX(20%); }
+  }
+  @keyframes nav-to-start {
+    to { transform: translateX(-20%); }
+  }
+  @keyframes nav-to-end {
+    to { transform: translateX(20%); }
+  }
+}
+
 * {
   box-sizing: border-box;
 }

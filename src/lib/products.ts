@@ -6,6 +6,10 @@ export type Product = {
   tagline: string;
   headline: string;
   summary: string;
+  /** Full <title> for search results; bypasses the "%s · Gravice" template. */
+  seoTitle?: string;
+  /** Meta description, when it should differ from the on-page summary. */
+  seoDescription?: string;
   audience: string;
   accent: "purple" | "navy" | "orange";
   badge?: string;
@@ -34,6 +38,7 @@ export const products: Record<ProductSlug, Product> = {
   elevaterm: {
     slug: "elevaterm",
     name: "ElevateRM",
+    seoTitle: "Relationship Management Platform for Banks | ElevateRM",
     tagline: "Relationship management",
     headline: "Every deal, every customer, one workspace.",
     summary:
@@ -112,6 +117,9 @@ export const products: Record<ProductSlug, Product> = {
     headline: "An eagle-eye view of your collateral portfolio.",
     summary:
       "V-Track provides continuous, asset-level visibility into every facility through dynamic valuation, LTV, and insurance tracking across the entire collateral lifecycle.",
+    seoTitle: "Collateral Revaluation Tracking for Banks & NBFCs | V\u2011Track",
+    seoDescription:
+      "Track every collateral revaluation, LTV and insurance date in one view. Alerts before anything falls due, with records ready for audit. For banks and NBFCs.",
     audience: "For banks and NBFCs",
     accent: "navy",
     badge: "Patent pending",

@@ -5,87 +5,20 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { Logo } from "@/components/Logo";
-import { NavDropdown } from "@/components/NavDropdown";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+import { DesktopNav } from "@/components/MegaMenu";
+import { companyLinks, industries, PLATFORM_HREF, products } from "@/lib/navigation";
 
 type NavItem = {
   label: string;
-  /** Omitted for menus with no landing page: the label only opens the menu. */
   href?: string;
-  /** Sub text for the "All <label>" entry when the menu has an href. */
-  description?: string;
-  children?: { label: string; href: string; description?: string }[];
+  children?: { label: string; href: string }[];
 };
 
 const nav: NavItem[] = [
-  {
-    label: "Products",
-    children: [
-      {
-        label: "ElevateRM",
-        href: "/products/elevaterm",
-        description: "Relationship management, from deal creation to closure.",
-      },
-      {
-        label: "V-Track",
-        href: "/products/v-track",
-        description: "Continuous valuation, LTV, and insurance tracking for collateral.",
-      },
-      {
-        label: "NICO",
-        href: "https://nico.gravicesolutions.com/",
-        description: "Agentic automation for document-heavy processes.",
-      },
-    ],
-  },
-  {
-    label: "Industries",
-    children: [
-      {
-        label: "Financial Institutions",
-        href: "/industries/financial-institutions",
-        description: "RM, collateral and loan documents for banks and NBFCs.",
-      },
-      {
-        label: "Manufacturing",
-        href: "/industries/manufacturing",
-        description: "Invoices, GRNs and POs into your ERP without retyping.",
-      },
-    ],
-  },
-  // { label: "Why Gravice", href: "/#why" },
-  {
-    label: "Company",
-    children: [
-      {
-        label: "About",
-        href: "/company/about",
-        description: "Who we are and why we build Gravice.",
-      },
-      {
-        label: "Careers",
-        href: "/company/careers",
-        description: "Join our team shipping high-stakes software.",
-      },
-      {
-        label: "Contact",
-        href: "/company/contact",
-        description: "Book a call and we will route you to the right team.",
-      },
-      // {
-      //   label: "Life at Gravice",
-      //   href: "/company/life-at-gravice",
-      //   description: "How we work, learn and celebrate together.",
-      // },
-    ],
-  },
-  { label: "Insights", href: "/insights" },
-  { label: "Newsroom", href: "/news" },
+  { label: "Products", children: products },
+  { label: "Platform", href: PLATFORM_HREF },
+  { label: "Industries", children: industries },
+  { label: "Company", children: companyLinks },
 ];
 
 export function SiteHeader() {
@@ -110,34 +43,7 @@ export function SiteHeader() {
       <div className="page-x mx-auto flex h-18 max-w-360 items-center justify-between gap-3 md:h-[84px] md:gap-6">
         <Logo theme="dark" className="min-w-0 shrink" />
 
-        <NavigationMenu
-          viewport={false}
-          className="hidden flex-none text-[14px] font-medium text-paper xl:flex xl:text-[15px]"
-          aria-label="Primary"
-        >
-          <NavigationMenuList className="gap-5 xl:gap-8">
-            {nav.map((item) =>
-              item.children ? (
-                <NavDropdown
-                  key={item.label}
-                  label={item.label}
-                  href={item.href}
-                  description={item.description}
-                  items={item.children}
-                />
-              ) : (
-                <NavigationMenuItem key={item.label}>
-                  <NavigationMenuLink
-                    asChild
-                    className="block rounded-none p-0 text-[length:inherit] transition-colors hover:bg-transparent hover:text-pull-orange focus:bg-transparent focus:text-pull-orange"
-                  >
-                    <Link href={item.href ?? "/"}>{item.label}</Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ),
-            )}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <DesktopNav className="mr-auto ml-4 hidden xl:flex" />
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <Image
@@ -148,6 +54,12 @@ export function SiteHeader() {
             className="hidden h-11 w-auto sm:block md:h-13"
             unoptimized
           />
+          {/* <Link
+            href="/company/contact"
+            className="hidden px-2 text-[15px] font-medium text-paper transition-colors hover:text-pull-orange xl:inline"
+          >
+            Contact us
+          </Link> */}
           <Button
             href="/demo"
             size="sm"

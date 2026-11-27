@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     ...productList.map((p) => page(`/products/${p.slug}`, 0.9)),
 
+    page("/platform", 0.8),
     page("/industries/financial-institutions", 0.8),
     page("/industries/manufacturing", 0.8),
 
